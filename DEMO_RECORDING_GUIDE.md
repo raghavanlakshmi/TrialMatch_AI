@@ -35,9 +35,13 @@ limit.
 3. **Trial Matches**
    - Explain that retrieval uses a frozen 75-trial ClinicalTrials.gov snapshot,
      vector search, BM25, and reciprocal rank fusion.
-   - Open the first candidate. Show the review label and criterion counts.
+   - Open the first candidate, NCT06412198. Show **Potential match - needs
+     verification** with 4 Meets, 0 Does Not Meet, 46 Unknown, and 1 Potential
+     Conflict.
    - Show `RULE-AGE` and `RULE-SEX` as deterministic checks.
    - Show an `llm` criterion and its cited patient evidence.
+   - Show `INC-11` as `POTENTIAL_CONFLICT` for ECOG 0 or 1, and `EXC-02` as
+     `UNKNOWN` because KRAS mutation does not prove prior inhibition therapy.
    - Show an `UNKNOWN` criterion. Explain that inclusion and exclusion criteria
      use stable IDs parsed once at index time.
 

@@ -132,11 +132,11 @@ NCT06412198
 
 Point out:
 
-- The trial-level review label
-- Meets count
-- Does Not Meet count
-- Unknown count
-- Potential Conflict count
+- The label **Potential match - needs verification**
+- Meets count: 4
+- Does Not Meet count: 0
+- Unknown count: 46
+- Potential Conflict count: 1
 - The reranking explanation
 
 Suggested narration:
@@ -190,8 +190,13 @@ eligibility decision.
 
 # 9. Show an UNKNOWN criterion
 
-Continue within the same trial until an assessment marked `UNKNOWN` is visible.
-There is no need to read the entire criterion.
+Within the same trial, show `INC-11` as `POTENTIAL_CONFLICT`. Explain that ECOG
+1 meets the trial's ECOG 0-or-1 requirement while ECOG 2 does not, so both
+documented outcomes remain visible.
+
+Then find `EXC-02`, **Prior KRASG12C inhibition therapy**. It should be
+`UNKNOWN`: mutation evidence does not prove that the patient received a KRAS
+G12C inhibitor. There is no need to read every other unknown criterion.
 
 Suggested narration:
 
