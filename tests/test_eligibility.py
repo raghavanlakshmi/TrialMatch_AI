@@ -33,3 +33,23 @@ def test_differing_ecog_values_can_remain_conflict():
     result = conservative_assessment(criterion, items)
     assert result.status == "POTENTIAL_CONFLICT"
     assert {x.date for x in result.patient_evidence} == {"2026-01-01", "2026-02-01"}
+
+
+def test_different_primary_cancer_is_does_not_meet():
+    criterion = TrialCriterion(criterion_id="INC-02", type="inclusion", text="Patients with pancreatic cancer diagnosed by histopathology or cytology;")
+    item = evidence("diagnosis", "Metastatic colorectal adenocarcinoma")
+    result = conservative_assessment(criterion, [item])
+    assert result.status == "DOES_NOT_MEET"
+    assert summarize_trial([result])["overall_label"].startswith("Apparent exclusion")
+
+
+def test_metastatic_site_wording_is_not_a_diagnosis_mismatch():
+    criterion = TrialCriterion(criterion_id="INC-03", type="inclusion", text="Measurable disease, including lung metastases from colorectal cancer")
+    item = evidence("diagnosis", "Metastatic colorectal adenocarcinoma")
+    assert conservative_assessment(criterion, [item]).status != "DOES_NOT_MEET"
+
+
+def test_matching_or_multi_site_criterion_is_not_a_mismatch():
+    criterion = TrialCriterion(criterion_id="INC-04", type="inclusion", text="Histologically confirmed NSCLC, colorectal or pancreatic cancer")
+    item = evidence("diagnosis", "Metastatic colorectal adenocarcinoma")
+    assert conservative_assessment(criterion, [item]).status != "DOES_NOT_MEET"

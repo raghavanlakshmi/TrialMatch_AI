@@ -99,6 +99,28 @@ def main() -> None:
         ),
         "Definitive patient eligibility language found.",
     )
+    pancreatic = summaries["NCT06782685"]
+    require(
+        pancreatic["counts"] == {
+            "MEETS": 3,
+            "DOES_NOT_MEET": 1,
+            "UNKNOWN": 26,
+            "POTENTIAL_CONFLICT": 0,
+        },
+        "Pancreatic distractor must retain the diagnosis-mismatch exclusion.",
+    )
+    require(
+        pancreatic["overall_label"] == "Apparent exclusion — needs verification",
+        "Pancreatic distractor must require apparent-exclusion review.",
+    )
+    require(
+        replay["human_review"]["candidate_trials"] == candidates,
+        "Human-review candidates must match the reranked candidate list.",
+    )
+    require(
+        replay["human_review"]["trial_summaries"] == summaries,
+        "Human-review summaries must match the current trial summaries.",
+    )
     require(
         any("instruction-like" in flag for flag in replay["safety_flags"]),
         "Prompt-injection defense result is missing.",

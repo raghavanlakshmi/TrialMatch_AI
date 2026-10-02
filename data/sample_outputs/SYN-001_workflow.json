@@ -1588,10 +1588,21 @@
         "criterion_id": "INC-02",
         "criterion_text": "Patients with pancreatic cancer diagnosed by histopathology or cytology;",
         "criterion_type": "inclusion",
-        "status": "UNKNOWN",
+        "status": "DOES_NOT_MEET",
         "method": "rule",
-        "patient_evidence": [],
-        "explanation": "The supplied evidence does not safely establish this criterion without a live criterion assessment."
+        "patient_evidence": [
+          {
+            "category": "diagnosis",
+            "value": "Metastatic colorectal adenocarcinoma",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Diagnosis: Metastatic colorectal adenocarcinoma",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "Verified diagnosis (colorectal) does not match the cancer type this criterion requires (pancreatic); human verification is required."
       },
       {
         "criterion_id": "INC-03",
@@ -2616,11 +2627,11 @@
       "criteria_assessed": 30,
       "counts": {
         "MEETS": 3,
-        "DOES_NOT_MEET": 0,
-        "UNKNOWN": 27,
+        "DOES_NOT_MEET": 1,
+        "UNKNOWN": 26,
         "POTENTIAL_CONFLICT": 0
       },
-      "overall_label": "Potential match — needs verification"
+      "overall_label": "Apparent exclusion — needs verification"
     },
     "NCT06252649": {
       "criteria_assessed": 11,
@@ -2831,23 +2842,8 @@
           "source": "ClinicalTrials.gov"
         },
         "retrieval_mode": "hybrid_rrf",
-        "relevance_score": 0.4918,
-        "reason": "Hybrid retrieval rank; LLM reranking was not requested."
-      },
-      {
-        "nct_id": "NCT06782685",
-        "rrf_score": 0.01639344262295082,
-        "best_chunk": {
-          "chunk_id": "NCT06782685:INC-09",
-          "text": "Bone marrow function: absolute neutrophil count (ANC) ≥1.5×10\\^9/L, hemoglobin ≥90 g/dL, platelets (PLT) ≥100×10\\^9/L, and white blood cells (WBC) ≥3.0×10\\^9/L;",
-          "nct_id": "NCT06782685",
-          "section": "inclusion",
-          "criterion_id": "INC-09",
-          "source": "ClinicalTrials.gov"
-        },
-        "retrieval_mode": "hybrid_rrf",
-        "relevance_score": 0.4918,
-        "reason": "Hybrid retrieval rank; LLM reranking was not requested."
+        "relevance_score": 0.95,
+        "reason": "The trial focuses on metastatic colorectal cancer harboring KRAS G12C mutations, which matches the patient's KRAS G12C+ status, metastatic colorectal adenocarcinoma diagnosis, and relevant mutation."
       },
       {
         "nct_id": "NCT06252649",
@@ -2861,8 +2857,8 @@
           "source": "ClinicalTrials.gov"
         },
         "retrieval_mode": "hybrid_rrf",
-        "relevance_score": 0.4839,
-        "reason": "Hybrid retrieval rank; LLM reranking was not requested."
+        "relevance_score": 0.9,
+        "reason": "This study involves metastatic colorectal cancer with KRAS G12C mutation and includes FOLFIRI treatment, aligning well with patient's prior FOLFIRI and FOLFOX treatment and KRAS G12C mutation."
       },
       {
         "nct_id": "NCT07559760",
@@ -2876,8 +2872,8 @@
           "source": "ClinicalTrials.gov"
         },
         "retrieval_mode": "hybrid_rrf",
-        "relevance_score": 0.4839,
-        "reason": "Hybrid retrieval rank; LLM reranking was not requested."
+        "relevance_score": 0.8,
+        "reason": "A second-line therapy study for microsatellite stable (MSS) metastatic colorectal cancer patients progressed after oxaliplatin-based regimens, matching patient's MSS, prior oxaliplatin treatment, and metastatic colorectal adenocarcinoma status."
       },
       {
         "nct_id": "NCT06645236",
@@ -2891,8 +2887,23 @@
           "source": "ClinicalTrials.gov"
         },
         "retrieval_mode": "hybrid_rrf",
-        "relevance_score": 0.4762,
-        "reason": "Hybrid retrieval rank; LLM reranking was not requested."
+        "relevance_score": 0.6,
+        "reason": "This trial is for the performance of a KRAS G12C mutation test to identify patients for treatment, relevant to patient's KRAS G12C mutation but not a therapeutic trial itself."
+      },
+      {
+        "nct_id": "NCT06782685",
+        "rrf_score": 0.01639344262295082,
+        "best_chunk": {
+          "chunk_id": "NCT06782685:INC-09",
+          "text": "Bone marrow function: absolute neutrophil count (ANC) ≥1.5×10\\^9/L, hemoglobin ≥90 g/dL, platelets (PLT) ≥100×10\\^9/L, and white blood cells (WBC) ≥3.0×10\\^9/L;",
+          "nct_id": "NCT06782685",
+          "section": "inclusion",
+          "criterion_id": "INC-09",
+          "source": "ClinicalTrials.gov"
+        },
+        "retrieval_mode": "hybrid_rrf",
+        "relevance_score": 0.3,
+        "reason": "Trial is for advanced pancreatic cancer and unrelated to colorectal cancer diagnosis or KRAS mutation status."
       }
     ],
     "trial_summaries": {
@@ -2910,11 +2921,11 @@
         "criteria_assessed": 30,
         "counts": {
           "MEETS": 3,
-          "DOES_NOT_MEET": 0,
-          "UNKNOWN": 27,
+          "DOES_NOT_MEET": 1,
+          "UNKNOWN": 26,
           "POTENTIAL_CONFLICT": 0
         },
-        "overall_label": "Potential match — needs verification"
+        "overall_label": "Apparent exclusion — needs verification"
       },
       "NCT06252649": {
         "criteria_assessed": 11,

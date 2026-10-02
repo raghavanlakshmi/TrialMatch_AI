@@ -37,7 +37,7 @@ by qualified study staff.
 | Criterion assessments in saved demo | 139 |
 | LangGraph trace nodes | 12 successful nodes |
 | Synthetic evaluation cases | 10 |
-| Automated tests | 145 passed |
+| Automated tests | 148 passed |
 | Live API verification after key update | Passed |
 | Saved-run replay | Complete |
 | Final narrated video and submission upload | Manual submission step |
@@ -207,7 +207,16 @@ exclusion, while `DOES_NOT_MEET` means the exclusion appears to apply.
 | NCT06252649 | 4 | 0 | 6 | 1 | Potential match - needs verification |
 | NCT07559760 | 4 | 0 | 38 | 1 | Potential match - needs verification |
 | NCT06645236 | 3 | 0 | 1 | 0 | Potential match - needs verification |
-| NCT06782685 | 3 | 0 | 27 | 0 | Potential match - needs verification |
+| NCT06782685 | 3 | 1 | 26 | 0 | Apparent exclusion - needs verification |
+
+The pancreatic distractor `NCT06782685` is not treated as a potential match
+merely because its structured age and sex fields pass. Its inclusion criterion
+requires pancreatic cancer, while the verified patient diagnosis is colorectal
+cancer, so the narrow deterministic diagnosis rule returns `DOES_NOT_MEET`.
+Across all 1,542 criteria, this rule flags four criteria, all in pancreatic
+distractor trials and none in the 55 candidate-role trials. Cohort-specific,
+metastasis, history, multi-cancer, and exception wording remain guarded against
+false-positive diagnosis mismatches.
 
 The large number of `UNKNOWN` results is intentional. It shows that sparse
 patient records are not silently converted into supportive evidence.
@@ -333,7 +342,7 @@ The `.env` file is ignored by Git and the key is not present in the repository.
 
 # 12. Testing and Engineering Status
 
-The final test suite contains 145 passing tests. Coverage includes:
+The final test suite contains 148 passing tests. Coverage includes:
 
 - Text-PDF ingestion with page preservation
 - OCR and vision-response handling
@@ -345,6 +354,7 @@ The final test suite contains 145 passing tests. Coverage includes:
 - Semantic chunk metadata
 - BM25 and reciprocal-rank fusion behavior
 - Exclusion-criterion direction
+- Primary-cancer diagnosis mismatch and false-positive guards
 - Prompt-injection detection
 - Definitive eligibility-language blocking
 - Streamlit evidence rendering
@@ -552,7 +562,7 @@ Use this table:
 | Hybrid RRF Recall@5 | 0.75 |
 | Criterion accuracy | 1.00 on 8 labeled checks |
 | UNKNOWN to MEETS errors | 0 |
-| Automated tests | 145 passed |
+| Automated tests | 148 passed |
 
 State clearly that these are small synthetic-fixture results, not clinical
 validation.
@@ -605,7 +615,7 @@ Use these numbers consistently across the presentation:
 | Criterion assessments | 139 |
 | Workflow nodes | 12 |
 | Synthetic evaluation cases | 10 |
-| Passing tests | 145 |
+| Passing tests | 148 |
 
 # 19. Competition Pitch
 
