@@ -114,8 +114,18 @@ def conservative_assessment(criterion: TrialCriterion, evidence: list[EvidenceIt
     if mismatch is not None:
         return mismatch
     selected: list[EvidenceItem] = []
-    if "kras" in text and "g12c" in text and "inhibitor" in text:
-        selected = [i for i in verified if i.category == "prior_treatment" and "kras" in i.value.casefold() and "g12c" in i.value.casefold() and "inhibitor" in i.value.casefold()]
+    if (
+        "kras" in text
+        and "g12c" in text
+        and any(term in text for term in ("inhibitor", "inhibition"))
+    ):
+        selected = [
+            i for i in verified
+            if i.category == "prior_treatment"
+            and "kras" in i.value.casefold()
+            and "g12c" in i.value.casefold()
+            and "inhib" in i.value.casefold()
+        ]
     elif "kras" in text and "g12c" in text:
         selected = [i for i in verified if i.category == "biomarker" and "kras" in i.value.casefold() and "g12c" in i.value.casefold()]
     elif any(term in text for term in ("colorectal", "colon", "rectal")):
@@ -124,6 +134,7 @@ def conservative_assessment(criterion: TrialCriterion, evidence: list[EvidenceIt
         selected = [i for i in verified if i.category == "performance_status" and "ecog" in i.value.casefold()]
         limit_matches = re.findall(r"(?:≤|<=)\s*(\d)|0\s*[-–]\s*(\d)", text)
         limits = [int(left or right) for left, right in limit_matches]
+        limits.extend(int(value) for value in re.findall(r"\b0\s+or\s+(\d)\b", text))
         values = [_number(i) for i in selected]
         if selected and limits and all(v is not None for v in values):
             outcomes = [v <= max(limits) for v in values]

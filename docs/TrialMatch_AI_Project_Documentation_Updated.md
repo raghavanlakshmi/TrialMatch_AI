@@ -37,7 +37,7 @@ by qualified study staff.
 | Criterion assessments in saved demo | 139 |
 | LangGraph trace nodes | 12 successful nodes |
 | Synthetic evaluation cases | 10 |
-| Automated tests | 148 passed |
+| Automated tests | 151 passed |
 | Live API verification after key update | Passed |
 | Saved-run replay | Complete |
 | Final narrated video and submission upload | Manual submission step |
@@ -177,7 +177,7 @@ The saved demo returned five reranked candidates:
 
 | Rank | Trial | Reranker score | Interpretation |
 |---:|---|---:|---|
-| 1 | NCT06412198 | 0.95 | Strong disease and KRAS G12C alignment; detailed review found an apparent exclusion requiring verification |
+| 1 | NCT06412198 | 0.95 | Strong disease and KRAS G12C alignment; potential match with an ECOG conflict |
 | 2 | NCT06252649 | 0.90 | Metastatic colorectal cancer and KRAS G12C alignment; potential match with an ECOG conflict |
 | 3 | NCT07559760 | 0.80 | MSS metastatic colorectal cancer and treatment-history alignment; potential match with an ECOG conflict |
 | 4 | NCT06645236 | 0.60 | Relevant companion-diagnostic study rather than a direct therapeutic match |
@@ -203,7 +203,7 @@ exclusion, while `DOES_NOT_MEET` means the exclusion appears to apply.
 
 | Trial | Meets | Does not meet | Unknown | Potential conflict | Review label |
 |---|---:|---:|---:|---:|---|
-| NCT06412198 | 5 | 1 | 45 | 0 | Apparent exclusion - needs verification |
+| NCT06412198 | 4 | 0 | 46 | 1 | Potential match - needs verification |
 | NCT06252649 | 4 | 0 | 6 | 1 | Potential match - needs verification |
 | NCT07559760 | 4 | 0 | 38 | 1 | Potential match - needs verification |
 | NCT06645236 | 3 | 0 | 1 | 0 | Potential match - needs verification |
@@ -217,6 +217,13 @@ Across all 1,542 criteria, this rule flags four criteria, all in pancreatic
 distractor trials and none in the 55 candidate-role trials. Cohort-specific,
 metastasis, history, multi-cancer, and exception wording remain guarded against
 false-positive diagnosis mismatches.
+
+For `NCT06412198`, verified KRAS G12C mutation evidence is not treated as proof
+of prior KRAS G12C inhibition therapy. That exclusion therefore remains
+`UNKNOWN`. The inclusion criterion requiring ECOG 0 or 1 receives different
+outcomes from the documented ECOG 1 and ECOG 2 values, so it is marked
+`POTENTIAL_CONFLICT`. The trial remains a potential match requiring human
+verification.
 
 The large number of `UNKNOWN` results is intentional. It shows that sparse
 patient records are not silently converted into supportive evidence.
@@ -342,7 +349,7 @@ The `.env` file is ignored by Git and the key is not present in the repository.
 
 # 12. Testing and Engineering Status
 
-The final test suite contains 148 passing tests. Coverage includes:
+The final test suite contains 151 passing tests. Coverage includes:
 
 - Text-PDF ingestion with page preservation
 - OCR and vision-response handling
@@ -355,6 +362,8 @@ The final test suite contains 148 passing tests. Coverage includes:
 - BM25 and reciprocal-rank fusion behavior
 - Exclusion-criterion direction
 - Primary-cancer diagnosis mismatch and false-positive guards
+- Prior-inhibitor evidence distinguished from mutation status
+- ECOG "0 or 1" parsing with conflict preservation
 - Prompt-injection detection
 - Definitive eligibility-language blocking
 - Streamlit evidence rendering
@@ -562,7 +571,7 @@ Use this table:
 | Hybrid RRF Recall@5 | 0.75 |
 | Criterion accuracy | 1.00 on 8 labeled checks |
 | UNKNOWN to MEETS errors | 0 |
-| Automated tests | 148 passed |
+| Automated tests | 151 passed |
 
 State clearly that these are small synthetic-fixture results, not clinical
 validation.
@@ -615,7 +624,7 @@ Use these numbers consistently across the presentation:
 | Criterion assessments | 139 |
 | Workflow nodes | 12 |
 | Synthetic evaluation cases | 10 |
-| Passing tests | 148 |
+| Passing tests | 151 |
 
 # 19. Competition Pitch
 

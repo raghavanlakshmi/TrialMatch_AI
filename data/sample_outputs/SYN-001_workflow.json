@@ -1134,7 +1134,7 @@
         "criterion_id": "INC-11",
         "criterion_text": "Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1.",
         "criterion_type": "inclusion",
-        "status": "MEETS",
+        "status": "POTENTIAL_CONFLICT",
         "method": "rule",
         "patient_evidence": [
           {
@@ -1168,7 +1168,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Explicit verified evidence matches the central condition or biomarker wording; human verification is required."
+        "explanation": "Conservative offline comparison of all documented ECOG values; live LLM assessment was not requested."
       },
       {
         "criterion_id": "INC-12",
@@ -1336,31 +1336,10 @@
         "criterion_id": "EXC-02",
         "criterion_text": "Prior KRASG12C inhibition therapy",
         "criterion_type": "exclusion",
-        "status": "DOES_NOT_MEET",
+        "status": "UNKNOWN",
         "method": "rule",
-        "patient_evidence": [
-          {
-            "category": "biomarker",
-            "value": "KRAS G12C+",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "KRAS G12C+",
-            "quote_verified": true
-          },
-          {
-            "category": "biomarker",
-            "value": "KRAS: G12C mutation detected",
-            "normalized_value": null,
-            "date": "2026-02-24",
-            "source_file": "pathology_report.pdf",
-            "source_page": 2,
-            "evidence_text": "KRAS: G12C mutation detected",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "Explicit verified evidence indicates that this exclusion may apply; human verification is required."
+        "patient_evidence": [],
+        "explanation": "The supplied evidence does not safely establish this criterion without a live criterion assessment."
       },
       {
         "criterion_id": "EXC-03",
@@ -2616,12 +2595,12 @@
     "NCT06412198": {
       "criteria_assessed": 51,
       "counts": {
-        "MEETS": 5,
-        "DOES_NOT_MEET": 1,
-        "UNKNOWN": 45,
-        "POTENTIAL_CONFLICT": 0
+        "MEETS": 4,
+        "DOES_NOT_MEET": 0,
+        "UNKNOWN": 46,
+        "POTENTIAL_CONFLICT": 1
       },
-      "overall_label": "Apparent exclusion — needs verification"
+      "overall_label": "Potential match — needs verification"
     },
     "NCT06782685": {
       "criteria_assessed": 30,
@@ -2910,12 +2889,12 @@
       "NCT06412198": {
         "criteria_assessed": 51,
         "counts": {
-          "MEETS": 5,
-          "DOES_NOT_MEET": 1,
-          "UNKNOWN": 45,
-          "POTENTIAL_CONFLICT": 0
+          "MEETS": 4,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 46,
+          "POTENTIAL_CONFLICT": 1
         },
-        "overall_label": "Apparent exclusion — needs verification"
+        "overall_label": "Potential match — needs verification"
       },
       "NCT06782685": {
         "criteria_assessed": 30,

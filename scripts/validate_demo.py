@@ -113,6 +113,32 @@ def main() -> None:
         pancreatic["overall_label"] == "Apparent exclusion — needs verification",
         "Pancreatic distractor must require apparent-exclusion review.",
     )
+    top_trial = summaries["NCT06412198"]
+    require(
+        top_trial["counts"] == {
+            "MEETS": 4,
+            "DOES_NOT_MEET": 0,
+            "UNKNOWN": 46,
+            "POTENTIAL_CONFLICT": 1,
+        },
+        "Top trial must retain the inhibitor unknown and ECOG conflict.",
+    )
+    require(
+        top_trial["overall_label"] == "Potential match — needs verification",
+        "Top trial must remain a potential match requiring verification.",
+    )
+    top_assessments = {
+        item.criterion_id: item for item in assessments["NCT06412198"]
+    }
+    require(
+        top_assessments["EXC-02"].status == "UNKNOWN"
+        and not top_assessments["EXC-02"].patient_evidence,
+        "KRAS mutation evidence must not prove prior inhibition therapy.",
+    )
+    require(
+        top_assessments["INC-11"].status == "POTENTIAL_CONFLICT",
+        "ECOG 0 or 1 criterion must preserve differing ECOG outcomes.",
+    )
     require(
         replay["human_review"]["candidate_trials"] == candidates,
         "Human-review candidates must match the reranked candidate list.",

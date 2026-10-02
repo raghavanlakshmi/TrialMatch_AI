@@ -53,3 +53,39 @@ def test_matching_or_multi_site_criterion_is_not_a_mismatch():
     criterion = TrialCriterion(criterion_id="INC-04", type="inclusion", text="Histologically confirmed NSCLC, colorectal or pancreatic cancer")
     item = evidence("diagnosis", "Metastatic colorectal adenocarcinoma")
     assert conservative_assessment(criterion, [item]).status != "DOES_NOT_MEET"
+
+
+def test_kras_mutation_does_not_prove_prior_kras_inhibition_therapy():
+    criterion = TrialCriterion(
+        criterion_id="EXC-02", type="exclusion",
+        text="Prior KRASG12C inhibition therapy",
+    )
+    mutation = evidence("biomarker", "KRAS G12C mutation detected")
+    result = conservative_assessment(criterion, [mutation])
+    assert result.status == "UNKNOWN"
+    assert result.patient_evidence == []
+
+
+def test_documented_prior_kras_inhibitor_applies_exclusion():
+    criterion = TrialCriterion(
+        criterion_id="EXC-02", type="exclusion",
+        text="Prior KRASG12C inhibition therapy",
+    )
+    treatment = evidence("prior_treatment", "Prior KRAS G12C inhibitor therapy")
+    result = conservative_assessment(criterion, [treatment])
+    assert result.status == "DOES_NOT_MEET"
+    assert result.patient_evidence == [treatment]
+
+
+def test_ecog_zero_or_one_retains_conflicting_values():
+    criterion = TrialCriterion(
+        criterion_id="INC-11", type="inclusion",
+        text="Eastern Cooperative Oncology Group (ECOG) performance status of 0 or 1.",
+    )
+    items = [
+        evidence("performance_status", "ECOG 1", date="2026-03-10"),
+        evidence("performance_status", "ECOG 2", date="2026-03-11"),
+    ]
+    result = conservative_assessment(criterion, items)
+    assert result.status == "POTENTIAL_CONFLICT"
+    assert result.patient_evidence == items
