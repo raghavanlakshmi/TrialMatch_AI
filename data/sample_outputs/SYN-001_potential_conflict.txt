@@ -1,0 +1,4 @@
+POTENTIAL CONFLICT
+ECOG 1 — oncology_note.pdf · p2 — 2026-03-10
+ECOG 2 — outside_referral_scan.png · p1 — 2026-03-11
+Both values retained. Reviewer reconciles.

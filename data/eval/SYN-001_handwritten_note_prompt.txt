@@ -1,0 +1,15 @@
+Use case: photorealistic-natural
+Asset type: synthetic handwritten clinical note PNG for the TrialMatch AI project's optional step 14.
+Primary request: Create one small, clearly fictional handwritten note for synthetic patient SYN-001. It must contain exactly three clinical facts, copied verbatim from the build guide.
+Scene/backdrop: Flat scanned small white paper note, filling the frame, portrait orientation, no surrounding objects.
+Style/medium: Natural blue ballpoint handwriting for the three facts, slightly irregular strokes and spacing, readable but visibly handwritten. Plain printed small metadata header and footer.
+Text (verbatim), in reading order:
+"SYNTHETIC - EXPERIMENTAL HANDWRITING"
+"Patient ID: SYN-001"
+"Document date: 2026-03-10"
+"ECOG 1"
+"FOLFOX completed"
+"KRAS G12C+"
+"Page 1 of 1 - Review required"
+Composition: Compact header, then the three handwritten clinical fact lines with generous separation, then a small footer. All text fully inside the paper with ample margins.
+Constraints: Exact spelling and digits. The plus sign at the end of G12C+ must be visible. No additional facts, no treatment recommendations, no real names, no signature, no institution logo. Do not mention KRAS inhibitor treatment history. Opaque background. This is a fictional software development fixture, not a real patient record.

@@ -1,0 +1,61 @@
+{
+  "source": "ClinicalTrials.gov",
+  "api_url": "https://clinicaltrials.gov/api/v2/studies",
+  "snapshot_date": "2026-10-02",
+  "snapshot_timezone": "America/New_York",
+  "record_count": 75,
+  "role_counts": {
+    "candidate": 55,
+    "distractor": 20
+  },
+  "query_results": [
+    {
+      "name": "colorectal_kras_g12c",
+      "role": "candidate",
+      "params": {
+        "query.cond": "colorectal cancer",
+        "query.term": "KRAS G12C"
+      },
+      "requested_unique_records": 15,
+      "added_unique_records": 15,
+      "skipped_records": 0,
+      "selection_filter": null
+    },
+    {
+      "name": "colorectal_recruiting",
+      "role": "candidate",
+      "params": {
+        "query.cond": "colorectal cancer"
+      },
+      "requested_unique_records": 40,
+      "added_unique_records": 40,
+      "skipped_records": 0,
+      "selection_filter": null
+    },
+    {
+      "name": "pancreatic_distractors",
+      "role": "distractor",
+      "params": {
+        "query.cond": "pancreatic cancer"
+      },
+      "requested_unique_records": 10,
+      "added_unique_records": 10,
+      "skipped_records": 1,
+      "selection_filter": "exclude_colorectal_conditions"
+    },
+    {
+      "name": "kras_g12d_distractors",
+      "role": "distractor",
+      "params": {
+        "query.term": "KRAS G12D"
+      },
+      "requested_unique_records": 10,
+      "added_unique_records": 10,
+      "skipped_records": 3,
+      "selection_filter": "g12d_without_g12c"
+    }
+  ],
+  "eligibility_text_path": "protocolSection.eligibilityModule.eligibilityCriteria",
+  "selection_note": "Query roles are corpus selection metadata, not gold relevance labels or patient assessments.",
+  "runtime_note": "The application reads this frozen snapshot; no runtime ClinicalTrials.gov requests."
+}

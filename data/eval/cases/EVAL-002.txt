@@ -1,0 +1,3 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal cancer
+Fact: prior_treatment | prior KRAS G12C inhibitor

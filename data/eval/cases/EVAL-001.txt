@@ -1,0 +1,5 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal adenocarcinoma
+Fact: biomarker | KRAS G12C mutation detected
+Fact: age | 58 years
+Fact: sex | Female

@@ -1,0 +1,162 @@
+[
+  {
+    "category": "performance_status",
+    "value": "ECOG 1",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "handwritten_note.png",
+    "source_page": 1,
+    "evidence_text": "ECOG 1",
+    "quote_verified": true
+  },
+  {
+    "category": "prior_treatment",
+    "value": "FOLFOX completed",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "handwritten_note.png",
+    "source_page": 1,
+    "evidence_text": "FOLFOX completed",
+    "quote_verified": true
+  },
+  {
+    "category": "biomarker",
+    "value": "KRAS G12C+",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "handwritten_note.png",
+    "source_page": 1,
+    "evidence_text": "KRAS G12C+",
+    "quote_verified": true
+  },
+  {
+    "category": "lab",
+    "value": "Absolute neutrophil count (ANC): 2.1 x 10^9/L",
+    "normalized_value": null,
+    "date": "2026-03-08",
+    "source_file": "lab_report.pdf",
+    "source_page": 1,
+    "evidence_text": "Absolute neutrophil count (ANC): 2.1 x 10^9/L",
+    "quote_verified": true
+  },
+  {
+    "category": "lab",
+    "value": "Hemoglobin: 11.2 g/dL",
+    "normalized_value": null,
+    "date": "2026-03-08",
+    "source_file": "lab_report.pdf",
+    "source_page": 1,
+    "evidence_text": "Hemoglobin: 11.2 g/dL",
+    "quote_verified": true
+  },
+  {
+    "category": "lab",
+    "value": "Creatinine: 0.9 mg/dL",
+    "normalized_value": null,
+    "date": "2026-03-08",
+    "source_file": "lab_report.pdf",
+    "source_page": 1,
+    "evidence_text": "Creatinine: 0.9 mg/dL",
+    "quote_verified": true
+  },
+  {
+    "category": "age",
+    "value": "58 years",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 1,
+    "evidence_text": "Age: 58 years",
+    "quote_verified": true
+  },
+  {
+    "category": "sex",
+    "value": "Female",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 1,
+    "evidence_text": "Sex: Female",
+    "quote_verified": true
+  },
+  {
+    "category": "diagnosis",
+    "value": "Metastatic colorectal adenocarcinoma",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 1,
+    "evidence_text": "Diagnosis: Metastatic colorectal adenocarcinoma",
+    "quote_verified": true
+  },
+  {
+    "category": "metastatic_site",
+    "value": "Liver",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 1,
+    "evidence_text": "Metastatic site: Liver",
+    "quote_verified": true
+  },
+  {
+    "category": "prior_treatment",
+    "value": "FOLFOX, then FOLFIRI",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 2,
+    "evidence_text": "Prior treatment: FOLFOX, then FOLFIRI",
+    "quote_verified": true
+  },
+  {
+    "category": "performance_status",
+    "value": "ECOG 1",
+    "normalized_value": null,
+    "date": "2026-03-10",
+    "source_file": "oncology_note.pdf",
+    "source_page": 2,
+    "evidence_text": "Performance status: ECOG 1",
+    "quote_verified": true
+  },
+  {
+    "category": "performance_status",
+    "value": "ECOG 2",
+    "normalized_value": null,
+    "date": "2026-03-11",
+    "source_file": "outside_referral_scan.png",
+    "source_page": 1,
+    "evidence_text": "ECOG 2",
+    "quote_verified": true
+  },
+  {
+    "category": "biomarker",
+    "value": "BRAF: wild type",
+    "normalized_value": null,
+    "date": "2026-02-24",
+    "source_file": "pathology_report.pdf",
+    "source_page": 1,
+    "evidence_text": "BRAF: wild type",
+    "quote_verified": true
+  },
+  {
+    "category": "biomarker",
+    "value": "KRAS: G12C mutation detected",
+    "normalized_value": null,
+    "date": "2026-02-24",
+    "source_file": "pathology_report.pdf",
+    "source_page": 2,
+    "evidence_text": "KRAS: G12C mutation detected",
+    "quote_verified": true
+  },
+  {
+    "category": "biomarker",
+    "value": "MSI: microsatellite stable (MSS)",
+    "normalized_value": null,
+    "date": "2026-02-24",
+    "source_file": "pathology_report.pdf",
+    "source_page": 2,
+    "evidence_text": "MSI: microsatellite stable (MSS)",
+    "quote_verified": true
+  }
+]

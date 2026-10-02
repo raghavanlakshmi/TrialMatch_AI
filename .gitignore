@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# TrialMatch local configuration and generated index
+data/index/
+
+.env
+.venv/
+__pycache__/
+*.pyc
+data/index/

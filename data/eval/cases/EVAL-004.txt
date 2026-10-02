@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal cancer
+Fact: performance_status | ECOG 1 | 2026-03-10
+Fact: performance_status | ECOG 3 | 2026-03-11
