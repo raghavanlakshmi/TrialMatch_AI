@@ -1,0 +1,23 @@
+{
+  "artifact_type": "expected_demo_output",
+  "patient_id": "SYN-001",
+  "fact": "ECOG",
+  "status": "POTENTIAL_CONFLICT",
+  "evidence": [
+    {
+      "value": 1,
+      "source_document": "oncology_note.pdf",
+      "page": 2,
+      "document_date": "2026-03-10",
+      "supporting_quote": "Performance status: ECOG 1"
+    },
+    {
+      "value": 2,
+      "source_document": "outside_referral_scan.png",
+      "page": 1,
+      "document_date": "2026-03-11",
+      "supporting_quote": "ECOG 2"
+    }
+  ],
+  "review_note": "Both values retained. Reviewer reconciles."
+}

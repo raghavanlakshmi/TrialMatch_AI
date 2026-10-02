@@ -1,0 +1,10 @@
+{
+  "artifact_type": "expected_demo_output",
+  "patient_id": "SYN-001",
+  "fact": "prior_kras_g12c_inhibitor",
+  "label": "Prior KRAS G12C inhibitor",
+  "status": "UNKNOWN",
+  "value": null,
+  "evidence": [],
+  "message": "No supporting evidence found in supplied documents."
+}

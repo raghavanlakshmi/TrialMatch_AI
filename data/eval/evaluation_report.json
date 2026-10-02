@@ -1,0 +1,97 @@
+{
+  "case_count": 10,
+  "evaluation_scope": "Frozen tagged-text fixture and conservative offline criterion baseline; not a clinical-performance claim.",
+  "extraction": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "source_citation_accuracy": 1.0,
+    "quote_verification_rate": 1.0
+  },
+  "retrieval": {
+    "vector": {
+      "recall_at_5": 1.0,
+      "expected_ranks": [
+        1,
+        1,
+        5,
+        3,
+        1,
+        1,
+        4,
+        3
+      ]
+    },
+    "bm25": {
+      "recall_at_5": 0.75,
+      "expected_ranks": [
+        1,
+        3,
+        1,
+        17,
+        1,
+        1,
+        5
+      ]
+    },
+    "hybrid": {
+      "recall_at_5": 0.75,
+      "expected_ranks": [
+        1,
+        2,
+        2,
+        5,
+        1,
+        1,
+        12,
+        9
+      ]
+    },
+    "hybrid_rerank": {
+      "recall_at_5": 0.75,
+      "expected_ranks": [
+        1,
+        2,
+        2,
+        5,
+        1,
+        1,
+        12,
+        9
+      ]
+    }
+  },
+  "criterion_classification": {
+    "accuracy": 1.0,
+    "confusion_matrix": {
+      "MEETS": {
+        "MEETS": 3,
+        "DOES_NOT_MEET": 0,
+        "UNKNOWN": 0,
+        "POTENTIAL_CONFLICT": 0
+      },
+      "DOES_NOT_MEET": {
+        "MEETS": 0,
+        "DOES_NOT_MEET": 1,
+        "UNKNOWN": 0,
+        "POTENTIAL_CONFLICT": 0
+      },
+      "UNKNOWN": {
+        "MEETS": 0,
+        "DOES_NOT_MEET": 0,
+        "UNKNOWN": 2,
+        "POTENTIAL_CONFLICT": 0
+      },
+      "POTENTIAL_CONFLICT": {
+        "MEETS": 0,
+        "DOES_NOT_MEET": 0,
+        "UNKNOWN": 0,
+        "POTENTIAL_CONFLICT": 2
+      }
+    },
+    "unknown_to_meets_errors": 0
+  },
+  "llm_judge": {
+    "enabled": false,
+    "note": "Optional supplemental judge is disabled; deterministic metrics remain primary."
+  }
+}

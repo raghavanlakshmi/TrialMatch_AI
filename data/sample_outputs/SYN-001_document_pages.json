@@ -1,0 +1,44 @@
+[
+  {
+    "filename": "handwritten_note.png",
+    "page_number": 1,
+    "text": "",
+    "extraction_method": "OCR_REQUIRED"
+  },
+  {
+    "filename": "lab_report.pdf",
+    "page_number": 1,
+    "text": "SYNTHETIC PATIENT - FICTIONAL DATA - FOR DEMONSTRATION ONLY\nLaboratory report\nPatient ID: SYN-001\nDocument date: 2026-03-08\nReported laboratory values\nAbsolute neutrophil count (ANC): 2.1 x 10^9/L\nHemoglobin: 11.2 g/dL\nCreatinine: 0.9 mg/dL\nFictional document. No real patient information.\nPage 1 of 1\n",
+    "extraction_method": "PYMUPDF"
+  },
+  {
+    "filename": "oncology_note.pdf",
+    "page_number": 1,
+    "text": "SYNTHETIC PATIENT - FICTIONAL DATA - FOR DEMONSTRATION ONLY\nOncology note\nPatient ID: SYN-001\nDocument date: 2026-03-10\nPatient overview\nAge: 58 years\nSex: Female\nDiagnosis: Metastatic colorectal adenocarcinoma\nMetastatic site: Liver\nTreatment history and performance status continue on page 2.\nFictional document. No real patient information.\nPage 1 of 2\n",
+    "extraction_method": "PYMUPDF"
+  },
+  {
+    "filename": "oncology_note.pdf",
+    "page_number": 2,
+    "text": "SYNTHETIC PATIENT - FICTIONAL DATA - FOR DEMONSTRATION ONLY\nOncology note\nPatient ID: SYN-001\nDocument date: 2026-03-10\nTreatment history and performance status\nPrior treatment: FOLFOX, then FOLFIRI\nPerformance status: ECOG 1\nFictional document. No real patient information.\nPage 2 of 2\n",
+    "extraction_method": "PYMUPDF"
+  },
+  {
+    "filename": "outside_referral_scan.png",
+    "page_number": 1,
+    "text": "",
+    "extraction_method": "OCR_REQUIRED"
+  },
+  {
+    "filename": "pathology_report.pdf",
+    "page_number": 1,
+    "text": "SYNTHETIC PATIENT - FICTIONAL DATA - FOR DEMONSTRATION ONLY\nPathology report\nPatient ID: SYN-001\nDocument date: 2026-02-24\nMolecular report overview\nBRAF: wild type\nKRAS and microsatellite results continue on page 2.\nFictional document. No real patient information.\nPage 1 of 2\n",
+    "extraction_method": "PYMUPDF"
+  },
+  {
+    "filename": "pathology_report.pdf",
+    "page_number": 2,
+    "text": "SYNTHETIC PATIENT - FICTIONAL DATA - FOR DEMONSTRATION ONLY\nPathology report\nPatient ID: SYN-001\nDocument date: 2026-02-24\nMolecular findings\nKRAS: G12C mutation detected\nMSI: microsatellite stable (MSS)\nFictional document. No real patient information.\nPage 2 of 2\n",
+    "extraction_method": "PYMUPDF"
+  }
+]
