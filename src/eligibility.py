@@ -63,10 +63,56 @@ def assess_sex_rule(trial: TrialRecord, evidence: list[EvidenceItem]) -> Criteri
     return CriterionAssessment(criterion_id="RULE-SEX", criterion_text=criterion, criterion_type="inclusion", status=status, method="rule", patient_evidence=items, explanation=explanation)
 
 
+
+CANCER_SITES = {
+    "colorectal": ("colorectal", "colon", "rectal", "rectum"),
+    "pancreatic": ("pancrea",),
+    "lung": ("lung", "nsclc"),
+    "breast": ("breast",),
+    "gastric": ("gastric", "stomach"),
+    "esophageal": ("esophag", "oesophag"),
+    "biliary": ("biliary", "cholangio"),
+    "hepatocellular": ("hepatocellular",),
+    "prostate": ("prostat",),
+    "ovarian": ("ovarian",),
+    "melanoma": ("melanoma",),
+}
+CANCER_WORDS = ("cancer", "carcinoma", "adenocarcinoma", "tumor", "tumour", "malignan", "nsclc")
+DIAGNOSIS_WORDS = ("diagnos", "confirmed", "documented", "primary")
+SKIP_WORDS = ("cohort", "arm ", "arm#", "[", "for ", "other", "except", "known", "prior", "previous", "progress", "history", "refractory")
+
+
+def _cancer_sites(text: str) -> set[str]:
+    text = text.casefold()
+    return {site for site, terms in CANCER_SITES.items() if any(term in text for term in terms)}
+
+
+def _diagnosis_site_mismatch(criterion: TrialCriterion, verified: list[EvidenceItem]) -> CriterionAssessment | None:
+    """Inclusion criterion requires a primary cancer site that differs from the verified diagnosis."""
+    text = criterion.text.casefold()
+    if criterion.type != "inclusion" or "metasta" in text or not any(word in text for word in CANCER_WORDS):
+        return None
+    # Only plain primary-diagnosis statements; skip cohort/arm-specific, history and exception wording.
+    if not any(word in text for word in DIAGNOSIS_WORDS) or any(word in text for word in SKIP_WORDS):
+        return None
+    required = _cancer_sites(text)
+    diagnoses = [item for item in verified if item.category == "diagnosis"]
+    documented = set().union(*(_cancer_sites(item.value) for item in diagnoses)) if diagnoses else set()
+    if not required or not documented or required & documented:
+        return None
+    explanation = (
+        f"Verified diagnosis ({', '.join(sorted(documented))}) does not match the cancer type this criterion "
+        f"requires ({', '.join(sorted(required))}); human verification is required."
+    )
+    return CriterionAssessment(criterion_id=criterion.criterion_id, criterion_text=criterion.text, criterion_type=criterion.type, status="DOES_NOT_MEET", method="rule", patient_evidence=diagnoses, explanation=explanation)
+
 def conservative_assessment(criterion: TrialCriterion, evidence: list[EvidenceItem]) -> CriterionAssessment:
     """Offline fallback: make only narrow text matches; missing support stays UNKNOWN."""
     text = criterion.text.casefold()
     verified = [item for item in evidence if item.quote_verified]
+    mismatch = _diagnosis_site_mismatch(criterion, verified)
+    if mismatch is not None:
+        return mismatch
     selected: list[EvidenceItem] = []
     if "kras" in text and "g12c" in text and "inhibitor" in text:
         selected = [i for i in verified if i.category == "prior_treatment" and "kras" in i.value.casefold() and "g12c" in i.value.casefold() and "inhibitor" in i.value.casefold()]
