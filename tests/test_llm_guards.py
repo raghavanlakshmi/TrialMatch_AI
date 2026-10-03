@@ -123,3 +123,25 @@ ORGAN_CASES = [
 def test_organ_function_needs_every_named_system(assessment, expected):
     reviewed, _ = review_assessments([assessment])
     assert reviewed[0].status == expected
+
+
+# From the live run after the held-out fixes: "FOLFOX, then FOLFIRI" read as FOLFIRI in first line,
+# which wrongly made NCT07559760 an apparent exclusion.
+FIRST_LINE = ev("prior_treatment", "First-line: FOLFOX; second-line: FOLFIRI")
+TOPO = "Prior exposure to topoisomerase-I inhibitors or their analogues in first-line therapy."
+LINE_CASES = [
+    (llm("EXC-01", TOPO, "DOES_NOT_MEET", [TX], kind="exclusion"), "UNKNOWN"),
+    (llm("EXC-01b", TOPO, "MEETS", [TX], kind="exclusion"), "UNKNOWN"),
+    (llm("INC-05", "Adjuvant setting: recurrence within 6 months of adjuvant oxaliplatin", "MEETS", [TX]), "UNKNOWN"),
+]
+
+
+@pytest.mark.parametrize("assessment,expected", LINE_CASES, ids=[c[0].criterion_id for c in LINE_CASES])
+def test_line_of_therapy_must_be_stated(assessment, expected):
+    reviewed, _ = review_assessments([assessment])
+    assert reviewed[0].status == expected
+
+
+def test_line_guard_accepts_stated_lines():
+    from src.safety import is_unstated_line_of_therapy
+    assert not is_unstated_line_of_therapy(llm("EXC-01c", TOPO, "DOES_NOT_MEET", [FIRST_LINE], kind="exclusion"))
