@@ -1,7 +1,7 @@
 {
   "patient": "SYN-001",
   "purpose": "Held-out set: criteria from trials not used when the LLM guards were designed.",
-  "label_status": "DRAFT - drafted by an AI assistant; must be reviewed and confirmed by the project owner before results are reported",
+  "label_status": "Reviewed by Lakshmi on 10/3/26; EXC-04 and NCT07281716 INC-01 marked as judgment calls (MSS used as proxy for pMMR)",
   "status_semantics": "For exclusion criteria, MEETS means the patient appears clear of the exclusion.",
   "labels": [
     {
@@ -58,7 +58,7 @@
       "criterion_id": "EXC-04",
       "expected": "MEETS",
       "rationale": "MSS is documented, so the MSI-high exclusion does not apply.",
-      "judgment_call": false
+      "judgment_call": true
     },
     {
       "trial": "NCT05854498",
@@ -128,7 +128,7 @@
       "criterion_id": "INC-01",
       "expected": "MEETS",
       "rationale": "MSS (non-MSI-H) colorectal cancer is documented.",
-      "judgment_call": false
+      "judgment_call": true
     },
     {
       "trial": "NCT07281716",
