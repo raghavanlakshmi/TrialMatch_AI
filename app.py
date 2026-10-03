@@ -155,7 +155,12 @@ def render_documents_tab(run: dict | None) -> None:
             accept_multiple_files=True,
         )
         if st.button("Analyze Patient Evidence", type="primary", disabled=not uploads):
-            from src.workflow import build_workflow  # heavy imports load only for live runs
+            try:
+                from src.workflow import build_workflow  # heavy imports load only for live runs
+            except ImportError:
+                st.error("Live analysis needs the full requirements (LangGraph, Chroma, sentence-transformers). "
+                         "The hosted demo runs in replay mode; clone the repository to run live analysis.")
+                return
 
             with tempfile.TemporaryDirectory() as folder:
                 paths = []

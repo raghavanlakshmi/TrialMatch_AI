@@ -1,0 +1,5 @@
+streamlit==1.64.0
+pydantic==2.13.5
+pymupdf==1.28.2
+openai==3.23.0
+python-dotenv==1.2.4

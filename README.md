@@ -468,55 +468,69 @@ records without making an API call.
 
 ## Evaluation and tests
 
-`data/eval/gold_dataset.json` freezes 10 synthetic cases covering a clear
+### Retrieval and extraction
+
+`data/eval/gold_dataset.json` freezes 18 synthetic cases. Ten cover a clear
 match, apparent exclusion, missing facts, ECOG conflict, scanned text,
 paraphrase, irrelevant text, prompt injection, old/new evidence, and no
-appropriate trial. Its criterion labels use IDs from the frozen criteria file.
-
-Run the reproducible evaluation:
+appropriate trial. Eight more target different parts of the corpus (second-line
+MSS colorectal, KRAS G12C colorectal, advanced and KRAS G12D pancreatic,
+refractory colorectal, KRAS G12C lung, locally advanced rectal, colorectal liver
+metastases), each with its own set of relevant trials.
 
 ```powershell
 python scripts/run_eval.py
 ```
 
-The report at `data/eval/evaluation_report.json` compares vector, BM25, hybrid
-RRF, and offline rerank retrieval; reports Recall@5 and expected ranks; and
-includes extraction checks and a criterion confusion matrix. This is a small,
-tagged synthetic fixture and conservative offline baseline, not a clinical
-performance claim. The optional LLM judge is disabled by default and is never
-the sole evaluator.
+The report at `data/eval/evaluation_report.json` compares vector, BM25 and
+hybrid RRF retrieval (Recall@5 and expected ranks) and runs the extraction
+regression checks.
+
+### Criterion-level prescreening
+
+`data/eval/criterion_labels.json` labels 29 criteria from the demo trials
+against the SYN-001 record: diagnosis and biomarkers, the ECOG conflict,
+compound lab criteria with partly documented values, criteria that need data
+the record does not contain, and the deliberate unknowns. One label is marked as
+a reviewer judgment call.
+
+```powershell
+python scripts/run_criterion_eval.py          # rule baseline, no API calls
+python scripts/run_criterion_eval.py --llm    # also the live LLM assessor
+```
+
+Both methods are scored after the same safety review the workflow applies. The
+report (`data/eval/criterion_eval_report.md`) gives accuracy, the share of
+decidable criteria answered correctly, and three error counts: unsafe false
+clearance (predicted MEETS when the label is anything else), UNKNOWN converted
+to MEETS, and false exclusion.
 
 ### Evaluation notes
 
-Read the reported numbers with these scope details in mind:
+- **Recall@5 denominator.** Recall@5 is computed over cases that have relevant
+  trials; the irrelevant-document and no-appropriate-trial cases are excluded.
+- **Reranking is not scored offline.** Live LLM reranking is shown in the saved
+  SYN-001 run, not in the offline retrieval metrics.
+- **Who assessed the saved-run criteria.** The Trial Matches tab and the Safety &
+  Trace tab show, for every trial, how many criteria were assessed by
+  deterministic rules and how many by the LLM assessor.
+  `scripts/run_live_assessment.py` re-assesses the top trials with the LLM and
+  writes a clinical review report of every changed result.
+- **Why many results stay UNKNOWN.** The rule baseline decides a criterion only
+  when verified evidence explicitly matches it, and declines when the criterion
+  adds requirements a single fact cannot cover (for example central laboratory
+  testing or documented failure of prior therapy). That trades coverage for
+  safety.
+- **Labels and sample sizes.** The criterion labels were drafted with AI
+  assistance; their `label_status` field records whether the project owner has
+  reviewed them. Extraction metrics come from a
+  frozen tagged-text fixture and serve as regression checks, not performance
+  estimates.
 
-- **Recall@5 denominator.** Recall@5 is computed over the 8 cases that have an
-  expected trial. The irrelevant-document and no-appropriate-trial cases have no
-  retrieval target and are excluded. Vector-only found the target in 8 of 8
-  cases (1.00); BM25 and hybrid RRF found it in 6 of 8 (0.75).
-- **One target trial.** All 8 retrieval cases expect the same trial,
-  NCT06252649, so the retrieval results measure robustness to different
-  phrasings rather than discrimination across many trials.
-- **Reranking is not evaluated offline.** The offline evaluation keeps the RRF
-  order, so the "hybrid + rerank" row equals the hybrid row by construction.
-  Live LLM reranking is demonstrated in the saved SYN-001 run, not scored here.
-- **Who assessed the saved-run criteria.** Of the 139 criterion assessments in
-  `data/sample_outputs/SYN-001_workflow.json`, 138 come from deterministic code
-  (10 age/sex rules plus 128 from the conservative offline baseline) and 1
-  (NCT06412198 INC-01) from the live LLM assessor, which was validated end to
-  end on that criterion.
-- **Why so many UNKNOWN results.** The offline baseline decides a criterion only
-  when verified evidence explicitly matches a narrow pattern; everything else
-  stays UNKNOWN. That is deliberately conservative and trades coverage for
-  safety. It is not only a property of the sparse synthetic record.
-- **Small samples.** Criterion accuracy (8 of 8) and extraction precision and
-  recall (1.00) come from small frozen synthetic fixtures and serve as
-  regression checks, not performance estimates. The safety check that matters
-  most, UNKNOWN never converted to MEETS, held in all labeled cases.
-
-The full test suite covers ingestion, quote verification, missing evidence,
-conflicts, age/sex, exclusion direction, RRF, retrieval metadata, injection
-defense, output language, UI rendering, and frozen-data validation:
+The full test suite covers ingestion, quote verification, source viewing,
+missing evidence, conflicts, age/sex, exclusion direction, absence-based
+clearance, RRF, retrieval metadata, injection defense, output language, UI
+rendering, and frozen-data validation:
 
 ```powershell
 python -m pytest -q
@@ -534,16 +548,47 @@ environment active:
 python -m streamlit run app.py
 ```
 
-For a reliable demonstration, choose **Replay saved SYN-001 run**, then follow
-the four tabs in order. The saved run exposes the ECOG conflict, missing prior
-KRAS G12C inhibitor history, trial candidates, criterion evidence, injection
-defense, and trace. The narrated demo video was recorded from this replay.
+The validated SYN-001 run loads automatically, so no API calls are needed. The
+four tabs follow the review flow:
+
+- **Patient Documents** shows every source document, including the scanned
+  referral and the handwritten note; **Open document** displays the original.
+- **Evidence** lists each extracted fact with its source, page, date and
+  verified quote. **View source** opens the original page with the quote
+  highlighted (PDFs) or the original image beside its transcription (scans and
+  handwriting). The reviewer checklist records decisions on conflicts and
+  unknowns and downloads a review summary.
+- **Trial Matches** summarizes the reranked trials and lists every criterion
+  with its status, whether a rule or the LLM assessed it, and the cited evidence,
+  each with a **View source** button.
+- **Safety & Trace** shows the prompt-injection result, safety flags, the
+  rule/LLM assessment split and the 12-step workflow trace.
+
+To refresh the replay with live LLM criterion assessments (needs
+`OPENAI_API_KEY`):
+
+```powershell
+python scripts/run_live_assessment.py --dry-run
+python scripts/run_live_assessment.py
+```
+
+Review `data/sample_outputs/SYN-001_live_assessment_report.md` before using the
+refreshed replay; it lists every resolved or changed criterion for clinical
+review. The original run is kept as `SYN-001_workflow_baseline.json`.
 
 Run the final acceptance check:
 
 ```powershell
 python scripts/validate_demo.py
 ```
+
+### Hosted demo (Streamlit Community Cloud)
+
+The hosted demo runs in replay mode with lightweight dependencies. Create a new
+app from this repository and set the main file path to
+`deploy/streamlit_app.py`; Community Cloud then installs
+`deploy/requirements.txt` instead of the full retrieval stack. Live analysis of
+new uploads is available only in a local installation.
 
 The completed submission documentation is available as
 [`TrialMatch_AI_Project_Documentation_Final.docx`](artifacts/TrialMatch_AI_Project_Documentation_Final.docx).
