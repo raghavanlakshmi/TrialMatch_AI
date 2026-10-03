@@ -1,0 +1,289 @@
+{
+  "model": "gpt-4.1-mini",
+  "source_run": "SYN-001_workflow_baseline.json",
+  "trials": {
+    "NCT06412198": {
+      "before": {
+        "criteria_assessed": 51,
+        "counts": {
+          "MEETS": 4,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 46,
+          "POTENTIAL_CONFLICT": 1
+        },
+        "overall_label": "Potential match — needs verification"
+      },
+      "after": {
+        "criteria_assessed": 51,
+        "counts": {
+          "MEETS": 8,
+          "DOES_NOT_MEET": 1,
+          "UNKNOWN": 39,
+          "POTENTIAL_CONFLICT": 3
+        },
+        "overall_label": "Apparent exclusion — needs verification"
+      },
+      "methods": {
+        "rule": 2,
+        "llm": 49
+      },
+      "transitions": {
+        "MEETS -> MEETS": 4,
+        "UNKNOWN -> MEETS": 4,
+        "UNKNOWN -> POTENTIAL_CONFLICT": 2,
+        "UNKNOWN -> UNKNOWN": 39,
+        "POTENTIAL_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "UNKNOWN -> DOES_NOT_MEET": 1
+      },
+      "safety_flags": []
+    },
+    "NCT06252649": {
+      "before": {
+        "criteria_assessed": 11,
+        "counts": {
+          "MEETS": 3,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 7,
+          "POTENTIAL_CONFLICT": 1
+        },
+        "overall_label": "Potential match — needs verification"
+      },
+      "after": {
+        "criteria_assessed": 11,
+        "counts": {
+          "MEETS": 4,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 5,
+          "POTENTIAL_CONFLICT": 2
+        },
+        "overall_label": "Potential match — needs verification"
+      },
+      "methods": {
+        "rule": 2,
+        "llm": 9
+      },
+      "transitions": {
+        "MEETS -> MEETS": 3,
+        "UNKNOWN -> MEETS": 1,
+        "UNKNOWN -> UNKNOWN": 5,
+        "POTENTIAL_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "UNKNOWN -> POTENTIAL_CONFLICT": 1
+      },
+      "safety_flags": []
+    },
+    "NCT07559760": {
+      "before": {
+        "criteria_assessed": 43,
+        "counts": {
+          "MEETS": 3,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 39,
+          "POTENTIAL_CONFLICT": 1
+        },
+        "overall_label": "Potential match — needs verification"
+      },
+      "after": {
+        "criteria_assessed": 43,
+        "counts": {
+          "MEETS": 6,
+          "DOES_NOT_MEET": 2,
+          "UNKNOWN": 34,
+          "POTENTIAL_CONFLICT": 1
+        },
+        "overall_label": "Apparent exclusion — needs verification"
+      },
+      "methods": {
+        "rule": 2,
+        "llm": 41
+      },
+      "transitions": {
+        "MEETS -> MEETS": 3,
+        "UNKNOWN -> MEETS": 3,
+        "UNKNOWN -> UNKNOWN": 34,
+        "POTENTIAL_CONFLICT -> POTENTIAL_CONFLICT": 1,
+        "UNKNOWN -> DOES_NOT_MEET": 2
+      },
+      "safety_flags": [
+        "EXC-10: unsupported conclusion converted to UNKNOWN.",
+        "EXC-19: unsupported conclusion converted to UNKNOWN."
+      ]
+    }
+  },
+  "needs_clinical_review": [
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-03",
+      "type": "inclusion",
+      "criterion": "Unresectable or metastatic disease.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma with metastatic site listed as liver, indicating metastatic disease. The criterion requires unresectable or metastatic disease for inclusion, and metastatic disease is clearly documented. No evidence suggests the disease is resectable, but metastatic status alone meets the criterion.",
+      "evidence": [
+        "oncology_note.pdf p1: Diagnosis: Metastatic colorectal adenocarcinoma",
+        "oncology_note.pdf p1: Metastatic site: Liver"
+      ]
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-07",
+      "type": "inclusion",
+      "criterion": "Age ≥ 18 years. Because no dosing or adverse event data are currently available on the use of the proposed combination in patients \\<18 years of age, children are excluded from this study.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient is 58 years old according to the evidence at index 6, which meets the inclusion criterion requiring age ≥ 18 years.",
+      "evidence": [
+        "oncology_note.pdf p1: Age: 58 years"
+      ]
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-13",
+      "type": "inclusion",
+      "criterion": "Absolute neutrophil count ≥ 1,000/mm3 (≥ 1.0 x 109/L)",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The lab report from 2026-03-08 shows an absolute neutrophil count (ANC) of 2.1 x 10^9/L, which is greater than the required minimum of 1.0 x 10^9/L stated in the inclusion criterion.",
+      "evidence": [
+        "lab_report.pdf p1: Absolute neutrophil count (ANC): 2.1 x 10^9/L"
+      ]
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-15",
+      "type": "inclusion",
+      "criterion": "Hemoglobin ≥ 9 g/dL, in the absence of transfusions for at least 2 weeks",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient's hemoglobin level is 11.2 g/dL on 2026-03-08, which is above the required minimum of 9 g/dL. There is no evidence provided of any blood transfusions within two weeks prior to this lab value, so the criterion of hemoglobin ≥ 9 g/dL in the absence of transfusions for at least 2 weeks is met based on available evidence.",
+      "evidence": [
+        "lab_report.pdf p1: Hemoglobin: 11.2 g/dL"
+      ]
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-25",
+      "type": "inclusion",
+      "criterion": "Male sterilization with confirmed absence of sperm in the post-vasectomy ejaculate.",
+      "status": "DOES_NOT_MEET",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to DOES_NOT_MEET",
+        "criterion appears not met / exclusion appears to apply"
+      ],
+      "explanation": "The inclusion criterion requires male sterilization with confirmed absence of sperm in the post-vasectomy ejaculate. The patient is documented as female (evidence index 7), which means the criterion is not met.",
+      "evidence": [
+        "oncology_note.pdf p1: Sex: Female"
+      ]
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "INC-02",
+      "type": "inclusion",
+      "criterion": "Central laboratory detection of KRAS p.G12C mutation.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient has biomarker evidence showing 'KRAS G12C+' and a pathology report confirming 'KRAS: G12C mutation detected,' which meets the inclusion criterion of central laboratory detection of KRAS p.G12C mutation.",
+      "evidence": [
+        "handwritten_note.png p1: KRAS G12C+",
+        "pathology_report.pdf p2: KRAS: G12C mutation detected"
+      ]
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-01",
+      "type": "inclusion",
+      "criterion": "Male or female, aged 18-75 years.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient is documented as female and aged 58 years, which meets the inclusion criterion of being male or female aged 18-75 years.",
+      "evidence": [
+        "oncology_note.pdf p1: Age: 58 years",
+        "oncology_note.pdf p1: Sex: Female"
+      ]
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-03",
+      "type": "inclusion",
+      "criterion": "Unresectable, MSS-type metastatic colorectal cancer that has failed or is intolerant to first-line standard oxaliplatin plus fluoropyrimidine ± targeted therapy.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The patient has metastatic colorectal adenocarcinoma with MSS (microsatellite stable) type as confirmed by MSI: microsatellite stable (MSS) (evidence index 15). The patient has prior treatment with FOLFOX (oxaliplatin + fluoropyrimidine) completed (evidence index 1) and then received FOLFIRI, indicating failure or intolerance to first-line standard oxaliplatin plus fluoropyrimidine ± targeted therapy (evidence index 10). The unresectable status is implied by metastatic disease with liver involvement, typical for unresectability, though not explicitly stated. Based on these evidences, the patient meets the inclusion criterion INC-03.",
+      "evidence": [
+        "handwritten_note.png p1: FOLFOX completed",
+        "oncology_note.pdf p2: Prior treatment: FOLFOX, then FOLFIRI",
+        "pathology_report.pdf p2: MSI: microsatellite stable (MSS)"
+      ]
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-10",
+      "type": "inclusion",
+      "criterion": "Hematology: Hb ≥ 90 g/L; WBC ≥ 3.0 × 10⁹/L; ANC ≥ 1.5 × 10⁹/L; PLT ≥ 90 × 10⁹/L.",
+      "status": "MEETS",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to MEETS"
+      ],
+      "explanation": "The inclusion criterion requires hematology values of Hb ≥ 90 g/L, WBC ≥ 3.0 x 10^9/L, ANC ≥ 1.5 x 10^9/L, and PLT ≥ 90 x 10^9/L. The patient has an absolute neutrophil count (ANC) of 2.1 x 10^9/L (index 3) which meets the ≥1.5 threshold. Hemoglobin is 11.2 g/dL (index 4), which converts to 112 g/L, meeting the ≥90 g/L criterion. However, there is no evidence provided about WBC or platelet counts. Since the available hematology values meet or exceed the thresholds and no contradicting evidence is present, the status is MEETS based on the provided evidence indices.",
+      "evidence": [
+        "lab_report.pdf p1: Absolute neutrophil count (ANC): 2.1 x 10^9/L",
+        "lab_report.pdf p1: Hemoglobin: 11.2 g/dL"
+      ]
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-14",
+      "type": "inclusion",
+      "criterion": "No liver mets: TBIL ≤ 1.5 × ULN, ALT ≤ 2.5 × ULN, AST ≤ 2.5 × ULN.",
+      "status": "DOES_NOT_MEET",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to DOES_NOT_MEET",
+        "criterion appears not met / exclusion appears to apply"
+      ],
+      "explanation": "The inclusion criterion requires no liver metastases with specified liver function tests within certain limits. The patient's evidence explicitly indicates 'Metastatic site: Liver,' which meets the definition of liver metastases. No lab values for TBIL, ALT, or AST are provided to assess liver function tests. Therefore, based on the documented liver metastases, the patient does not meet the criterion of no liver metastases.",
+      "evidence": [
+        "oncology_note.pdf p1: Metastatic site: Liver"
+      ]
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "EXC-01",
+      "type": "exclusion",
+      "criterion": "Prior exposure to topoisomerase-I inhibitors or their analogues in first-line therapy.",
+      "status": "DOES_NOT_MEET",
+      "method": "llm",
+      "reasons": [
+        "resolved from UNKNOWN to DOES_NOT_MEET",
+        "criterion appears not met / exclusion appears to apply"
+      ],
+      "explanation": "The patient has received prior treatments including FOLFOX and then FOLFIRI as first-line therapy. FOLFIRI includes irinotecan, which is a topoisomerase-I inhibitor. Therefore, the patient has prior exposure to topoisomerase-I inhibitors in first-line therapy, which does not meet the exclusion criterion.",
+      "evidence": [
+        "oncology_note.pdf p2: Prior treatment: FOLFOX, then FOLFIRI"
+      ]
+    }
+  ],
+  "errors": []
+}
