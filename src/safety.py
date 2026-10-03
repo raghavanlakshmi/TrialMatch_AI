@@ -155,6 +155,17 @@ def uncovered_requirements(item: CriterionAssessment) -> list[str]:
     return missing
 
 
+# "in first-line therapy", "adjuvant setting": the line of therapy must be stated in the record.
+# "FOLFOX, then FOLFIRI" gives an order, not line numbers (FOLFOX may have been adjuvant).
+LINE_OF_THERAPY = re.compile(r"\b(first|second|third|fourth|1st|2nd|3rd|4th)[- ]line\b|\b(neo)?adjuvant\b", re.I)
+
+
+def is_unstated_line_of_therapy(item: CriterionAssessment) -> bool:
+    """An LLM decision on a line-specific criterion when no cited fact states the line of therapy."""
+    return (item.method == "llm" and item.status in {"MEETS", "DOES_NOT_MEET"}
+            and bool(LINE_OF_THERAPY.search(item.criterion_text)) and not LINE_OF_THERAPY.search(_cited_text(item)))
+
+
 def is_conditional_or_option_rejection(item: CriterionAssessment) -> bool:
     """An LLM 'DOES_NOT_MEET' on a list option or conditional branch is not evidence of exclusion."""
     return (item.method == "llm" and item.criterion_type == "inclusion" and item.status == "DOES_NOT_MEET"
@@ -178,6 +189,9 @@ def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[Cri
         elif is_unsupported_exclusion_clearance(item):
             update = {"status": "UNKNOWN", "explanation": f"No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: {item.explanation}"}
             flags.append(f"{item.criterion_id}: exclusion cleared without evidence about it; converted to UNKNOWN.")
+        elif is_unstated_line_of_therapy(item):
+            update = {"status": "UNKNOWN", "explanation": f"This criterion depends on the line of therapy, which the cited record does not state; converted to UNKNOWN. Original reasoning: {item.explanation}"}
+            flags.append(f"{item.criterion_id}: line of therapy not documented; converted to UNKNOWN.")
         elif missing := uncovered_requirements(item):
             update = {"status": "UNKNOWN", "explanation": f"Part of this criterion is not documented ({', '.join(missing)}); converted to UNKNOWN. Original reasoning: {item.explanation}"}
             flags.append(f"{item.criterion_id}: partial evidence ({', '.join(missing)} not documented); converted to UNKNOWN.")
