@@ -83,3 +83,22 @@ def test_exclusion_answer_from_model_flows_through_assessor():
     criterion = TrialCriterion(criterion_id="EXC-09", type="exclusion", text="Patients with pancreatic cancer")
     result = assess_free_text_criterion(criterion, [DIAG], [], client=SimpleNamespace(responses=FakeResponses()))
     assert result.status == "DOES_NOT_MEET" and result.method == "llm"
+
+
+ECOG1, ECOG2 = ev("performance_status", "Performance status: ECOG 1"), ev("performance_status", "ECOG 2")
+BRAF = ev("biomarker", "BRAF: wild type")
+
+
+@pytest.mark.parametrize("text,evidence,expected", [
+    # Second live run: catch-all exclusion cleared from silence.
+    ("Other severe uncontrolled disorders (e.g., frequent seizures, hepatic failure).", [ECOG1, ECOG2], "UNKNOWN"),
+    ("Any illness or medical history that would impact safety or compliance with study requirements", [ECOG1], "UNKNOWN"),
+    ("Active brain metastases, unless adequately treated", [LIVER], "UNKNOWN"),
+    # Clearance by a documented fact about the same thing is kept.
+    ("Patients whose cancers possess BRAF V600 mutations are excluded.", [BRAF], "MEETS"),
+    ("Patients must not have mismatch repair deficient or microsatellite instability high cancers.", [MSS], "MEETS"),
+    ("Patients aged under 18 years", [AGE], "MEETS"),
+])
+def test_exclusion_clearance_needs_evidence_about_the_exclusion(text, evidence, expected):
+    reviewed, _ = review_assessments([llm("EXC-X", text, "MEETS", evidence, kind="exclusion")])
+    assert reviewed[0].status == expected

@@ -87,6 +87,44 @@ INVESTIGATOR_JUDGMENT = re.compile(
 )
 
 
+# Words too generic to show that cited evidence is about the same thing as an exclusion.
+GENERIC_TERMS = frozenset("""
+a an and any are as at be by for from has have history in including is known of on or other patient patients
+prior previous current currently within month months year years week weeks day days disease diseases disorder
+disorders condition conditions cancer cancers tumor tumors tumour malignancy malignancies therapy therapies
+treatment treatments treated status severe uncontrolled active such that the this those to with would must not
+no clinically significant e g eg study participant participants subject subjects metastases metastasis
+metastatic require required requiring use using evidence documented
+""".split())
+
+
+def _terms(text: str) -> set[str]:
+    terms = set()
+    for word in re.findall(r"[a-z0-9]+", text.lower()):
+        word = word.rstrip("s")
+        if word.endswith("ed") and len(word) >= 4:  # aged -> age, mutated -> mutate
+            word = word[:-1]
+        if len(word) >= 3 and word not in GENERIC_TERMS:
+            terms.add(word)
+    return terms
+
+
+def is_unsupported_exclusion_clearance(item: CriterionAssessment) -> bool:
+    """An LLM 'clear of exclusion' must rest on evidence about the excluded condition, not on silence.
+
+    Accepted when the cited evidence explicitly negates (e.g. "no prior ...") or shares a specific
+    term with the criterion (e.g. BRAF wild type for a BRAF V600 exclusion). ECOG 1 does not clear
+    "frequent seizures, hepatic failure".
+    """
+    if item.method != "llm" or item.criterion_type != "exclusion" or item.status != "MEETS":
+        return False
+    if any(EXPLICIT_NEGATION.search(e.evidence_text) or EXPLICIT_NEGATION.search(e.value) for e in item.patient_evidence):
+        return False
+    criterion_terms = _terms(item.criterion_text)
+    cited_terms = set().union(*(_terms(f"{e.value} {e.evidence_text}") for e in item.patient_evidence)) if item.patient_evidence else set()
+    return not (criterion_terms & cited_terms)
+
+
 def _cited_text(item: CriterionAssessment) -> str:
     return " ".join(f"{e.value} {e.evidence_text}" for e in item.patient_evidence)
 
@@ -123,6 +161,9 @@ def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[Cri
         elif is_absence_inferred_clearance(item):
             update = {"status": "UNKNOWN", "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.")
+        elif is_unsupported_exclusion_clearance(item):
+            update = {"status": "UNKNOWN", "explanation": f"No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: {item.explanation}"}
+            flags.append(f"{item.criterion_id}: exclusion cleared without evidence about it; converted to UNKNOWN.")
         elif missing := uncovered_requirements(item):
             update = {"status": "UNKNOWN", "explanation": f"Part of this criterion is not documented ({', '.join(missing)}); converted to UNKNOWN. Original reasoning: {item.explanation}"}
             flags.append(f"{item.criterion_id}: partial evidence ({', '.join(missing)} not documented); converted to UNKNOWN.")
