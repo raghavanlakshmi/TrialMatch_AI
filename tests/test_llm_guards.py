@@ -54,3 +54,32 @@ def test_rule_assessments_are_not_touched_by_llm_guards():
 def test_true_exclusion_from_documented_fact_is_kept():
     item = llm("INC-02", "Patients with pancreatic cancer diagnosed by histopathology", "DOES_NOT_MEET", [DIAG])
     assert review_assessments([item])[0][0].status == "DOES_NOT_MEET"
+
+
+def test_investigator_judgment_criterion_cannot_be_cleared():
+    item = llm("EXC-21", "Any serious illness ... which, in the investigator's opinion, would be likely to interfere with the participant's participation in the study.", "MEETS", [TX], kind="exclusion")
+    reviewed, flags = review_assessments([item])
+    assert reviewed[0].status == "UNKNOWN" and any("investigator-judgment" in f for f in flags)
+
+
+def test_exclusion_answers_are_mapped_by_code_not_by_the_model():
+    from src.eligibility import _project_status
+    assert _project_status("exclusion", "APPLIES") == "DOES_NOT_MEET"
+    assert _project_status("exclusion", "does_not_apply") == "MEETS"
+    assert _project_status("exclusion", "DOES_NOT_MEET") is None  # wrong vocabulary is rejected, never guessed
+    assert _project_status("inclusion", "MEETS") == "MEETS"
+    assert _project_status("inclusion", "APPLIES") is None
+
+
+def test_exclusion_answer_from_model_flows_through_assessor():
+    from types import SimpleNamespace
+    from src.eligibility import assess_free_text_criterion, _LLMAssessment
+    from src.schemas import TrialCriterion
+
+    class FakeResponses:
+        def parse(self, **kwargs):
+            return SimpleNamespace(id="r", output=[], output_parsed=_LLMAssessment(status="APPLIES", evidence_indices=[0], explanation="Exclusion applies."))
+
+    criterion = TrialCriterion(criterion_id="EXC-09", type="exclusion", text="Patients with pancreatic cancer")
+    result = assess_free_text_criterion(criterion, [DIAG], [], client=SimpleNamespace(responses=FakeResponses()))
+    assert result.status == "DOES_NOT_MEET" and result.method == "llm"
