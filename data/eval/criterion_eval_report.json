@@ -38,17 +38,17 @@
     },
     "llm_assessor": {
       "labels": 29,
-      "accuracy": 0.8621,
+      "accuracy": 0.9655,
       "decidable_labels": 12,
       "decided_correctly": 0.9167,
-      "unsafe_false_clearance": 3,
-      "false_exclusion": 1,
-      "unknown_to_meets": 3,
+      "unsafe_false_clearance": 0,
+      "false_exclusion": 0,
+      "unknown_to_meets": 0,
       "confusion_matrix": {
         "MEETS": {
           "MEETS": 7,
-          "DOES_NOT_MEET": 1,
-          "UNKNOWN": 0,
+          "DOES_NOT_MEET": 0,
+          "UNKNOWN": 1,
           "POTENTIAL_CONFLICT": 0
         },
         "DOES_NOT_MEET": {
@@ -58,9 +58,9 @@
           "POTENTIAL_CONFLICT": 0
         },
         "UNKNOWN": {
-          "MEETS": 3,
+          "MEETS": 0,
           "DOES_NOT_MEET": 0,
-          "UNKNOWN": 14,
+          "UNKNOWN": 17,
           "POTENTIAL_CONFLICT": 0
         },
         "POTENTIAL_CONFLICT": {
@@ -401,7 +401,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient has a histologically confirmed diagnosis of metastatic colorectal adenocarcinoma (evidence 9), is microsatellite stable (MSS) as shown by pathology (evidence 16), and has a KRAS G12C mutation (evidence 2 and 16). The patient has received more than 1 prior line of therapy, including FOLFOX and FOLFIRI (evidence 1 and 10). This fulfills the inclusion criterion of advanced/metastatic microsatellite stable colorectal cancer with KRAS G12C mutation and at least one prior line of therapy."
+      "explanation": "The patient has histologically confirmed metastatic colorectal adenocarcinoma (evidence 8) with microsatellite stable status (evidence 17) and a KRAS G12C mutation (evidence 2, 16). The patient has received at least one prior line of therapy, specifically FOLFOX and then FOLFIRI (evidence 1 and 10). All components of the inclusion criterion are fulfilled based on the provided evidence."
     },
     {
       "method": "llm_assessor",
@@ -412,7 +412,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient has confirmed evidence of a KRAS G12C mutation as documented by multiple sources: 'KRAS G12C+' in the handwritten note (evidence index 2) and 'KRAS: G12C mutation detected' in the pathology report (evidence index 15). Therefore, the inclusion criterion requiring confirmed KRASG12C mutation status is met."
+      "explanation": "The criterion requires confirmed KRASG12C mutation status. The evidence includes 'KRAS G12C+' (evidence index 2) and also 'KRAS: G12C mutation detected' from the pathology report (evidence index 14), confirming the presence of the mutation. Therefore, the patient meets this inclusion criterion."
     },
     {
       "method": "llm_assessor",
@@ -423,7 +423,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma and evidence of metastatic disease in the liver. This meets the criterion of unresectable or metastatic disease as the patient is described with metastatic disease and there is no evidence suggesting the disease is resectable."
+      "explanation": "The patient has documented metastatic disease based on the diagnosis 'Metastatic colorectal adenocarcinoma' and presence of metastatic site in the liver. This fulfills the criterion of unresectable or metastatic disease."
     },
     {
       "method": "llm_assessor",
@@ -434,7 +434,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no explicit information in the provided evidence regarding the presence of measurable disease per RECIST 1.1 criteria. The records mention metastatic colorectal adenocarcinoma and metastatic site in the liver, but do not specify measurable disease as defined by RECIST 1.1."
+      "explanation": "The criterion requires the presence of measurable disease per RECIST 1.1. The provided evidence documents metastatic colorectal adenocarcinoma with a metastatic site in the liver, but does not specify measurable disease according to RECIST 1.1 criteria. Without explicit imaging or measurement details confirming measurable disease as per RECIST 1.1, the criterion status cannot be confirmed."
     },
     {
       "method": "llm_assessor",
@@ -445,7 +445,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There are multiple evidence points for performance status. Two sources confirm ECOG 1 (indices 0 and 11) which meets the criterion, but another source shows ECOG 2 (index 12) which does not meet the criterion. This conflicting information leads to a potential conflict in assessment."
+      "explanation": "The patient's performance status is documented as ECOG 1 in two sources (evidence indices 0 and 11), which meets the inclusion criterion requiring an ECOG performance status of 0 or 1. However, there is conflicting evidence showing ECOG 2 on a later date (evidence index 12), which does not meet this criterion. Due to this conflicting performance status information, the status is categorized as POTENTIAL_CONFLICT."
     },
     {
       "method": "llm_assessor",
@@ -456,7 +456,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient's absolute neutrophil count is recorded as 2.1 x 10^9/L, which is above the required threshold of 1.0 x 10^9/L (equivalent to 1,000/mm3). Therefore, the inclusion criterion for absolute neutrophil count is clearly met."
+      "explanation": "The criterion requires an absolute neutrophil count (ANC) of at least 1,000/mm3 (1.0 x 10^9/L). The patient's ANC is documented as 2.1 x 10^9/L, which is above the minimum threshold required. Therefore, the patient meets this inclusion criterion."
     },
     {
       "method": "llm_assessor",
@@ -467,7 +467,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no evidence provided about the patient's platelet count to determine if it meets the criterion of platelet count ≥ 100,000/mm3 (≥ 100 x 10^9/L). None of the evidence entries mention platelet count values."
+      "explanation": "There is no evidence provided about the patient's platelet count. The criterion requires platelet count >= 100,000/mm3 or >= 100 x 10^9/L, but no data on platelet count is present in the provided evidence."
     },
     {
       "method": "llm_assessor",
@@ -478,7 +478,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no direct evidence of calculated creatinine clearance or Cockcroft-Gault renal function estimate provided in the patient's evidence. While a serum creatinine value (0.9 mg/dL) is available, without the patient's weight and the specific formula calculation stated, the creatinine clearance cannot be confirmed to be ≥ 60 mL/min."
+      "explanation": "No evidence was provided regarding the calculated creatinine clearance or the data needed to calculate it (such as patient weight, age, sex in detail for the Cockcroft-Gault formula) or an explicit value of creatinine clearance at screening. The available creatinine lab value alone (0.9 mg/dL) does not suffice to determine the creatinine clearance."
     },
     {
       "method": "llm_assessor",
@@ -488,8 +488,10 @@
       "predicted": "UNKNOWN",
       "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "There is no explicit evidence in the provided patient information indicating whether the patient has had prior PD1 or CTLA4 inhibition therapy. The prior treatments mentioned are chemotherapy regimens (FOLFOX, FOLFIRI), without mention of immune checkpoint inhibitors targeting PD1 or CTLA4. Therefore, the exclusion criterion cannot be determined from the available evidence."
+      "flags": [
+        "EXC-01: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN."
+      ],
+      "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -500,7 +502,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no explicit evidence indicating prior use of KRASG12C inhibition therapy. Although the patient's biomarker profile shows KRAS G12C mutation, the treatment history mentions chemotherapy regimens (FOLFOX, FOLFIRI) but no KRASG12C-specific inhibitors. Hence, the status for prior KRASG12C inhibition therapy is unknown due to lack of direct information."
+      "explanation": "There is evidence that the patient has a KRAS G12C mutation biomarker, but there is no information provided about whether the patient has received prior KRAS G12C inhibition therapy. Without explicit documentation of prior KRAS G12C inhibitor treatment, we cannot determine if this exclusion criterion applies."
     },
     {
       "method": "llm_assessor",
@@ -511,7 +513,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "No evidence is provided about the presence or treatment status of brain metastases or corticosteroid use. The criterion requires information on active brain metastases, neurological stability, corticosteroid dose, or treatment adequacy. Without such information, it is not possible to determine if this exclusion criterion is met or not."
+      "explanation": "There is no evidence provided regarding the presence or absence of active brain metastases, or if any brain metastases have been treated and the patient's neurological stability. There is also no information about corticosteroid use or dosing prior to enrollment. Therefore, it is unknown whether this exclusion criterion applies to the patient."
     },
     {
       "method": "llm_assessor",
@@ -522,7 +524,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no evidence provided regarding pregnancy status or the results of a serum or urine pregnancy test for this female patient. Therefore, it is unknown whether the exclusion criterion of pregnancy is met or not."
+      "explanation": "The criterion excludes pregnant women or women of child-bearing potential without a negative pregnancy test during screening. The evidence provides no information on pregnancy test results or pregnancy status. Therefore, it is unknown whether this exclusion applies."
     },
     {
       "method": "llm_assessor",
@@ -533,18 +535,20 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient has metastatic colorectal adenocarcinoma diagnosed and documented. Multiple sources confirm the presence of a KRAS p.G12C mutation (e.g., 'KRAS G12C+', 'KRAS: G12C mutation detected'), fulfilling the biomarker requirement by a locally validated assay appears to be implied. Therefore, this criterion is met."
+      "explanation": "The inclusion criterion requires pathologically documented metastatic colorectal adenocarcinoma with KRAS p.G12C mutation by a locally validated assay. The evidence shows a diagnosis of metastatic colorectal adenocarcinoma (index 8) and KRAS G12C mutation detected (indices 2 and 14), which fulfills the requirement. The mutation detection is by pathology report, suggesting a validated assay. Therefore, the patient meets the inclusion criterion."
     },
     {
       "method": "llm_assessor",
       "trial": "NCT06252649",
       "criterion_id": "INC-02",
       "expected": "UNKNOWN",
-      "predicted": "MEETS",
-      "match": false,
+      "predicted": "UNKNOWN",
+      "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "The criterion requires central laboratory detection of KRAS p.G12C mutation. The evidence includes multiple mentions of KRAS G12C mutation detected, including from a pathology report (page 2 of pathology_report.pdf), specifically stating 'KRAS: G12C mutation detected' and 'KRAS G12C+'. These indicate that the mutation was detected through laboratory testing. Therefore, the patient meets this inclusion criterion."
+      "flags": [
+        "INC-02: partial evidence (central not documented); converted to UNKNOWN."
+      ],
+      "explanation": "Part of this criterion is not documented (central); converted to UNKNOWN. Original reasoning: The inclusion criterion requires central laboratory detection of the KRAS p.G12C mutation. The evidence includes multiple mentions of KRAS G12C mutation detected (e.g., evidence points 2: 'KRAS G12C+' and 14: 'KRAS: G12C mutation detected' from a pathology report). These confirm the presence of the required mutation based on central lab testing, therefore the patient meets this inclusion criterion."
     },
     {
       "method": "llm_assessor",
@@ -555,7 +559,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is evidence supporting metastatic colorectal adenocarcinoma with liver metastasis, but there is no explicit information about measurable metastatic disease assessed per RECIST v1.1 criteria provided. Therefore, it is unknown whether the patient meets the inclusion criterion of measurable metastatic disease by RECIST v1.1."
+      "explanation": "The criterion requires evidence of measurable metastatic disease per RECIST v1.1 criteria. Although the patient has metastatic colorectal adenocarcinoma with liver metastases, the provided evidence does not explicitly include imaging findings or measurements of metastatic lesions per RECIST v1.1 to confirm measurable disease. Therefore, the inclusion criterion status is UNKNOWN due to missing specific measurable disease documentation."
     },
     {
       "method": "llm_assessor",
@@ -566,7 +570,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The inclusion criterion requires an ECOG performance status of ≤ 1. Multiple sources report ECOG 1 (indices 0 and 10), which meets the criterion. However, there is also a report of ECOG 2 (index 12), which does not meet this criterion. Due to this conflicting evidence, the status is marked as POTENTIAL_CONFLICT."
+      "explanation": "The inclusion criterion requires an ECOG Performance Status of <= 1. Patient evidence shows ECOG 1 on 2026-03-10 (evidence indices 0 and 11), meeting the criterion at those times. However, there is a conflicting ECOG 2 on 2026-03-11 (evidence index 12), which does not meet the criterion. This represents a potential conflict as the patient's performance status varies around the relevant dates."
     },
     {
       "method": "llm_assessor",
@@ -576,8 +580,10 @@
       "predicted": "UNKNOWN",
       "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "There is no specific evidence in the provided data about previous treatment with a KRAS p.G12C inhibitor. The records show prior treatments with FOLFOX and FOLFIRI, but do not mention KRAS p.G12C inhibitor therapy. Therefore, it is unknown whether the patient has had such treatment before."
+      "flags": [
+        "EXC-03: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN."
+      ],
+      "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -587,8 +593,10 @@
       "predicted": "UNKNOWN",
       "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "There is no available evidence in the provided patient data about a history of interstitial pneumonitis or pulmonary fibrosis, nor information about the baseline CT scan results regarding these lung conditions. Therefore, the criterion's exclusion status cannot be determined from the supplied data."
+      "flags": [
+        "EXC-04: unsupported conclusion converted to UNKNOWN."
+      ],
+      "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -599,7 +607,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The patient's age is 58 years, which is within the range of 18-75 years. The patient is female, satisfying the gender criterion of male or female."
+      "explanation": "The inclusion criterion requires the patient to be male or female and aged 18-75 years. The evidence shows the patient is female (evidence index 7) and 58 years old (evidence index 6), which falls within the specified age range of 18-75 years. Therefore, the criterion is met."
     },
     {
       "method": "llm_assessor",
@@ -610,18 +618,20 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The presence of 'Metastatic colorectal adenocarcinoma' in the diagnosis evidence at index 8 confirms that the patient has histologically or cytologically confirmed colorectal adenocarcinoma, meeting the inclusion criterion INC-02."
+      "explanation": "The patient has a documented diagnosis of 'Metastatic colorectal adenocarcinoma' from the oncology note (evidence index 8) and pathology confirming KRAS G12C mutation detected compatible with colorectal adenocarcinoma (evidence index 14). This supports histologically or cytologically confirmed colorectal adenocarcinoma."
     },
     {
       "method": "llm_assessor",
       "trial": "NCT07559760",
       "criterion_id": "INC-03",
       "expected": "UNKNOWN",
-      "predicted": "MEETS",
-      "match": false,
+      "predicted": "UNKNOWN",
+      "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "The patient has metastatic colorectal adenocarcinoma with MSS status confirmed (evidence index 15) and has been treated with FOLFOX, which is an oxaliplatin plus fluoropyrimidine regimen (evidence indices 1 and 10). This indicates failure or completion of first-line standard oxaliplatin plus fluoropyrimidine therapy. The evidence does not contradict the requirement of unresectable disease, but the metastatic site (liver) implies metastatic, likely unresectable disease context. Therefore, based on the available evidence, the inclusion criterion is met."
+      "flags": [
+        "INC-03: partial evidence (failed, intolerant not documented); converted to UNKNOWN."
+      ],
+      "explanation": "Part of this criterion is not documented (failed, intolerant); converted to UNKNOWN. Original reasoning: The patient has metastatic colorectal adenocarcinoma (evidence index 8) that is microsatellite stable (MSS) as confirmed by biomarker MSI: microsatellite stable (MSS) (index 15). The patient received first-line treatment with FOLFOX (oxaliplatin plus fluoropyrimidine) followed by FOLFIRI (index 10), indicating that the first-line standard oxaliplatin plus fluoropyrimidine therapy was given and failed or the patient moved on to next line. The unresectability of the disease is implied by its metastatic nature and no contrary surgical resection evidence is provided. Therefore, the patient meets the inclusion criterion for unresectable, MSS-type metastatic colorectal cancer that has failed first-line standard oxaliplatin plus fluoropyrimidine ± targeted therapy."
     },
     {
       "method": "llm_assessor",
@@ -632,18 +642,20 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The inclusion criterion requires ECOG performance status 0-1. Evidence shows ECOG 1 on multiple sources (indices 0 and 10), which meets the criterion. However, one evidence (index 12) indicates ECOG 2, which does not meet the criterion. This conflicting information prevents a clear determination of meeting the ECOG 0-1 inclusion criterion."
+      "explanation": "The inclusion criterion requires ECOG performance status 0-1. The patient has evidence of ECOG 1 on 2026-03-10 from two sources (indices 0 and 11), which meets the criterion. However, there is also evidence of ECOG 2 recorded on 2026-03-11 (index 12), which does not meet the criterion. This conflicting performance status data creates uncertainty about whether the patient currently meets the ECOG inclusion requirement."
     },
     {
       "method": "llm_assessor",
       "trial": "NCT07559760",
       "criterion_id": "INC-10",
       "expected": "UNKNOWN",
-      "predicted": "MEETS",
-      "match": false,
+      "predicted": "UNKNOWN",
+      "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "The patient's hematology values meet or exceed the inclusion thresholds: Hemoglobin 11.2 g/dL (equivalent to 112 g/L, which is >= 90 g/L), Absolute Neutrophil Count (ANC) 2.1 x 10^9/L (>= 1.5 x 10^9/L). Platelet count (PLT) and WBC values are not explicitly provided, so their status is unknown; however, based on available hemoglobin and ANC data, the partial hematalogy criteria are met."
+      "flags": [
+        "INC-10: partial evidence (white blood cells, platelets not documented); converted to UNKNOWN."
+      ],
+      "explanation": "Part of this criterion is not documented (white blood cells, platelets); converted to UNKNOWN. Original reasoning: The patient has Hemoglobin of 11.2 g/dL, which converts to 112 g/L (meeting the criterion of Hb \u00003E= 90 g/L). The Absolute Neutrophil Count (ANC) is 2.1 x 10^9/L, which is \u00003E= 1.5 x 10^9/L required. Although the values for WBC and PLT are not directly reported, the key components ANC and Hb meet the criteria, and no contradictory data exists to disqualify. Therefore, the criterion is judged as MEETS based on the available hemoglobin and ANC lab results."
     },
     {
       "method": "llm_assessor",
@@ -654,7 +666,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is no direct evidence of the patient's creatinine clearance (Cockcroft-Gault) value or formula-based calculation to confirm if it is ≥ 50 mL/min. The presence of a creatinine lab value (0.9 mg/dL) is noted, but without additional data such as patient's weight, age, and sex used in the Cockcroft-Gault formula to calculate creatinine clearance, the criterion status cannot be assessed with the given evidence."
+      "explanation": "The inclusion criterion requires Creatinine clearance ≥ 50 mL/min (Cockcroft-Gault). The patient's laboratory data includes a creatinine value (0.9 mg/dL) but does not provide the creatinine clearance calculated by Cockcroft-Gault. Since the exact calculation or clearance value is not documented, the status for this criterion is UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -665,18 +677,20 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "There is evidence that the patient has liver metastases, but there are no liver function test values provided (TBIL, ALT, AST levels) to assess if they are within the required limits (TBIL ≤ 2 × ULN, ALT ≤ 5 × ULN, AST ≤ 5 × ULN). Without these lab values, it is unknown if the patient meets this inclusion criterion."
+      "explanation": "The criterion requires liver metastases with specific liver function test values: total bilirubin (TBIL) ≤ 2 × ULN, ALT ≤ 5 × ULN, and AST ≤ 5 × ULN. The provided evidence confirms the presence of liver metastases but does not include any lab results for total bilirubin, ALT, or AST levels. Without documentation of these liver function tests, the criterion cannot be assessed."
     },
     {
       "method": "llm_assessor",
       "trial": "NCT07559760",
       "criterion_id": "EXC-01",
       "expected": "MEETS",
-      "predicted": "DOES_NOT_MEET",
+      "predicted": "UNKNOWN",
       "match": false,
       "judgment_call": true,
-      "flags": [],
-      "explanation": "The patient has prior treatment with FOLFIRI after FOLFOX. FOLFIRI includes irinotecan, which is a topoisomerase-I inhibitor. Therefore, the patient has prior exposure to topoisomerase-I inhibitors in first-line therapy, which matches the exclusion criterion."
+      "flags": [
+        "EXC-01: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN."
+      ],
+      "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -686,8 +700,10 @@
       "predicted": "UNKNOWN",
       "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "There is no explicit evidence indicating whether the patient is pregnant or breast-feeding. The patient's sex is female, but no information on pregnancy or breast-feeding status is provided in the evidence."
+      "flags": [
+        "EXC-03: exclusion cleared without evidence about it; converted to UNKNOWN."
+      ],
+      "explanation": "No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: The patient is female but there is no evidence provided that she is currently pregnant or breast-feeding. Thus, the exclusion criterion for pregnant or breast-feeding women does not apply based on the available evidence."
     },
     {
       "method": "llm_assessor",
@@ -697,8 +713,10 @@
       "predicted": "UNKNOWN",
       "match": true,
       "judgment_call": false,
-      "flags": [],
-      "explanation": "There is no explicit evidence in the supplied data that the patient has had other malignancies within the last 5 years, excluding the exceptions provided (adequately treated basal-cell carcinoma of skin or cervical carcinoma in situ). Without specific information on other malignancies, it is unknown whether this exclusion criterion is met or not."
+      "flags": [
+        "EXC-19: unsupported conclusion converted to UNKNOWN."
+      ],
+      "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
     },
     {
       "method": "llm_assessor",
@@ -709,7 +727,7 @@
       "match": true,
       "judgment_call": false,
       "flags": [],
-      "explanation": "The inclusion criterion requires the patient to have pancreatic cancer diagnosed by histopathology or cytology. The provided evidence clearly states the diagnosis as metastatic colorectal adenocarcinoma, not pancreatic cancer."
+      "explanation": "The criterion requires a diagnosis of pancreatic cancer confirmed by histopathology or cytology. The patient's documented diagnosis is metastatic colorectal adenocarcinoma, which does not meet the requirement for pancreatic cancer."
     }
   ]
 }
