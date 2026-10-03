@@ -178,6 +178,9 @@ Allowed status: MEETS, DOES_NOT_MEET, UNKNOWN, POTENTIAL_CONFLICT.
 For an exclusion, MEETS means clear of it; DOES_NOT_MEET means it appears to apply.
 Missing evidence is UNKNOWN. Absence is not a negative. Preserve conflicts unless every value gives the same outcome.
 A list of past treatments does not prove another treatment was never given; for prior-exposure exclusions, return MEETS only when the record explicitly rules the exposure out.
+Every requirement in the criterion must be supported by cited evidence; if any part (a lab value, central testing, documented failure or progression, absence of transfusion) is not documented, return UNKNOWN.
+Treatment order: "X, then Y" means Y was given after X; do not reassign lines of therapy.
+Some criteria are one option in a list (for example acceptable contraception methods) or a branch that applies only under a condition (for example "No liver mets: ..."). Return UNKNOWN for these unless the record shows the option or condition applies.
 Return cited zero-based evidence_indices. Never say the patient is eligible or ineligible."""
     payload = {"criterion": criterion.model_dump(), "evidence": [item.model_dump() for item in evidence]}
     context = ToolContext(evidence=evidence, pages=pages)

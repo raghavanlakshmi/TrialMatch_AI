@@ -54,6 +54,53 @@ def is_absence_inferred_clearance(item: CriterionAssessment) -> bool:
     return not any(EXPLICIT_NEGATION.search(e.evidence_text) or EXPLICIT_NEGATION.search(e.value) for e in item.patient_evidence)
 
 
+# Requirements a cited fact must actually mention before an LLM MEETS is accepted.
+UNSUPPORTED_QUALIFIERS = re.compile(
+    r"\b(central|failed|failure|intoleran\w*|progress\w*|refractory|transfus\w*|clearance|"
+    r"measurable|recist|confirmed absence)\b",
+    re.I,
+)
+LAB_ANALYTES = {
+    "hemoglobin": re.compile(r"\b(hb|hgb|hemoglobin|haemoglobin)\b", re.I),
+    "white blood cells": re.compile(r"\b(wbc|white blood cells?|leukocytes?)\b", re.I),
+    "neutrophils": re.compile(r"\b(anc|neutrophils?)\b", re.I),
+    "platelets": re.compile(r"\b(plt|platelets?)\b", re.I),
+    "bilirubin": re.compile(r"\b(tbil|bilirubin)\b", re.I),
+    "ALT": re.compile(r"\balt\b", re.I),
+    "AST": re.compile(r"\bast\b", re.I),
+    "INR": re.compile(r"\binr\b", re.I),
+    "creatinine": re.compile(r"\bcreatinine\b", re.I),
+}
+# Fragments that are one option in a list, or a branch that applies only under a condition.
+CONDITIONAL_OR_OPTION = re.compile(
+    r"^\s*(?:if\b|for (?:participants|patients|subjects)\b|note\b|no [\w\s-]{1,30}:|[\w\s-]{1,30} mets?:)"
+    r"|contracepti|sterili[sz]|vasectomy|condom|intrauterine|\biud\b|tubal|salpingectomy|post-menopausal|hormonal methods",
+    re.I,
+)
+
+
+def _cited_text(item: CriterionAssessment) -> str:
+    return " ".join(f"{e.value} {e.evidence_text}" for e in item.patient_evidence)
+
+
+def uncovered_requirements(item: CriterionAssessment) -> list[str]:
+    """Requirements of an LLM 'MEETS' inclusion that the cited evidence does not mention."""
+    if item.method != "llm" or item.criterion_type != "inclusion" or item.status != "MEETS":
+        return []
+    cited = _cited_text(item)
+    missing = sorted({m.group(0).lower() for m in UNSUPPORTED_QUALIFIERS.finditer(item.criterion_text)
+                      if not re.search(re.escape(m.group(0)), cited, re.I)})
+    missing += [name for name, pattern in LAB_ANALYTES.items()
+                if pattern.search(item.criterion_text) and not pattern.search(cited)]
+    return missing
+
+
+def is_conditional_or_option_rejection(item: CriterionAssessment) -> bool:
+    """An LLM 'DOES_NOT_MEET' on a list option or conditional branch is not evidence of exclusion."""
+    return (item.method == "llm" and item.criterion_type == "inclusion" and item.status == "DOES_NOT_MEET"
+            and bool(CONDITIONAL_OR_OPTION.search(item.criterion_text)))
+
+
 def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[CriterionAssessment], list[str]]:
     """Downgrade unsupported conclusions and return visible review flags."""
     reviewed, flags = [], []
@@ -65,6 +112,12 @@ def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[Cri
         elif is_absence_inferred_clearance(item):
             update = {"status": "UNKNOWN", "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.")
+        elif missing := uncovered_requirements(item):
+            update = {"status": "UNKNOWN", "explanation": f"Part of this criterion is not documented ({', '.join(missing)}); converted to UNKNOWN. Original reasoning: {item.explanation}"}
+            flags.append(f"{item.criterion_id}: partial evidence ({', '.join(missing)} not documented); converted to UNKNOWN.")
+        elif is_conditional_or_option_rejection(item):
+            update = {"status": "UNKNOWN", "explanation": f"This item is a conditional branch or one option among alternatives, so not meeting it does not show exclusion; reviewer decides applicability. Original reasoning: {item.explanation}"}
+            flags.append(f"{item.criterion_id}: conditional or option sub-item; DOES_NOT_MEET converted to UNKNOWN.")
         if any(not evidence.quote_verified for evidence in item.patient_evidence):
             update = {"status": "UNKNOWN", "explanation": "A cited source quote was not verified; converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: unverified source quote.")
