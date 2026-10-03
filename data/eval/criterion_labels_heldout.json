@@ -1,0 +1,155 @@
+{
+  "patient": "SYN-001",
+  "purpose": "Held-out set: criteria from trials not used when the LLM guards were designed.",
+  "label_status": "DRAFT - drafted by an AI assistant; must be reviewed and confirmed by the project owner before results are reported",
+  "status_semantics": "For exclusion criteria, MEETS means the patient appears clear of the exclusion.",
+  "labels": [
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "Age 58 is >= 18.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "INC-02",
+      "expected": "POTENTIAL_CONFLICT",
+      "rationale": "ECOG 1 and ECOG 2 give different outcomes against 0 or 1.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "INC-03",
+      "expected": "MEETS",
+      "rationale": "Metastatic colorectal adenocarcinoma is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "INC-04",
+      "expected": "MEETS",
+      "rationale": "MSS is documented; MSS is usually concordant with mismatch repair proficiency, but MMR IHC is not reported.",
+      "judgment_call": true
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "INC-05",
+      "expected": "MEETS",
+      "rationale": "FOLFOX and FOLFIRI cover 5-FU, oxaliplatin and irinotecan; the RAS wild-type clauses do not apply because KRAS G12C is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "EXC-01",
+      "expected": "UNKNOWN",
+      "rationale": "Uncontrolled concurrent illness is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "EXC-02",
+      "expected": "MEETS",
+      "rationale": "BRAF wild type is documented, so the BRAF V600 exclusion does not apply.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "EXC-04",
+      "expected": "MEETS",
+      "rationale": "MSS is documented, so the MSI-high exclusion does not apply.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT05854498",
+      "criterion_id": "EXC-05",
+      "expected": "UNKNOWN",
+      "rationale": "Prior TAS-102 is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06244771",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "Metastatic solid tumor with KRAS G12C mutation is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06244771",
+      "criterion_id": "INC-02",
+      "expected": "UNKNOWN",
+      "rationale": "Progression on or intolerance to prior therapy is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06244771",
+      "criterion_id": "INC-04",
+      "expected": "UNKNOWN",
+      "rationale": "Only some hematology and creatinine values are documented; hepatic function is not.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06244771",
+      "criterion_id": "EXC-05",
+      "expected": "UNKNOWN",
+      "rationale": "Catch-all safety/compliance criterion; cannot be settled from the record.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06720987",
+      "criterion_id": "INC-02",
+      "expected": "MEETS",
+      "rationale": "Colorectal adenocarcinoma with KRAS G12C is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06720987",
+      "criterion_id": "INC-04",
+      "expected": "UNKNOWN",
+      "rationale": "Availability of curative-intent treatment is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06720987",
+      "criterion_id": "INC-06",
+      "expected": "UNKNOWN",
+      "rationale": "Measurable disease per RECIST is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06720987",
+      "criterion_id": "EXC-03",
+      "expected": "UNKNOWN",
+      "rationale": "Interstitial lung disease is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07281716",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "MSS (non-MSI-H) colorectal cancer is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07281716",
+      "criterion_id": "INC-02",
+      "expected": "UNKNOWN",
+      "rationale": "Progression on or intolerance to standard chemotherapy is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07281716",
+      "criterion_id": "EXC-01",
+      "expected": "UNKNOWN",
+      "rationale": "Dates of the most recent chemotherapy are not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07281716",
+      "criterion_id": "EXC-10",
+      "expected": "UNKNOWN",
+      "rationale": "Depends on the treating investigator's opinion.",
+      "judgment_call": false
+    }
+  ]
+}

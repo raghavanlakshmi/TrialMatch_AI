@@ -59,9 +59,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--llm", action="store_true", help="also score the live LLM assessor")
     parser.add_argument("--model", default="gpt-4.1-mini")
+    parser.add_argument("--labels", type=Path, default=LABELS, help="label file (default: criterion_labels.json)")
     args = parser.parse_args()
+    suffix = "" if args.labels == LABELS else "_" + args.labels.stem.replace("criterion_labels_", "")
+    report_json = REPORT_JSON.with_name(f"criterion_eval_report{suffix}.json")
+    report_md = REPORT_MD.with_name(f"criterion_eval_report{suffix}.md")
 
-    labels = json.loads(LABELS.read_text(encoding="utf-8"))
+    labels = json.loads(args.labels.read_text(encoding="utf-8"))
     run = json.loads((BASELINE_RUN if BASELINE_RUN.exists() else SAVED_RUN).read_text(encoding="utf-8"))
     evidence = [EvidenceItem.model_validate(e) for e in run["evidence"]]
     pages = [DocumentPage.model_validate(p) for p in run["pages"]]
@@ -90,8 +94,9 @@ def main() -> None:
         results[name] = score(pairs)
 
     report = {"label_status": labels["label_status"], "results": results, "rows": rows}
-    REPORT_JSON.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    lines = ["# Criterion evaluation", "", f"Labels: {len(labels['labels'])} criteria from SYN-001 demo trials. {labels['label_status']}.", "",
+    report_json.write_text(json.dumps(report, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    title = "# Criterion evaluation" + (" (held-out)" if suffix else "")
+    lines = [title, "", f"Labels: {len(labels['labels'])} criteria ({args.labels.name}). {labels['label_status']}.", "",
              "| Method | Accuracy | Decidable correct | Unsafe false clearance | UNKNOWN to MEETS | False exclusion |", "|---|---|---|---|---|---|"]
     for name, r in results.items():
         lines.append(f"| {name} | {r['accuracy']:.2f} | {r['decided_correctly']:.2f} ({r['decidable_labels']}) | {r['unsafe_false_clearance']} | {r['unknown_to_meets']} | {r['false_exclusion']} |")
@@ -100,7 +105,7 @@ def main() -> None:
         if not row["match"]:
             note = " (judgment call)" if row["judgment_call"] else ""
             lines.append(f"- {row['method']} · {row['trial']} {row['criterion_id']}: expected {row['expected']}, got {row['predicted']}{note}")
-    REPORT_MD.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    report_md.write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
 
 
