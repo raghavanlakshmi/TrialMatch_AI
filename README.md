@@ -511,11 +511,11 @@ the four tabs in order. The saved run exposes the ECOG conflict, missing prior
 KRAS G12C inhibitor history, trial candidates, criterion evidence, injection
 defense, and trace. The narrated demo video was recorded from this replay.
 
-Run the final acceptance check before recording:
+Run the final acceptance check:
 
 ```powershell
 python scripts/validate_demo.py
 ```
 
-The exact click sequence and suggested narration are in
-[`DEMO_RECORDING_GUIDE.md`](DEMO_RECORDING_GUIDE.md).
+The completed submission documentation is available as
+[`TrialMatch_AI_Project_Documentation_Final.docx`](artifacts/TrialMatch_AI_Project_Documentation_Final.docx).
