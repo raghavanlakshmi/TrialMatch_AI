@@ -183,8 +183,9 @@ A list of past treatments does not prove another treatment was never given; for 
 Every requirement in the criterion must be supported by cited evidence; if any part (a lab value, central testing, documented failure or progression, absence of transfusion) is not documented, return UNKNOWN.
 Treatment order: "X, then Y" means Y was given after X; do not reassign lines of therapy.
 Some criteria are one option in a list (for example acceptable contraception methods) or a branch that applies only under a condition (for example "No liver mets: ..."). Return UNKNOWN for these unless the record shows the option or condition applies.
-Return cited zero-based evidence_indices. Never say the patient is eligible or ineligible."""
-    payload = {"criterion": criterion.model_dump(), "evidence": [item.model_dump() for item in evidence]}
+Cite facts by their "index" field in evidence_indices. Never say the patient is eligible or ineligible."""
+    # Each fact carries its own index so the model cites it instead of counting list positions.
+    payload = {"criterion": criterion.model_dump(), "evidence": [{"index": i, **item.model_dump()} for i, item in enumerate(evidence)]}
     context = ToolContext(evidence=evidence, pages=pages)
     # store=False keeps nothing on the provider side, so the conversation is carried locally:
     # each follow-up sends the original input, the model's tool calls and the tool results.

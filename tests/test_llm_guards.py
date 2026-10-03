@@ -102,3 +102,24 @@ BRAF = ev("biomarker", "BRAF: wild type")
 def test_exclusion_clearance_needs_evidence_about_the_exclusion(text, evidence, expected):
     reviewed, _ = review_assessments([llm("EXC-X", text, "MEETS", evidence, kind="exclusion")])
     assert reviewed[0].status == expected
+
+
+# From the held-out run (data/eval/criterion_eval_report_heldout.md): MEETS on "adequate hematological,
+# renal, and hepatic function" with no liver tests cited. Guard added after that run.
+CREAT = ev("lab", "Creatinine: 0.9 mg/dL")
+PLT, BILI = ev("lab", "Platelets: 210 x 10^9/L"), ev("lab", "Total bilirubin: 0.6 mg/dL")
+ALT, AST = ev("lab", "ALT: 22 U/L"), ev("lab", "AST: 25 U/L")
+ORGAN_CASES = [
+    (llm("INC-04", "Adequate hematological, renal, and hepatic function", "MEETS", [ANC, HB, CREAT]), "UNKNOWN"),
+    (llm("INC-04b", "Adequate hematological, renal, and hepatic function", "MEETS", [ANC, HB, PLT, CREAT, BILI, ALT, AST]), "MEETS"),
+    (llm("INC-05", "Adequate renal function", "MEETS", [CREAT]), "MEETS"),
+    (llm("INC-06", "Adequate organ function", "MEETS", [ANC, HB, CREAT]), "UNKNOWN"),
+    # Not an organ-function criterion: hepatic metastases wording must not trigger the guard.
+    (llm("INC-07", "Metastatic colorectal cancer, including hepatic metastases", "MEETS", [DIAG, LIVER]), "MEETS"),
+]
+
+
+@pytest.mark.parametrize("assessment,expected", ORGAN_CASES, ids=[c[0].criterion_id for c in ORGAN_CASES])
+def test_organ_function_needs_every_named_system(assessment, expected):
+    reviewed, _ = review_assessments([assessment])
+    assert reviewed[0].status == expected

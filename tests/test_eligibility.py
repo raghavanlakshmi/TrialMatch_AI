@@ -119,3 +119,24 @@ def test_tool_follow_up_carries_conversation_without_stored_responses():
     assert follow_up[0]["role"] == "user"
     assert follow_up[1] == {"type": "function_call", "call_id": "c1", "name": "get_source_evidence", "arguments": '{"source_file": "case.txt", "page": 1}'}
     assert follow_up[2]["type"] == "function_call_output" and "Metastatic colorectal" in follow_up[2]["output"]
+
+
+def test_llm_payload_numbers_each_fact():
+    """The model cites facts by an explicit index field rather than by counting list positions."""
+    import json
+    from types import SimpleNamespace
+    from src.eligibility import assess_free_text_criterion, _LLMAssessment
+
+    sent = []
+
+    class FakeResponses:
+        def parse(self, **kwargs):
+            sent.append(kwargs)
+            return SimpleNamespace(output=[], output_parsed=_LLMAssessment(status="DOES_NOT_APPLY", evidence_indices=[1], explanation="BRAF wild type"))
+
+    facts = [evidence("diagnosis", "Metastatic colorectal adenocarcinoma"), evidence("biomarker", "BRAF: wild type")]
+    criterion = TrialCriterion(criterion_id="EXC-02", type="exclusion", text="BRAF V600 mutation")
+    result = assess_free_text_criterion(criterion, facts, [], client=SimpleNamespace(responses=FakeResponses()))
+    payload = json.loads(sent[0]["input"][0]["content"])
+    assert [f["index"] for f in payload["evidence"]] == [0, 1]
+    assert result.status == "MEETS" and result.patient_evidence[0].evidence_text == "BRAF: wild type"
