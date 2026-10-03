@@ -79,6 +79,14 @@ CONDITIONAL_OR_OPTION = re.compile(
 )
 
 
+# Criteria only an investigator can judge; records cannot settle them in prescreening.
+INVESTIGATOR_JUDGMENT = re.compile(
+    r"investigator'?s?\s+(?:opinion|judg(?:e)?ment|discretion)|in the opinion of|deemed by the investigator|"
+    r"deemed (?:unsuitable|inappropriate)|unsuitable for enrol",
+    re.I,
+)
+
+
 def _cited_text(item: CriterionAssessment) -> str:
     return " ".join(f"{e.value} {e.evidence_text}" for e in item.patient_evidence)
 
@@ -106,7 +114,10 @@ def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[Cri
     reviewed, flags = [], []
     for item in assessments:
         update = {}
-        if item.status in {"MEETS", "DOES_NOT_MEET", "POTENTIAL_CONFLICT"} and not item.patient_evidence and item.method == "llm":
+        if item.status in {"MEETS", "DOES_NOT_MEET", "POTENTIAL_CONFLICT"} and INVESTIGATOR_JUDGMENT.search(item.criterion_text):
+            update = {"status": "UNKNOWN", "explanation": f"This criterion depends on investigator judgment and cannot be settled from records; converted to UNKNOWN. Original reasoning: {item.explanation}"}
+            flags.append(f"{item.criterion_id}: investigator-judgment criterion converted to UNKNOWN.")
+        elif item.status in {"MEETS", "DOES_NOT_MEET", "POTENTIAL_CONFLICT"} and not item.patient_evidence and item.method == "llm":
             update = {"status": "UNKNOWN", "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: unsupported conclusion converted to UNKNOWN.")
         elif is_absence_inferred_clearance(item):
