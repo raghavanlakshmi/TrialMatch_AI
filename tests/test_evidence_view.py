@@ -128,7 +128,7 @@ def test_streamlit_view_shows_patient_sources_conflict_and_unknown():
     app = AppTest.from_file(str(PROJECT_ROOT / "app.py")).run(timeout=15)
     assert not app.exception
     assert app.title[0].value == "TrialMatch AI"
-    assert [metric.value for metric in app.metric] == ["16", "1", "1"]
+    assert [metric.value for metric in app.metric][:4] == ["16", "16/16", "1", "1"]
     assert any("Potential conflict" in warning.value for warning in app.warning)
     assert any("UNKNOWN — no supporting evidence" in info.value for info in app.info)
     texts = [text.value for text in app.text]
@@ -143,7 +143,7 @@ def test_review_filter_keeps_conflict_and_missing_fact_visible():
     app = AppTest.from_file(str(PROJECT_ROOT / "app.py")).run(timeout=15)
     app.checkbox[0].check().run(timeout=15)
     assert not app.exception
-    assert [heading.value for heading in app.subheader] == [
-        "Performance status (ECOG)", "Prior KRAS G12C inhibitor",
-    ]
+    headings = [heading.value for heading in app.subheader]
+    evidence_headings = headings[headings.index("Source documents") + 1:headings.index("Reviewer checklist")]
+    assert evidence_headings == ["Performance status (ECOG)", "Prior KRAS G12C inhibitor"]
     assert any("ECOG 2" == text.value for text in app.text)
