@@ -1,6 +1,6 @@
 {
   "patient": "SYN-001",
-  "label_status": "DRAFT - drafted by an AI assistant; must be reviewed and confirmed by the project owner before results are reported",
+  "label_status": "Reviewed By Lakshmi on 10/3/26",
   "status_semantics": "For exclusion criteria, MEETS means the patient appears clear of the exclusion.",
   "labels": [
     {
