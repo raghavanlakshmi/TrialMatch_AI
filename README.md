@@ -486,6 +486,34 @@ tagged synthetic fixture and conservative offline baseline, not a clinical
 performance claim. The optional LLM judge is disabled by default and is never
 the sole evaluator.
 
+### Evaluation notes
+
+Read the reported numbers with these scope details in mind:
+
+- **Recall@5 denominator.** Recall@5 is computed over the 8 cases that have an
+  expected trial. The irrelevant-document and no-appropriate-trial cases have no
+  retrieval target and are excluded. Vector-only found the target in 8 of 8
+  cases (1.00); BM25 and hybrid RRF found it in 6 of 8 (0.75).
+- **One target trial.** All 8 retrieval cases expect the same trial,
+  NCT06252649, so the retrieval results measure robustness to different
+  phrasings rather than discrimination across many trials.
+- **Reranking is not evaluated offline.** The offline evaluation keeps the RRF
+  order, so the "hybrid + rerank" row equals the hybrid row by construction.
+  Live LLM reranking is demonstrated in the saved SYN-001 run, not scored here.
+- **Who assessed the saved-run criteria.** Of the 139 criterion assessments in
+  `data/sample_outputs/SYN-001_workflow.json`, 138 come from deterministic code
+  (10 age/sex rules plus 128 from the conservative offline baseline) and 1
+  (NCT06412198 INC-01) from the live LLM assessor, which was validated end to
+  end on that criterion.
+- **Why so many UNKNOWN results.** The offline baseline decides a criterion only
+  when verified evidence explicitly matches a narrow pattern; everything else
+  stays UNKNOWN. That is deliberately conservative and trades coverage for
+  safety. It is not only a property of the sparse synthetic record.
+- **Small samples.** Criterion accuracy (8 of 8) and extraction precision and
+  recall (1.00) come from small frozen synthetic fixtures and serve as
+  regression checks, not performance estimates. The safety check that matters
+  most, UNKNOWN never converted to MEETS, held in all labeled cases.
+
 The full test suite covers ingestion, quote verification, missing evidence,
 conflicts, age/sex, exclusion direction, RRF, retrieval metadata, injection
 defense, output language, UI rendering, and frozen-data validation:
