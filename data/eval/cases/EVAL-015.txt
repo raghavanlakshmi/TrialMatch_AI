@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal cancer
+Fact: biomarker | microsatellite stable (MSS)
+Fact: prior_treatment | progressed on FOLFOX and FOLFIRI; third-line therapy needed

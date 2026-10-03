@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | locally advanced rectal adenocarcinoma
+Fact: biomarker | pMMR
+Fact: cancer_stage | stage III

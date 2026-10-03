@@ -1,0 +1,3 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | colorectal cancer with liver metastases
+Fact: metastatic_site | liver

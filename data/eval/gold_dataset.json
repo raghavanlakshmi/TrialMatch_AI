@@ -199,5 +199,198 @@
     ],
     "expected_trial_ids": [],
     "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-011",
+    "scenario": "second-line MSS colorectal after first-line FOLFOX",
+    "source_file": "EVAL-011.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "metastatic colorectal adenocarcinoma"
+      },
+      {
+        "category": "biomarker",
+        "value": "microsatellite stable (MSS)"
+      },
+      {
+        "category": "prior_treatment",
+        "value": "first-line FOLFOX with progression"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT07559760",
+      "NCT03303495"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-012",
+    "scenario": "KRAS G12C MSS colorectal, targeted combination",
+    "source_file": "EVAL-012.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "metastatic colorectal cancer"
+      },
+      {
+        "category": "biomarker",
+        "value": "KRAS G12C mutation"
+      },
+      {
+        "category": "biomarker",
+        "value": "microsatellite stable"
+      },
+      {
+        "category": "prior_treatment",
+        "value": "FOLFOX"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT06412198",
+      "NCT06252649"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-013",
+    "scenario": "advanced pancreatic cancer, first-line chemotherapy",
+    "source_file": "EVAL-013.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "advanced pancreatic adenocarcinoma"
+      },
+      {
+        "category": "metastatic_site",
+        "value": "liver"
+      },
+      {
+        "category": "performance_status",
+        "value": "ECOG 1"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT06782685",
+      "NCT05916261",
+      "NCT06149689"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-014",
+    "scenario": "KRAS G12D pancreatic ductal adenocarcinoma",
+    "source_file": "EVAL-014.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "pancreatic ductal adenocarcinoma"
+      },
+      {
+        "category": "biomarker",
+        "value": "KRAS G12D mutation"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT06586515",
+      "NCT06546150",
+      "NCT07094204"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-015",
+    "scenario": "chemotherapy-refractory MSS colorectal, third line",
+    "source_file": "EVAL-015.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "metastatic colorectal cancer"
+      },
+      {
+        "category": "biomarker",
+        "value": "microsatellite stable (MSS)"
+      },
+      {
+        "category": "prior_treatment",
+        "value": "progressed on FOLFOX and FOLFIRI; third-line therapy needed"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT07085169",
+      "NCT07281716",
+      "NCT05854498"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-016",
+    "scenario": "previously treated KRAS G12C non-small cell lung cancer",
+    "source_file": "EVAL-016.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "non-small cell lung cancer"
+      },
+      {
+        "category": "biomarker",
+        "value": "KRAS G12C mutation"
+      },
+      {
+        "category": "prior_treatment",
+        "value": "platinum chemotherapy and immunotherapy"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT07468071",
+      "NCT06244771",
+      "NCT06720987"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-017",
+    "scenario": "locally advanced rectal cancer, neoadjuvant therapy",
+    "source_file": "EVAL-017.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "locally advanced rectal adenocarcinoma"
+      },
+      {
+        "category": "biomarker",
+        "value": "pMMR"
+      },
+      {
+        "category": "cancer_stage",
+        "value": "stage III"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT05916040",
+      "NCT06162650",
+      "NCT07448142"
+    ],
+    "criterion_labels": {}
+  },
+  {
+    "case_id": "EVAL-018",
+    "scenario": "colorectal liver metastases, local treatment",
+    "source_file": "EVAL-018.txt",
+    "expected_facts": [
+      {
+        "category": "diagnosis",
+        "value": "colorectal cancer with liver metastases"
+      },
+      {
+        "category": "metastatic_site",
+        "value": "liver"
+      }
+    ],
+    "expected_trial_ids": [
+      "NCT06185556",
+      "NCT04798898"
+    ],
+    "criterion_labels": {}
   }
 ]
