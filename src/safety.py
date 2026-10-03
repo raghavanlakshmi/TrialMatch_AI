@@ -38,6 +38,22 @@ def sanitize_text(text: str) -> str:
     return text
 
 
+PRIOR_EXPOSURE = re.compile(r"\b(prior|previous|previously|history of|received|treated with|exposure)\b", re.I)
+EXPLICIT_NEGATION = re.compile(r"\b(no prior|no previous|never (?:received|treated)|naive|not previously|none)\b", re.I)
+
+
+def is_absence_inferred_clearance(item: CriterionAssessment) -> bool:
+    """An LLM 'clear of exclusion' for a prior-exposure criterion needs an explicit negative in the record.
+
+    A treatment list (e.g. "FOLFOX, then FOLFIRI") does not show that another therapy was never given.
+    """
+    if item.method != "llm" or item.criterion_type != "exclusion" or item.status != "MEETS":
+        return False
+    if not PRIOR_EXPOSURE.search(item.criterion_text):
+        return False
+    return not any(EXPLICIT_NEGATION.search(e.evidence_text) or EXPLICIT_NEGATION.search(e.value) for e in item.patient_evidence)
+
+
 def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[CriterionAssessment], list[str]]:
     """Downgrade unsupported conclusions and return visible review flags."""
     reviewed, flags = [], []
@@ -46,6 +62,9 @@ def review_assessments(assessments: list[CriterionAssessment]) -> tuple[list[Cri
         if item.status in {"MEETS", "DOES_NOT_MEET", "POTENTIAL_CONFLICT"} and not item.patient_evidence and item.method == "llm":
             update = {"status": "UNKNOWN", "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: unsupported conclusion converted to UNKNOWN.")
+        elif is_absence_inferred_clearance(item):
+            update = {"status": "UNKNOWN", "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."}
+            flags.append(f"{item.criterion_id}: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.")
         if any(not evidence.quote_verified for evidence in item.patient_evidence):
             update = {"status": "UNKNOWN", "explanation": "A cited source quote was not verified; converted to UNKNOWN."}
             flags.append(f"{item.criterion_id}: unverified source quote.")
