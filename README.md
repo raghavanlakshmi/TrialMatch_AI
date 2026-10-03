@@ -33,7 +33,7 @@ python scripts/create_synthetic_patient.py --overwrite
 
 The generator uses the existing PyMuPDF and Pillow dependencies.
 
-## Step 12: deliberate potential conflict
+## Deliberate potential conflict
 
 The source documents contain two different values for the same ECOG fact. The
 expected display is saved in
@@ -56,7 +56,7 @@ Dates provide context for the reviewer; they must not determine whether a
 difference is a conflict or select a preferred value. The reviewer reconciles
 the evidence.
 
-## Step 13: deliberately missing fact
+## Deliberately missing fact
 
 Prior KRAS G12C inhibitor use is undocumented in all four SYN-001 patient
 documents. The documented KRAS G12C mutation and FOLFOX/FOLFIRI treatment history
@@ -73,19 +73,19 @@ No supporting evidence found in supplied documents.
 
 [`SYN-001_missing_fact.json`](data/sample_outputs/SYN-001_missing_fact.json)
 records the expected `UNKNOWN` status with a null value and an empty evidence
-list. It is an expected demo output for later implementation and evaluation.
+list. It is an expected demo output used in evaluation.
 There is no supporting quote or source attribution to invent for a missing fact.
 
-For step 13b, [`src/config.py`](src/config.py) defines `FACTS_TO_LOOK_FOR` for age,
+[`src/config.py`](src/config.py) defines `FACTS_TO_LOOK_FOR` for age,
 sex, diagnosis, KRAS status, MSI status, prior therapies, prior KRAS G12C inhibitor,
-ECOG and ANC. The future extraction/UI workflow must display any checklist item
+ECOG and ANC. The extraction and UI workflow displays any checklist item
 with no supporting evidence as `UNKNOWN`.
 
 Once the trial snapshot is frozen, confirm that the chosen demo trial actually
 has a prior-KRAS-G12C-inhibitor criterion. If it does not, choose a different
 deliberately missing fact that a real criterion in the snapshot asks about.
 
-## Step 14: optional experimental handwriting
+## Experimental handwritten input
 
 [`handwritten_note.png`](data/patients/SYN-001/handwritten_note.png) is an
 additional synthetic, single-page note dated 2026-03-10 for SYN-001. Its three
@@ -101,8 +101,8 @@ The note was generated with the built-in image generation tool. The complete
 [generation prompt](data/eval/SYN-001_handwritten_note_prompt.txt) and
 [expected transcription](data/eval/SYN-001_handwritten_note_expected.txt) are
 saved for reference. The expected transcription is an evaluation fixture,
-not an OCR result or a patient evidence source. The four original step 11
-documents remain the primary source set; this image is an optional fifth input.
+not an OCR result or a patient evidence source. The four primary synthetic
+documents remain the main source set; this image is an optional fifth input.
 The existing PDF/typed-referral generator does not recreate this image.
 
 Handwriting is experimental and requires human review. When image ingestion and
@@ -111,7 +111,7 @@ the transcribed page text. A quote is verified only if it appears word for word
 in that text; a match does not establish that the handwriting was transcribed
 correctly. Do not set `quote_verified` from the expected transcription.
 
-## Step 15: document ingestion
+## Document ingestion
 
 [`src/document_ingestion.py`](src/document_ingestion.py) provides
 `ingest_document(path)` and `ingest_documents(paths)`. Each returns a list of
@@ -124,7 +124,7 @@ with `filename`, `page_number`, `text` and `extraction_method`.
   `OCR_REQUIRED`. Any text that was extracted is retained. This configurable
   threshold is a heuristic; a short text page can also require review.
 - PNG, JPG and JPEG images are validated and returned as page 1 with empty
-  text and `OCR_REQUIRED` by default. Set `use_ocr=True` to run the step 16
+  text and `OCR_REQUIRED` by default. Set `use_ocr=True` to run the vision
   transcription fallback.
 - UTF-8 TXT files, including files with a UTF-8 BOM, return one page with
   extraction method `TXT`. Unicode and whitespace are preserved.
@@ -159,7 +159,7 @@ Run the ingestion checks from the repository folder:
 python -m pytest tests/test_document_ingestion.py -q
 ```
 
-## Step 16: OCR/vision fallback
+## OCR and vision transcription
 
 [`src/ocr.py`](src/ocr.py) provides `extract_text_from_image(image_path) -> str`
 using the OpenAI Responses API. The implementation follows the official
@@ -214,7 +214,7 @@ No failed or partial response becomes patient evidence. Default ingestion
 remains local and makes no API requests.
 
 The existing seven-page sample JSON reflects local ingestion with OCR disabled.
-The step 16 tests exercise the installed SDK with mocked HTTP responses; they
+The OCR tests exercise the installed SDK with mocked HTTP responses; they
 do not make live API requests or establish transcription accuracy.
 
 A live check using the configured API key successfully transcribed both
@@ -234,9 +234,9 @@ confirmation is recorded in
 python -m pytest tests/test_document_ingestion.py tests/test_ocr.py -q
 ```
 
-## Step 17: evidence schema
+## Evidence schema
 
-[`src/schemas.py`](src/schemas.py) now defines `EvidenceItem` with the guide's
+[`src/schemas.py`](src/schemas.py) defines `EvidenceItem` with
 eight fields: `category`, `value`, `normalized_value`, `date`, `source_file`,
 `source_page`, `evidence_text` and `quote_verified`.
 
@@ -248,15 +248,15 @@ The exact quote is retained without changing whitespace or case. Optional
 normalized values and dates default to null when unavailable.
 
 `quote_verified` defaults to false. Schema validation cannot establish whether
-a quote appears in the source; the step 18 extraction workflow must set the
-flag with a source-text check, never trust a model-supplied flag. No confidence
+a quote appears in the source; the extraction workflow sets the
+flag with a source-text check and never trusts a model-supplied flag. No confidence
 field is included, and extra fields such as confidence scores are rejected.
 
 ```bash
 python -m pytest tests/test_schemas.py -q
 ```
 
-## Step 18: clinical evidence extraction
+## Clinical evidence extraction
 
 [`src/evidence_extraction.py`](src/evidence_extraction.py) provides
 `extract_evidence(pages) -> list[EvidenceItem]` and
@@ -270,8 +270,8 @@ environment.
 Source pages are supplied as untrusted data. The prompt requires explicitly
 supported facts, exact supporting quotes, accurate source filenames/pages and
 documented dates. Each differing fact remains a separate record. Missing
-checklist facts have no evidence records and must display `UNKNOWN` in the
-step 19 view; no negative treatment history is inferred from absent information.
+checklist facts have no evidence records and display as `UNKNOWN` in the
+patient evidence view; no negative treatment history is inferred from absent information.
 
 Code recomputes every quote flag against the named source file and page after
 whitespace and case normalization. Paraphrases, wrong sources/pages, quotes
@@ -313,7 +313,7 @@ eligibility assessment.
 python -m pytest tests/test_extraction.py tests/test_schemas.py tests/test_document_ingestion.py tests/test_ocr.py -q
 ```
 
-## Step 19: patient evidence view
+## Patient evidence view
 
 From the repository folder, with the virtual environment active, launch:
 
@@ -336,7 +336,7 @@ recorded handwritten transcription review.
 
 [`src/evidence_view.py`](src/evidence_view.py) uses the prototype's named facts
 to group evidence. It compares explicit scalar values without selecting a
-preferred source. The guide's KRAS G12C-positive wordings are treated as
+preferred source. Equivalent KRAS G12C-positive wordings are treated as
 equivalent for display while retaining both original records. Treatment
 history, metastatic sites, medications and comorbidities can have multiple
 complementary entries; they are retained as lists rather than treated as
@@ -345,14 +345,14 @@ prototype and should be extended as the trial checklist evolves.
 
 Unverified claims remain visible for review and do not fill an unknown
 checklist fact by themselves. Patient values and quotes render as plain text.
-Source downloads are restricted to the SYN-001 folder. Upload and trial
-matching flows will be added in later steps.
+Source downloads are restricted to the SYN-001 folder. Upload, trial
+matching and criterion review are covered in the sections below.
 
 ```bash
 python -m pytest tests/test_evidence_view.py tests/test_extraction.py tests/test_schemas.py tests/test_document_ingestion.py tests/test_ocr.py -q
 ```
 
-## Step 20: frozen ClinicalTrials.gov source
+## Frozen ClinicalTrials.gov snapshot
 
 [`scripts/download_trials.py`](scripts/download_trials.py) downloads recruiting
 studies from the ClinicalTrials.gov API v2 `/studies` endpoint, follows
@@ -388,7 +388,7 @@ manifest whenever the snapshot is refreshed.
 python -m pytest tests/test_download_trials.py -q
 ```
 
-## Steps 21–22: validated trial records and searchable text
+## Validated trial records and searchable text
 
 [`src/trial_loader.py`](src/trial_loader.py) loads the frozen JSONL snapshot and
 validates every record with the Pydantic `TrialRecord` schema. It checks unique
@@ -399,7 +399,7 @@ Original ClinicalTrials.gov age strings remain in `minimum_age` and
 `maximum_age`. Deterministic parsed values are added as `minimum_age_years` and
 `maximum_age_years`. Years, months, weeks, days, hours, and minutes are
 supported; missing limits remain null and malformed values raise a clear error.
-These numeric fields will support the code-based age check in Step 28.
+These numeric fields drive the code-based age check.
 
 Each trial also receives stable searchable text containing its NCT ID, title,
 conditions, recruiting status, summary, and complete eligibility block. The 75
@@ -417,7 +417,7 @@ python -m src.trial_loader --overwrite
 python -m pytest tests/test_trial_loader.py -q
 ```
 
-## Steps 23–31: retrieval and criterion prescreening
+## Retrieval and criterion-level prescreening
 
 `scripts/build_index.py` performs the index-time work. It deterministically
 parses the frozen eligibility blocks into stable `INC-xx` and `EXC-xx` IDs in
@@ -447,7 +447,7 @@ trial snapshot:
 python scripts/build_index.py
 ```
 
-## Steps 32–41: workflow, safety, trace, and interface
+## Workflow, safety, trace, and interface
 
 `src/workflow.py` compiles the 12-node LangGraph from document intake through
 human review. A conditional edge sends an empty retrieval result directly to
@@ -466,7 +466,7 @@ Trace tabs. It supports uploads and a pre-tested replay from
 trials, criterion-level evidence, an injection-defense result, and all 12 trace
 records without making an API call.
 
-## Steps 42–48: evaluation and tests
+## Evaluation and tests
 
 `data/eval/gold_dataset.json` freezes 10 synthetic cases covering a clear
 match, apparent exclusion, missing facts, ECOG conflict, scanned text,
@@ -494,11 +494,10 @@ defense, output language, UI rendering, and frozen-data validation:
 python -m pytest -q
 ```
 
-The optional Ollama experiment in Step 47 was intentionally skipped because it
-does not improve the core demonstration and is not required by the definition
-of done.
+A local-model (Ollama) comparison was intentionally left out of scope because it
+does not improve the core demonstration; it is listed as future work.
 
-## Steps 49–51: run and record
+## Running the demo
 
 Start the application from this repository with the project virtual
 environment active:
@@ -510,8 +509,7 @@ python -m streamlit run app.py
 For a reliable demonstration, choose **Replay saved SYN-001 run**, then follow
 the four tabs in order. The saved run exposes the ECOG conflict, missing prior
 KRAS G12C inhibitor history, trial candidates, criterion evidence, injection
-defense, and trace. Recording the final video and voiceover is a manual
-submission step; the application and replay artifact are prepared for it.
+defense, and trace. The narrated demo video was recorded from this replay.
 
 Run the final acceptance check before recording:
 
