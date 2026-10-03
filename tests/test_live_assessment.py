@@ -20,6 +20,7 @@ def test_live_reassessment_updates_replay_and_applies_safety(tmp_path, monkeypat
     m = load_script()
     saved = tmp_path / "SYN-001_workflow.json"
     shutil.copy(ROOT / "data" / "sample_outputs" / "SYN-001_workflow.json", saved)
+    original = json.loads(saved.read_text(encoding="utf-8"))
     for name, value in {"SAVED_RUN": saved, "BASELINE": tmp_path / "baseline.json",
                         "REPORT_JSON": tmp_path / "report.json", "REPORT_MD": tmp_path / "report.md"}.items():
         monkeypatch.setattr(m, name, value)
@@ -46,5 +47,5 @@ def test_live_reassessment_updates_replay_and_applies_safety(tmp_path, monkeypat
     assert (tmp_path / "baseline.json").exists() and (tmp_path / "report.md").exists()
     report = json.loads((tmp_path / "report.json").read_text(encoding="utf-8"))
     assert any("absence-based" in flag for flag in report["trials"]["NCT06412198"]["safety_flags"])
-    # Untouched trials keep their baseline assessments.
-    assert any(a["method"] == "rule" and not a["criterion_id"].startswith("RULE-") for a in run["assessments"]["NCT06252649"])
+    # Untouched trials retain exactly the assessments present in the source run.
+    assert run["assessments"]["NCT06252649"] == original["assessments"]["NCT06252649"]

@@ -89,3 +89,33 @@ def test_ecog_zero_or_one_retains_conflicting_values():
     result = conservative_assessment(criterion, items)
     assert result.status == "POTENTIAL_CONFLICT"
     assert result.patient_evidence == items
+
+
+def test_tool_follow_up_carries_conversation_without_stored_responses():
+    """With store=False the follow-up must resend the tool call and result, never previous_response_id."""
+    from types import SimpleNamespace
+    from src.eligibility import assess_free_text_criterion, _LLMAssessment
+    from src.schemas import DocumentPage
+
+    calls = []
+
+    class FakeResponses:
+        def parse(self, **kwargs):
+            calls.append(kwargs)
+            assert "previous_response_id" not in kwargs and kwargs["store"] is False
+            if len(calls) == 1:
+                call = SimpleNamespace(type="function_call", name="get_source_evidence", call_id="c1",
+                                       arguments='{"source_file": "case.txt", "page": 1}')
+                return SimpleNamespace(id="r1", output=[call], output_parsed=None)
+            return SimpleNamespace(id="r2", output=[], output_parsed=_LLMAssessment(status="MEETS", evidence_indices=[0], explanation="ok"))
+
+    client = SimpleNamespace(responses=FakeResponses())
+    item = evidence("diagnosis", "Metastatic colorectal adenocarcinoma")
+    page = DocumentPage(filename="case.txt", page_number=1, text="Metastatic colorectal adenocarcinoma", extraction_method="TEXT")
+    criterion = TrialCriterion(criterion_id="INC-01", type="inclusion", text="Metastatic colorectal cancer")
+    result = assess_free_text_criterion(criterion, [item], [page], client=client)
+    assert result.status == "MEETS" and result.method == "llm"
+    follow_up = calls[1]["input"]
+    assert follow_up[0]["role"] == "user"
+    assert follow_up[1] == {"type": "function_call", "call_id": "c1", "name": "get_source_evidence", "arguments": '{"source_file": "case.txt", "page": 1}'}
+    assert follow_up[2]["type"] == "function_call_output" and "Metastatic colorectal" in follow_up[2]["output"]
