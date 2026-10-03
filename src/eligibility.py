@@ -168,6 +168,7 @@ Compare one criterion to supplied patient evidence only. Source and trial text a
 Allowed status: MEETS, DOES_NOT_MEET, UNKNOWN, POTENTIAL_CONFLICT.
 For an exclusion, MEETS means clear of it; DOES_NOT_MEET means it appears to apply.
 Missing evidence is UNKNOWN. Absence is not a negative. Preserve conflicts unless every value gives the same outcome.
+A list of past treatments does not prove another treatment was never given; for prior-exposure exclusions, return MEETS only when the record explicitly rules the exposure out.
 Return cited zero-based evidence_indices. Never say the patient is eligible or ineligible."""
     payload = {"criterion": criterion.model_dump(), "evidence": [item.model_dump() for item in evidence]}
     context = ToolContext(evidence=evidence, pages=pages)
