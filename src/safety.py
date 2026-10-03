@@ -71,6 +71,15 @@ LAB_ANALYTES = {
     "INR": re.compile(r"\binr\b", re.I),
     "creatinine": re.compile(r"\bcreatinine\b", re.I),
 }
+# "Adequate hematologic, renal and hepatic function" is met only when every named organ system has
+# its usual results cited. Applies only when the criterion is about organ *function*, so mentions
+# such as "hepatic metastases" are unaffected. "Adequate organ function" names all three systems.
+FUNCTION_WORDING = re.compile(r"\bfunctions?\b", re.I)
+ORGAN_FUNCTION = {
+    "hematologic function": (re.compile(r"\b(ha?ematolog\w*|bone marrow|organ)\b", re.I), ("neutrophils", "hemoglobin", "platelets")),
+    "renal function": (re.compile(r"\b(renal|kidney|organ)\b", re.I), ("creatinine",)),
+    "hepatic function": (re.compile(r"\b(hepatic|liver|organ)\b", re.I), ("bilirubin", "ALT", "AST")),
+}
 # Fragments that are one option in a list, or a branch that applies only under a condition.
 CONDITIONAL_OR_OPTION = re.compile(
     r"^\s*(?:if\b|for (?:participants|patients|subjects)\b|note\b|no [\w\s-]{1,30}:|[\w\s-]{1,30} mets?:)"
@@ -138,6 +147,11 @@ def uncovered_requirements(item: CriterionAssessment) -> list[str]:
                       if not re.search(re.escape(m.group(0)), cited, re.I)})
     missing += [name for name, pattern in LAB_ANALYTES.items()
                 if pattern.search(item.criterion_text) and not pattern.search(cited)]
+    for system, (mention, analytes) in ORGAN_FUNCTION.items():
+        if FUNCTION_WORDING.search(item.criterion_text) and mention.search(item.criterion_text):
+            absent = [a for a in analytes if not LAB_ANALYTES[a].search(cited)]
+            if absent:
+                missing.append(f"{system}: {', '.join(absent)}")
     return missing
 
 
