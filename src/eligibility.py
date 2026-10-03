@@ -181,18 +181,21 @@ A list of past treatments does not prove another treatment was never given; for 
 Return cited zero-based evidence_indices. Never say the patient is eligible or ineligible."""
     payload = {"criterion": criterion.model_dump(), "evidence": [item.model_dump() for item in evidence]}
     context = ToolContext(evidence=evidence, pages=pages)
-    response = client.responses.parse(model=model, instructions=prompt, input=json.dumps(payload), tools=[SOURCE_EVIDENCE_TOOL], text_format=_LLMAssessment, store=False)
+    # store=False keeps nothing on the provider side, so the conversation is carried locally:
+    # each follow-up sends the original input, the model's tool calls and the tool results.
+    conversation: list[dict] = [{"role": "user", "content": json.dumps(payload)}]
+    response = client.responses.parse(model=model, instructions=prompt, input=conversation, tools=[SOURCE_EVIDENCE_TOOL], text_format=_LLMAssessment, store=False)
     # A model may inspect one or more source pages before returning its result.
     for _ in range(3):
         calls = [item for item in response.output if item.type == "function_call" and item.name == "get_source_evidence"]
         if not calls:
             break
-        outputs = []
         for call in calls:
             args = json.loads(call.arguments)
             value = context.get_source_evidence(args["source_file"], args["page"])
-            outputs.append({"type": "function_call_output", "call_id": call.call_id, "output": json.dumps(value)})
-        response = client.responses.parse(model=model, instructions=prompt, previous_response_id=response.id, input=outputs, tools=[SOURCE_EVIDENCE_TOOL], text_format=_LLMAssessment, store=False)
+            conversation.append({"type": "function_call", "call_id": call.call_id, "name": call.name, "arguments": call.arguments})
+            conversation.append({"type": "function_call_output", "call_id": call.call_id, "output": json.dumps(value)})
+        response = client.responses.parse(model=model, instructions=prompt, input=conversation, tools=[SOURCE_EVIDENCE_TOOL], text_format=_LLMAssessment, store=False)
     result = response.output_parsed
     if result is None or result.status not in {"MEETS", "DOES_NOT_MEET", "UNKNOWN", "POTENTIAL_CONFLICT"}:
         return conservative_assessment(criterion, evidence)
