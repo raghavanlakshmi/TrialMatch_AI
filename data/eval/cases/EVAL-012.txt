@@ -1,0 +1,5 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal cancer
+Fact: biomarker | KRAS G12C mutation
+Fact: biomarker | microsatellite stable
+Fact: prior_treatment | FOLFOX

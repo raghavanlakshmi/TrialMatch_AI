@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | metastatic colorectal adenocarcinoma
+Fact: biomarker | microsatellite stable (MSS)
+Fact: prior_treatment | first-line FOLFOX with progression

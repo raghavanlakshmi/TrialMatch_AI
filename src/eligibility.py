@@ -106,6 +106,13 @@ def _diagnosis_site_mismatch(criterion: TrialCriterion, verified: list[EvidenceI
     )
     return CriterionAssessment(criterion_id=criterion.criterion_id, criterion_text=criterion.text, criterion_type=criterion.type, status="DOES_NOT_MEET", method="rule", patient_evidence=diagnoses, explanation=explanation)
 
+# Qualifiers a single matched fact (diagnosis or biomarker) cannot satisfy on its own.
+EXTRA_REQUIREMENTS = re.compile(
+    r"\b(central|failed|failure|intoleran\w*|progress\w*|refractory|unresectable|measurable|recist|"
+    r"prior lines?|lines? of (?:therapy|treatment)|within|after|adjuvant)\b",
+    re.I,
+)
+
 def conservative_assessment(criterion: TrialCriterion, evidence: list[EvidenceItem]) -> CriterionAssessment:
     """Offline fallback: make only narrow text matches; missing support stays UNKNOWN."""
     text = criterion.text.casefold()
@@ -145,7 +152,9 @@ def conservative_assessment(criterion: TrialCriterion, evidence: list[EvidenceIt
             else:
                 status = "DOES_NOT_MEET" if all(outcomes) else "MEETS"
             return CriterionAssessment(criterion_id=criterion.criterion_id, criterion_text=criterion.text, criterion_type=criterion.type, status=status, method="rule", patient_evidence=selected, explanation="Conservative offline comparison of all documented ECOG values; live LLM assessment was not requested.")
-    if selected and criterion.type == "inclusion":
+    if selected and criterion.type == "inclusion" and EXTRA_REQUIREMENTS.search(text):
+        status, explanation = "UNKNOWN", "The matched fact covers only part of this criterion; its additional requirements are not documented."
+    elif selected and criterion.type == "inclusion":
         status, explanation = "MEETS", "Explicit verified evidence matches the central condition or biomarker wording; human verification is required."
     elif selected and criterion.type == "exclusion":
         status, explanation = "DOES_NOT_MEET", "Explicit verified evidence indicates that this exclusion may apply; human verification is required."

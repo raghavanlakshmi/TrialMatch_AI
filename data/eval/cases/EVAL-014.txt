@@ -1,0 +1,3 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | pancreatic ductal adenocarcinoma
+Fact: biomarker | KRAS G12D mutation

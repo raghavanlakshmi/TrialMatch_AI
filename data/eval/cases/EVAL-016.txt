@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | non-small cell lung cancer
+Fact: biomarker | KRAS G12C mutation
+Fact: prior_treatment | platinum chemotherapy and immunotherapy

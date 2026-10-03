@@ -1,0 +1,210 @@
+{
+  "patient": "SYN-001",
+  "label_status": "DRAFT - drafted by an AI assistant; must be reviewed and confirmed by the project owner before results are reported",
+  "status_semantics": "For exclusion criteria, MEETS means the patient appears clear of the exclusion.",
+  "labels": [
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "Verified metastatic colorectal adenocarcinoma, MSS, KRAS G12C, and FOLFOX then FOLFIRI (1+ prior lines).",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-02",
+      "expected": "MEETS",
+      "rationale": "KRAS G12C mutation documented on the pathology report.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-03",
+      "expected": "MEETS",
+      "rationale": "Diagnosis is metastatic; liver metastases documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-05",
+      "expected": "UNKNOWN",
+      "rationale": "Measurable disease per RECIST 1.1 is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-11",
+      "expected": "POTENTIAL_CONFLICT",
+      "rationale": "ECOG 1 and ECOG 2 give different outcomes against 0 or 1.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-13",
+      "expected": "MEETS",
+      "rationale": "ANC 2.1 x 10^9/L meets >= 1.0 x 10^9/L.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-14",
+      "expected": "UNKNOWN",
+      "rationale": "Platelet count is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "INC-18",
+      "expected": "UNKNOWN",
+      "rationale": "Creatinine clearance needs weight; only serum creatinine is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "EXC-01",
+      "expected": "UNKNOWN",
+      "rationale": "Prior PD-1/CTLA-4 therapy is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "EXC-02",
+      "expected": "UNKNOWN",
+      "rationale": "Prior KRAS G12C inhibitor therapy is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "EXC-05",
+      "expected": "UNKNOWN",
+      "rationale": "Brain metastasis status is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06412198",
+      "criterion_id": "EXC-08",
+      "expected": "UNKNOWN",
+      "rationale": "Pregnancy status is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "Pathologically documented metastatic colorectal adenocarcinoma with KRAS G12C.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "INC-02",
+      "expected": "UNKNOWN",
+      "rationale": "Central laboratory testing is not documented; the result is from a local pathology report.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "INC-03",
+      "expected": "UNKNOWN",
+      "rationale": "Measurable disease per RECIST is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "INC-04",
+      "expected": "POTENTIAL_CONFLICT",
+      "rationale": "ECOG 1 and ECOG 2 give different outcomes against <= 1.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "EXC-03",
+      "expected": "UNKNOWN",
+      "rationale": "Prior KRAS G12C inhibitor therapy is not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06252649",
+      "criterion_id": "EXC-04",
+      "expected": "UNKNOWN",
+      "rationale": "Interstitial pneumonitis history is not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-01",
+      "expected": "MEETS",
+      "rationale": "Age 58 is within 18-75.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-02",
+      "expected": "MEETS",
+      "rationale": "Colorectal adenocarcinoma is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-03",
+      "expected": "UNKNOWN",
+      "rationale": "Unresectability and failure/intolerance of first-line therapy are not explicitly documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-07",
+      "expected": "POTENTIAL_CONFLICT",
+      "rationale": "ECOG 1 and ECOG 2 give different outcomes against 0-1.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-10",
+      "expected": "UNKNOWN",
+      "rationale": "Hb and ANC meet thresholds, but WBC and platelets are not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-12",
+      "expected": "UNKNOWN",
+      "rationale": "Creatinine clearance needs weight; only serum creatinine is documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "INC-15",
+      "expected": "UNKNOWN",
+      "rationale": "Liver metastases present, but bilirubin and transaminases are not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "EXC-01",
+      "expected": "MEETS",
+      "rationale": "First-line therapy was FOLFOX (no topoisomerase-I inhibitor); irinotecan (FOLFIRI) came after. Reviewer judgment: depends on reading 'then' as treatment sequence.",
+      "judgment_call": true
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "EXC-03",
+      "expected": "UNKNOWN",
+      "rationale": "Pregnancy and breast-feeding status are not documented.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT07559760",
+      "criterion_id": "EXC-19",
+      "expected": "UNKNOWN",
+      "rationale": "Other malignancies are not documented either way.",
+      "judgment_call": false
+    },
+    {
+      "trial": "NCT06782685",
+      "criterion_id": "INC-02",
+      "expected": "DOES_NOT_MEET",
+      "rationale": "Verified diagnosis is colorectal cancer; the criterion requires pancreatic cancer.",
+      "judgment_call": false
+    }
+  ]
+}

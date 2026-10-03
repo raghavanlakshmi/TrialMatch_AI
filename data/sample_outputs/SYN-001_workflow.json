@@ -1924,7 +1924,7 @@
         "criterion_id": "INC-02",
         "criterion_text": "Central laboratory detection of KRAS p.G12C mutation.",
         "criterion_type": "inclusion",
-        "status": "MEETS",
+        "status": "UNKNOWN",
         "method": "rule",
         "patient_evidence": [
           {
@@ -1948,7 +1948,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Explicit verified evidence matches the central condition or biomarker wording; human verification is required."
+        "explanation": "The matched fact covers only part of this criterion; its additional requirements are not documented."
       },
       {
         "criterion_id": "INC-03",
@@ -2119,7 +2119,7 @@
         "criterion_id": "INC-03",
         "criterion_text": "Unresectable, MSS-type metastatic colorectal cancer that has failed or is intolerant to first-line standard oxaliplatin plus fluoropyrimidine ± targeted therapy.",
         "criterion_type": "inclusion",
-        "status": "MEETS",
+        "status": "UNKNOWN",
         "method": "rule",
         "patient_evidence": [
           {
@@ -2133,7 +2133,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Explicit verified evidence matches the central condition or biomarker wording; human verification is required."
+        "explanation": "The matched fact covers only part of this criterion; its additional requirements are not documented."
       },
       {
         "criterion_id": "INC-04",
@@ -2615,9 +2615,9 @@
     "NCT06252649": {
       "criteria_assessed": 11,
       "counts": {
-        "MEETS": 4,
+        "MEETS": 3,
         "DOES_NOT_MEET": 0,
-        "UNKNOWN": 6,
+        "UNKNOWN": 7,
         "POTENTIAL_CONFLICT": 1
       },
       "overall_label": "Potential match — needs verification"
@@ -2625,9 +2625,9 @@
     "NCT07559760": {
       "criteria_assessed": 43,
       "counts": {
-        "MEETS": 4,
+        "MEETS": 3,
         "DOES_NOT_MEET": 0,
-        "UNKNOWN": 38,
+        "UNKNOWN": 39,
         "POTENTIAL_CONFLICT": 1
       },
       "overall_label": "Potential match — needs verification"
@@ -2909,9 +2909,9 @@
       "NCT06252649": {
         "criteria_assessed": 11,
         "counts": {
-          "MEETS": 4,
+          "MEETS": 3,
           "DOES_NOT_MEET": 0,
-          "UNKNOWN": 6,
+          "UNKNOWN": 7,
           "POTENTIAL_CONFLICT": 1
         },
         "overall_label": "Potential match — needs verification"
@@ -2919,9 +2919,9 @@
       "NCT07559760": {
         "criteria_assessed": 43,
         "counts": {
-          "MEETS": 4,
+          "MEETS": 3,
           "DOES_NOT_MEET": 0,
-          "UNKNOWN": 38,
+          "UNKNOWN": 39,
           "POTENTIAL_CONFLICT": 1
         },
         "overall_label": "Potential match — needs verification"

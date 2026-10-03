@@ -39,7 +39,7 @@ def main() -> None:
     criteria = load_criteria()
     bm25, vector = BM25Retriever(chunks), VectorRetriever()
     extraction_tp = extraction_predicted = extraction_expected = 0
-    retrieval = {name: {"hits": 0, "ranks": []} for name in ("vector", "bm25", "hybrid", "hybrid_rerank")}
+    retrieval = {name: {"hits": 0, "ranks": []} for name in ("vector", "bm25", "hybrid")}
     label_pairs = []
     for case in cases:
         text = (ROOT / "data/eval/cases" / case["source_file"]).read_text(encoding="utf-8")
@@ -57,7 +57,6 @@ def main() -> None:
             "bm25": reciprocal_rank_fusion(bm25_results),
             "hybrid": reciprocal_rank_fusion(vector_results, bm25_results),
         }
-        lists["hybrid_rerank"] = lists["hybrid"]  # offline reranker preserves RRF order
         for mode, ranked in lists.items():
             ids = [x["nct_id"] for x in ranked]
             ranks = [ids.index(expected) + 1 for expected in case["expected_trial_ids"] if expected in ids]

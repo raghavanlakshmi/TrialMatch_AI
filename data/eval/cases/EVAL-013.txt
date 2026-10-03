@@ -1,0 +1,4 @@
+SYNTHETIC EVALUATION CASE — NOT A REAL PATIENT
+Fact: diagnosis | advanced pancreatic adenocarcinoma
+Fact: metastatic_site | liver
+Fact: performance_status | ECOG 1
