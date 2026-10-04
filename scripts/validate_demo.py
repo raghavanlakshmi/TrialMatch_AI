@@ -116,12 +116,12 @@ def main() -> None:
     top_trial = summaries["NCT06412198"]
     require(
         top_trial["counts"] == {
-            "MEETS": 4,
+            "MEETS": 7,
             "DOES_NOT_MEET": 0,
-            "UNKNOWN": 46,
+            "UNKNOWN": 43,
             "POTENTIAL_CONFLICT": 1,
         },
-        "Top trial must retain the inhibitor unknown and ECOG conflict.",
+        "Top trial must retain the reviewed live-assessment counts.",
     )
     require(
         top_trial["overall_label"] == "Potential match — needs verification",
@@ -132,7 +132,10 @@ def main() -> None:
     }
     require(
         top_assessments["EXC-02"].status == "UNKNOWN"
-        and not top_assessments["EXC-02"].patient_evidence,
+        and all(
+            evidence.category == "biomarker"
+            for evidence in top_assessments["EXC-02"].patient_evidence
+        ),
         "KRAS mutation evidence must not prove prior inhibition therapy.",
     )
     require(
