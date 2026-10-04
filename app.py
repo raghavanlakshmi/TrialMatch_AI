@@ -86,22 +86,34 @@ def show_source(filename: str, page_number: int, quote: str | None) -> None:
         return
     st.markdown(f"**{DOCUMENT_ROLES.get(filename, filename)}**")
     st.caption(f"{filename} {MIDDLE_DOT} page {page_number} {MIDDLE_DOT} extraction: {view.extraction_method or 'not recorded'}")
-    if quote:
-        st.markdown(f"Supporting quote: <mark>{highlight_html(quote, None)}</mark>", unsafe_allow_html=True)
     if view.kind in {"pdf", "image"} and view.image:
-        left, right = st.columns([3, 2]) if view.transcription else (st.container(), None)
+        left, right = st.columns([3, 2], gap="large", vertical_alignment="top")
         with left:
-            st.image(view.image, width=520 if view.kind == "image" else "stretch")
+            st.markdown("**Source document**")
+            st.image(view.image, width="stretch")
             if view.kind == "pdf":
                 st.caption("Quote highlighted on the page." if view.quote_highlighted_on_image else "Quote could not be located on the rendered page; see the transcription.")
             else:
                 st.caption("Original image. The highlighted text on the right is the saved transcription.")
-        if right is not None:
-            with right:
-                st.markdown("**Extracted text**")
-                st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, quote)}</div>", unsafe_allow_html=True)
+        with right:
+            st.markdown("**Extracted evidence**")
+            if quote:
+                st.caption("Supporting quote")
+                st.markdown(f"<div class='tm-source'><mark>{highlight_html(quote, None)}</mark></div>", unsafe_allow_html=True)
+            if view.transcription is not None:
+                with st.expander("Full extracted page text", expanded=not quote):
+                    st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, quote)}</div>", unsafe_allow_html=True)
+            elif not quote:
+                st.info("No extracted text is available for this page.")
     elif view.transcription is not None:
-        st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, quote)}</div>", unsafe_allow_html=True)
+        st.markdown("**Extracted evidence**")
+        if quote:
+            st.caption("Supporting quote")
+            st.markdown(f"<div class='tm-source'><mark>{highlight_html(quote, None)}</mark></div>", unsafe_allow_html=True)
+            with st.expander("Full extracted page text"):
+                st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, quote)}</div>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, None)}</div>", unsafe_allow_html=True)
     else:
         st.info("The original source is not available in this session.")
     st.caption("Human review: confirm the value, date and context in the original record before relying on it.")
@@ -115,11 +127,18 @@ def show_document(filename: str) -> None:
     st.markdown(f"**{DOCUMENT_ROLES.get(filename, filename)}**")
     page_number = st.number_input("Page", min_value=1, max_value=count, value=1, step=1) if count > 1 else 1
     view = build_source_view(PATIENT_DIR, pages, filename, int(page_number))
-    if view.image:
-        st.image(view.image, width=720)
-    if view.transcription is not None:
-        with st.expander("Extracted text", expanded=view.kind == "text"):
+    if view.image and view.transcription is not None:
+        left, right = st.columns([3, 2], gap="large", vertical_alignment="top")
+        with left:
+            st.markdown("**Source document**")
+            st.image(view.image, width="stretch")
+        with right:
+            st.markdown("**Extracted text**")
             st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, None)}</div>", unsafe_allow_html=True)
+    elif view.image:
+        st.image(view.image, width="stretch")
+    elif view.transcription is not None:
+        st.markdown(f"<div class='tm-source'>{highlight_html(view.transcription, None)}</div>", unsafe_allow_html=True)
 
 
 def source_button(item: EvidenceItem, key: str) -> None:
