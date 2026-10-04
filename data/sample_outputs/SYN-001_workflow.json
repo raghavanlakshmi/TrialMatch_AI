@@ -996,26 +996,6 @@
         "method": "llm",
         "patient_evidence": [
           {
-            "category": "prior_treatment",
-            "value": "FOLFOX completed",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "FOLFOX completed",
-            "quote_verified": true
-          },
-          {
-            "category": "biomarker",
-            "value": "KRAS G12C+",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "KRAS G12C+",
-            "quote_verified": true
-          },
-          {
             "category": "diagnosis",
             "value": "Metastatic colorectal adenocarcinoma",
             "normalized_value": null,
@@ -1027,6 +1007,16 @@
           },
           {
             "category": "biomarker",
+            "value": "KRAS: G12C mutation detected",
+            "normalized_value": null,
+            "date": "2026-02-24",
+            "source_file": "pathology_report.pdf",
+            "source_page": 2,
+            "evidence_text": "KRAS: G12C mutation detected",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
             "value": "MSI: microsatellite stable (MSS)",
             "normalized_value": null,
             "date": "2026-02-24",
@@ -1034,9 +1024,19 @@
             "source_page": 2,
             "evidence_text": "MSI: microsatellite stable (MSS)",
             "quote_verified": true
+          },
+          {
+            "category": "prior_treatment",
+            "value": "FOLFOX, then FOLFIRI",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 2,
+            "evidence_text": "Prior treatment: FOLFOX, then FOLFIRI",
+            "quote_verified": true
           }
         ],
-        "explanation": "The patient has a histologically confirmed diagnosis of metastatic colorectal adenocarcinoma with documented microsatellite stable (MSS) status (evidence index 17) and KRAS G12C mutation (evidence indices 2,15,16). The patient has received prior lines of therapy, including FOLFOX and FOLFIRI (evidence indices 1 and 10). Therefore, the patient meets the inclusion criterion requiring advanced/metastatic microsatellite stable colorectal cancer with KRAS G12C mutation and at least one prior line of therapy."
+        "explanation": "The patient has a confirmed diagnosis of metastatic colorectal adenocarcinoma (index 8), with a KRAS G12C mutation detected (index 14) and is microsatellite stable (MSS) as required (index 15). The patient has received more than one prior line of therapy, indicated by treatment with FOLFOX followed by FOLFIRI (index 10). These facts satisfy the inclusion criterion for histologically confirmed advanced/metastatic microsatellite stable colorectal cancer with KRAS G12C mutation and 1+ prior line(s) of therapy."
       },
       {
         "criterion_id": "INC-02",
@@ -1057,16 +1057,16 @@
           },
           {
             "category": "biomarker",
-            "value": "MSI: microsatellite stable (MSS)",
+            "value": "KRAS: G12C mutation detected",
             "normalized_value": null,
             "date": "2026-02-24",
             "source_file": "pathology_report.pdf",
             "source_page": 2,
-            "evidence_text": "MSI: microsatellite stable (MSS)",
+            "evidence_text": "KRAS: G12C mutation detected",
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has documented KRAS G12C mutation detected, as evidenced by multiple sources including 'KRAS G12C+' (index 2) and 'KRAS: G12C mutation detected' in a pathology report (index 15). This confirms the patient's KRASG12C mutation status as required by the inclusion criterion."
+        "explanation": "The inclusion criterion requires confirmed KRASG12C mutation status. Evidence index 2 states 'KRAS G12C+', indicating positive KRASG12C mutation. Additionally, index 14 confirms 'KRAS: G12C mutation detected' from a pathology report. This confirms the criterion is met."
       },
       {
         "criterion_id": "INC-03",
@@ -1096,7 +1096,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma with documented metastatic disease to the liver, which fulfills the inclusion criterion of unresectable or metastatic disease."
+        "explanation": "The patient is documented to have metastatic colorectal adenocarcinoma with liver metastases (evidence indices 8 and 9), indicating metastatic disease, which meets the inclusion criterion of 'Unresectable or metastatic disease.'"
       },
       {
         "criterion_id": "INC-04",
@@ -1126,7 +1126,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has received at least two prior lines of chemotherapy (FOLFOX and then FOLFIRI) for metastatic colorectal adenocarcinoma as documented in evidence indices 1 and 10. However, there is no documentation whether there was progression on treatment or intolerance to the therapy, which is required to meet this inclusion criterion. Without this information, it is unknown if the patient meets this criterion."
+        "explanation": "The patient has received prior lines of chemotherapy for metastatic disease, specifically FOLFOX and then FOLFIRI, as indicated by evidence indices 1 and 10. However, the evidence does not document whether there was progression on treatment or intolerance to therapy for these chemotherapy lines. Therefore, it is unknown if the patient meets the inclusion criterion requiring progression or intolerance."
       },
       {
         "criterion_id": "INC-05",
@@ -1135,7 +1135,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The inclusion criterion requires the presence of measurable disease per RECIST 1.1. The provided evidence indicates metastatic colorectal adenocarcinoma and liver metastases, but there is no specific information or documentation regarding RECIST 1.1 measurable disease criteria (such as measurable lesion size or imaging assessment per RECIST 1.1). Without explicit evidence showing measurable disease per RECIST 1.1, it is unknown if this criterion is met."
+        "explanation": "There is no explicit evidence in the provided data that documents the presence of measurable disease per RECIST 1.1 criteria. While the patient has metastatic colorectal adenocarcinoma with liver metastases, the evidence does not confirm whether measurable lesions per RECIST 1.1 are present or assessed. Therefore, the criterion cannot be confirmed as met or not met based on the current evidence."
       },
       {
         "criterion_id": "INC-06",
@@ -1144,7 +1144,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no documented evidence regarding the patient's willingness to participate in on-study related procedures, including mandatory biopsies. Without explicit patient consent or statement of willingness for the baseline and on-treatment biopsies, the status cannot be determined."
+        "explanation": "The criterion requires the patient to be willing to participate in on-study related procedures, including mandatory biopsies (one baseline and one on-treatment biopsy). The provided evidence includes the patient's diagnosis, biomarker status, age, sex, performance status, and prior treatments, but there is no information about the patient's willingness to undergo these mandatory biopsies or related procedures. Since willingness is a subjective factor and not documented in the evidence, the status is UNKNOWN."
       },
       {
         "criterion_id": "INC-07",
@@ -1164,7 +1164,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires the patient to be aged 18 years or older. The provided evidence states the patient's age as 58 years, which meets the requirement of age ≥ 18 years."
+        "explanation": "The inclusion criterion requires patient age to be 18 years or older. The provided evidence confirms the patient's age as 58 years, which meets the inclusion requirement."
       },
       {
         "criterion_id": "INC-08",
@@ -1173,7 +1173,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no direct evidence in the supplied clinical data specifying whether the patient is able or unable to take oral medications. Performance status (ECOG 1 or 2) suggests moderate functional status but does not confirm oral medication capability. Without explicit documentation on the ability to take oral medicines, the status remains UNKNOWN."
+        "explanation": "There is no explicit evidence indicating whether the patient is able to take oral medications. Performance status (ECOG 1 or 2) suggests some functional status but does not confirm oral medication ability. Thus, the criterion 'Able to take oral medications' cannot be confirmed or ruled out."
       },
       {
         "criterion_id": "INC-09",
@@ -1203,7 +1203,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The criterion requires that the most recent prior systemic therapy and radiation therapy be discontinued at least 7 days before the first dose. Evidence indicates prior treatment with FOLFOX (completed) and then FOLFIRI, but there is no information on the exact timing of discontinuation of these therapies relative to the first dose of the trial therapy. There is also no information on radiation therapy. Therefore, it is unknown whether the 7-day discontinuation interval is met."
+        "explanation": "The patient has completed prior systemic therapies including FOLFOX and subsequently FOLFIRI, as indicated by evidence indices 1 and 10. However, there is no information about the exact timing of discontinuation of these therapies relative to the planned first dose of the investigational treatment. Specifically, it is not documented whether these therapies were discontinued at least 7 days prior to the first dose. Therefore, it is unknown if the inclusion criterion regarding the timing of discontinuation is met."
       },
       {
         "criterion_id": "INC-10",
@@ -1212,7 +1212,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires recovery from prior treatment-related adverse effects to ≤ Grade 1 (excluding alopecia and prior oxaliplatin-induced neuropathy) at enrollment. The information provided includes ECOG performance status and prior treatments (FOLFOX, FOLFIRI) but lacks specific documentation on the grade of adverse effects or recovery status from prior therapies. Therefore, it is not possible to determine if the patient meets this inclusion criterion based on the current evidence."
+        "explanation": "There is no explicit evidence regarding the patient's recovery status from treatment-related adverse effects of prior therapy, specifically at or below Grade 1, excluding alopecia and prior oxaliplatin-induced neuropathy. The evidence confirms prior treatment (FOLFOX and FOLFIRI) but does not document the severity or recovery status of associated adverse effects at the time of enrollment. Therefore, the criterion cannot be conclusively assessed as met or not met."
       },
       {
         "criterion_id": "INC-11",
@@ -1252,7 +1252,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires an ECOG performance status of 0 or 1. There is evidence that the patient has an ECOG 1 status from two sources dated 2026-03-10, which supports meeting the criterion. However, there is conflicting evidence from a source dated 2026-03-11 indicating an ECOG status of 2, which does not meet the criterion. Because of this conflicting evidence, the status is marked as POTENTIAL_CONFLICT."
+        "explanation": "The inclusion criterion requires an ECOG performance status of 0 or 1. The evidence includes multiple ECOG performance status values: two records indicate ECOG 1 (indices 0 and 11), which meets the criterion, but one record indicates ECOG 2 (index 12), which does not meet the criterion. This conflicting evidence creates uncertainty about the patient's current ECOG performance status, so there is a potential conflict."
       },
       {
         "criterion_id": "INC-12",
@@ -1292,7 +1292,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires laboratory values within the screening period. The patient has labs for Absolute neutrophil count (ANC) at 2.1 x 10^9/L, Hemoglobin at 11.2 g/dL, and Creatinine at 0.9 mg/dL documented from 2026-03-08. However, the criterion does not specify the required normal ranges or thresholds for these lab values. Therefore, it is unknown whether these lab values meet the inclusion requirements."
+        "explanation": "The criterion 'Laboratory values within the screening period' requires that specific laboratory values fall within acceptable screening ranges. While the laboratory values provided (ANC 2.1 x 10^9/L, Hemoglobin 11.2 g/dL, Creatinine 0.9 mg/dL) are documented, the criterion does not specify the acceptable range for these values. Therefore, it is unknown if these values meet the necessary laboratory thresholds for inclusion."
       },
       {
         "criterion_id": "INC-13",
@@ -1312,7 +1312,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires an absolute neutrophil count (ANC) of at least 1,000/mm3 (≥1.0 x 10^9/L). Evidence item 3 shows the patient's ANC is 2.1 x 10^9/L, which meets the required threshold."
+        "explanation": "The patient has an absolute neutrophil count (ANC) of 2.1 x 10^9/L as documented in evidence 3, which is above the required threshold of ≥ 1.0 x 10^9/L for inclusion."
       },
       {
         "criterion_id": "INC-14",
@@ -1321,7 +1321,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no documented evidence of the patient's platelet count or a direct lab value indicating the platelet count. The inclusion criterion requires platelet count ≥ 100,000/mm3 (≥ 100 x 10^9/L), but this value is not provided in the supplied evidence. Therefore, the status is UNKNOWN."
+        "explanation": "There is no evidence provided about the patient's platelet count. Without platelet count data, it is unknown whether the patient meets the inclusion criterion of platelet count ≥ 100,000/mm3 (≥ 100 x 10^9/L)."
       },
       {
         "criterion_id": "INC-15",
@@ -1341,7 +1341,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Part of this criterion is not documented (transfusions); converted to UNKNOWN. Original reasoning: The patient's hemoglobin level is documented as 11.2 g/dL on 2026-03-08, which is above the required threshold of 9 g/dL. There is no evidence of transfusions within the last two weeks mentioned, so based on available information, the criterion of hemoglobin ≥ 9 g/dL without recent transfusions is met."
+        "explanation": "The patient's hemoglobin level is documented as 11.2 g/dL, which meets the criterion of hemoglobin ≥ 9 g/dL. However, the criterion also requires absence of transfusions for at least 2 weeks, and there is no evidence provided regarding recent transfusions or the 2-week interval. Therefore, the assessment of this criterion is UNKNOWN due to missing information on transfusion status."
       },
       {
         "criterion_id": "INC-16",
@@ -1350,7 +1350,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "No evidence about total bilirubin levels or the presence of Gilbert's disease or UGT1A1*28 homozygosity is provided in the supplied patient data. Therefore, it is unknown whether the patient's total bilirubin meets the inclusion criterion of being ≤ 1.5x ULN or ≤ 3x ULN if associated with the specified conditions."
+        "explanation": "There is no evidence provided about the patient's total bilirubin level or any information regarding Gilbert's disease or UGT1A1*28 homozygosity. Therefore, it is unknown if the patient meets the criterion of total bilirubin ≤ 1.5x ULN (or ≤ 3x ULN if Gilbert's disease or UGT1A1*28 homozygosity)."
       },
       {
         "criterion_id": "INC-17",
@@ -1359,7 +1359,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires specific laboratory values for AST and ALT levels to determine eligibility. However, the provided evidence does not include any information about AST or ALT lab results, so it is not possible to confirm whether the patient meets this criterion."
+        "explanation": "The criterion requires Aspartate transaminase (AST) and alanine transaminase (ALT) levels to be ≤ 3.0x ULN or ≤ 5x ULN if associated with liver metastases. The patient has liver metastases, but there is no provided evidence documenting AST or ALT lab values or their relation to the ULN thresholds. Without this specific lab data, it cannot be determined if the patient meets this inclusion criterion."
       },
       {
         "criterion_id": "INC-18",
@@ -1367,8 +1367,39 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [],
-        "explanation": "The criterion requires calculated creatinine clearance (Cockcroft-Gault) >= 60 mL/min at screening. The evidence includes a serum creatinine level (0.9 mg/dL), but does not provide the creatinine clearance value or the patient's weight and age needed to calculate it. Therefore, it is unknown if the patient's creatinine clearance meets this threshold."
+        "patient_evidence": [
+          {
+            "category": "lab",
+            "value": "Creatinine: 0.9 mg/dL",
+            "normalized_value": null,
+            "date": "2026-03-08",
+            "source_file": "lab_report.pdf",
+            "source_page": 1,
+            "evidence_text": "Creatinine: 0.9 mg/dL",
+            "quote_verified": true
+          },
+          {
+            "category": "age",
+            "value": "58 years",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Age: 58 years",
+            "quote_verified": true
+          },
+          {
+            "category": "sex",
+            "value": "Female",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Sex: Female",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "The criterion requires a calculated creatinine clearance (Cockcroft-Gault) ≥ 60 mL/min. The available evidence includes a serum creatinine level of 0.9 mg/dL (index 5), patient age 58 years (index 6), and sex female (index 7). However, the patient's weight, which is also required to calculate creatinine clearance using Cockcroft-Gault formula, is not provided. Therefore, it is not possible to confirm if the patient's creatinine clearance meets the threshold. Hence, the status is UNKNOWN."
       },
       {
         "criterion_id": "INC-19",
@@ -1377,7 +1408,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no documented evidence indicating that the patient has completed the informed consent process or signed an IRB-approved informed consent form. Therefore, it is unknown whether the patient meets this inclusion criterion."
+        "explanation": "The available evidence includes performance status, prior treatments, biomarker status, laboratory results, age, sex, diagnosis, and metastatic sites. However, there is no documentation or evidence regarding whether the patient completed the informed consent process, including signing the IRB-approved informed consent form. Without explicit evidence confirming this process, the status must be UNKNOWN."
       },
       {
         "criterion_id": "INC-20",
@@ -1385,39 +1416,8 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Performance status: ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 2",
-            "normalized_value": null,
-            "date": "2026-03-11",
-            "source_file": "outside_referral_scan.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 2",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The criterion requires the patient to be willing and able to comply with trial instructions and able to understand the nature and consequences of participation. The evidence includes performance status scores ECOG 1 and ECOG 2, which might suggest functional status but do not provide direct information regarding the patient's cognitive ability, willingness, or understanding as necessitated by the criterion. No explicit evidence regarding the patient's cognitive capacity or willingness to comply with clinical trial requirements is present."
+        "patient_evidence": [],
+        "explanation": "The criterion concerns the patient's willingness and ability to comply with trial instructions and understand participation consequences based on reasonable medical judgment. The evidence provides clinical and laboratory data but lacks any direct information about the patient's comprehension, willingness, or ability to comply with clinical trial requirements. Therefore, assessment of this criterion cannot be determined from the supplied evidence."
       },
       {
         "criterion_id": "INC-21",
@@ -1426,7 +1426,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires that participants who are biologically capable of having children and sexually active must agree to use an acceptable method of contraception during and for 6 months after treatment. The patient is documented as female, but there is no evidence regarding the patient's sexual activity status or agreement to use contraception, or whether the patient is biologically capable of having children. Therefore, it is unknown if the patient meets this contraception use criterion."
+        "explanation": "The criterion requires confirming that the participant is biologically capable of having children, is sexually active, and agrees to use an acceptable method of contraception during treatment and for at least 6 months after. The provided evidence includes age, sex, diagnosis, treatment history, performance status, and biomarkers but does not include information on the patient's sexual activity, biological fertility capability, or agreement to use contraception. Therefore, the assessment for this criterion is UNKNOWN due to missing relevant information."
       },
       {
         "criterion_id": "INC-22",
@@ -1435,7 +1435,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided regarding the patient's use of oral, inserted, injected, or implanted hormonal methods of contraception, nor any information about the duration or adequacy of use to ensure effectiveness."
+        "explanation": "There is no evidence provided about the patient using oral, inserted, injected, or implanted hormonal methods of contraception or about the duration of such use to ensure effectiveness. Therefore, it is unknown if this inclusion criterion is met."
       },
       {
         "criterion_id": "INC-23",
@@ -1444,7 +1444,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided regarding the presence or placement of a copper containing intrauterine device (IUD) for the patient. Therefore, it is unknown if the patient meets this inclusion criterion."
+        "explanation": "There is no evidence supplied indicating the presence of a correctly placed copper-containing intrauterine device (IUD). The patient is female, but the records do not mention an IUD or its placement status. Hence, the criterion status is UNKNOWN due to lack of relevant evidence."
       },
       {
         "criterion_id": "INC-24",
@@ -1473,7 +1473,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "This item is a conditional branch or one option among alternatives, so not meeting it does not show exclusion; reviewer decides applicability. Original reasoning: The inclusion criterion requires male sterilization with confirmed absence of sperm in the post-vasectomy ejaculate. The patient is documented as female (evidence index 7), so this criterion is not met."
+        "explanation": "This item is a conditional branch or one option among alternatives, so not meeting it does not show exclusion; reviewer decides applicability. Original reasoning: The patient is documented as female (evidence index 7), and the inclusion criterion requires male sterilization with confirmed absence of sperm in the post-vasectomy ejaculate. Since the patient is female, she does not meet this criterion."
       },
       {
         "criterion_id": "INC-26",
@@ -1482,7 +1482,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided in the patient data regarding whether the patient has had a bilateral tubal ligation or bilateral salpingectomy. Without explicit documentation or mention of these procedures, the status cannot be determined."
+        "explanation": "There is no evidence provided in the patient's records regarding bilateral tubal ligation or bilateral salpingectomy. Thus, it is unknown whether the patient meets this inclusion criterion."
       },
       {
         "criterion_id": "INC-27",
@@ -1491,7 +1491,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires that the investigator instructs the participant to call immediately if the selected birth control method is discontinued or if pregnancy is known or suspected. There is no evidence in the patient's data about instructions given regarding birth control methods, discontinuation thereof, or pregnancy suspicion. Therefore, we cannot determine if this inclusion criterion is met."
+        "explanation": "The criterion requires that the Investigator instruct the participant to call immediately if the selected birth control method is discontinued or if pregnancy is known or suspected. The provided evidence does not include any information about the patient's current birth control method, pregnancy status, or any instructions given by the Investigator regarding these issues. Therefore, it is unknown whether this inclusion criterion is met."
       },
       {
         "criterion_id": "INC-28",
@@ -1500,7 +1500,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires confirmation that the female patient is post-menopausal or not of child-bearing potential, either by history of 12 months of natural amenorrhea with supporting clinical profile, surgical bilateral oophorectomy or tubal ligation at least 6 months ago, or hormone level assessment if any ambiguity. The provided evidence includes patient's sex (female), age (58 years), but does not contain any information about menstrual status, surgical history of bilateral oophorectomy or tubal ligation, or hormone level assessments. Therefore, there is insufficient information to determine if the inclusion criterion is met."
+        "explanation": "The evidence confirms the patient is a 58-year-old female, but there is no documentation of menopause status, natural amenorrhea, surgical bilateral oophorectomy, tubal ligation, or hormone level assessment. Without evidence on reproductive status or hormone levels, it is unknown if the patient meets the criterion for being post-menopausal or not of childbearing potential as defined in the criterion."
       },
       {
         "criterion_id": "EXC-01",
@@ -1538,21 +1538,33 @@
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [],
-        "explanation": "There is no documented evidence in the provided information about prior KRASG12C inhibition therapy. While the patient has a KRAS G12C mutation, no prior treatment specifically indicating KRASG12C inhibition therapy is noted. Therefore, it is unknown whether this exclusion applies."
+        "patient_evidence": [
+          {
+            "category": "biomarker",
+            "value": "KRAS G12C+",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "KRAS G12C+",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "KRAS: G12C mutation detected",
+            "normalized_value": null,
+            "date": "2026-02-24",
+            "source_file": "pathology_report.pdf",
+            "source_page": 2,
+            "evidence_text": "KRAS: G12C mutation detected",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
       },
       {
         "criterion_id": "EXC-03",
         "criterion_text": "Diagnosis of immunodeficiency or is receiving systemic steroid therapy or any other form of immunosuppressive therapy within 7 days prior to the first dose of trial treatment",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
-      },
-      {
-        "criterion_id": "EXC-04",
-        "criterion_text": "Active autoimmune disease that has required systemic treatment in the past 2 years (i.e. with use of disease modifying agents, corticosteroids or immunosuppressive drugs). Replacement therapy (e.g., thyroxine, insulin, or physiologic corticosteroid replacement therapy for adrenal or pituitary insufficiency, etc.) is not considered a form of systemic treatment",
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
@@ -1718,7 +1730,16 @@
             "quote_verified": true
           }
         ],
-        "explanation": "No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: The available evidence does not mention any active autoimmune disease. There is no documentation of systemic treatment for autoimmune diseases (such as disease modifying agents, corticosteroids, or immunosuppressive drugs) within the past 2 years. The patient's records include performance status, cancer diagnosis, prior treatments (chemotherapies), biomarkers, and labs, but no indication of autoimmune disease or related systemic treatment. Therefore, the exclusion criterion for active autoimmune disease treated systemically in the past 2 years does not apply."
+        "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
+      },
+      {
+        "criterion_id": "EXC-04",
+        "criterion_text": "Active autoimmune disease that has required systemic treatment in the past 2 years (i.e. with use of disease modifying agents, corticosteroids or immunosuppressive drugs). Replacement therapy (e.g., thyroxine, insulin, or physiologic corticosteroid replacement therapy for adrenal or pituitary insufficiency, etc.) is not considered a form of systemic treatment",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
       },
       {
         "criterion_id": "EXC-05",
@@ -1727,7 +1748,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion excludes patients with active brain metastases unless these are treated and neurologically stable for at least 2 weeks without corticosteroids or on a stable or decreasing dose of ≤ 10 mg prednisone equivalent. The provided evidence includes demographic, diagnosis, prior treatments, performance status, and biomarker data, but contains no information about the presence or absence of brain metastases, treatment of brain metastases, neurological stability, corticosteroid use, or prednisone dosage. Therefore, it is unknown whether the exclusion applies."
+        "explanation": "There is no evidence provided regarding active brain metastases, their treatment, neurological stability status, corticosteroid use, or prednisone dose. Without this information, it is not possible to determine if the exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-06",
@@ -1736,7 +1757,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence supplied indicating whether the patient has an ongoing need for any medications with the specified characteristics (QTc prolongation risk, CYP3A substrate, strong CYP3A/P-gp or BCRP/CYP2C19 inhibitors/inducers, or proton pump inhibitors) or whether such medications can be switched within 10 days prior to study entry. Hence, the exclusion criterion status is UNKNOWN."
+        "explanation": "The evidence provided includes information on the patient's performance status, prior treatments, biomarkers, labs, age, sex, diagnosis, and metastatic sites. However, there is no information regarding the patient's ongoing medications, specifically whether the patient is on any medication with characteristics such as known risk of QTc prolongation or Torsades de Pointes; substrate of CYP3A with a narrow therapeutic index; strong inducer/inhibitor of CYP3A and/or P-gp; strong inhibitor of BCRP; strong inhibitor or inducer of CYP2C19; or proton pump inhibitors. Without this medication information and details about the ability to switch to alternative treatments within 10 days prior to study entry, the exclusion criterion cannot be determined."
       },
       {
         "criterion_id": "EXC-07",
@@ -1745,7 +1766,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The exclusion criterion states that one dose of propofol, midazolam, and/or fentanyl under a monitored setting during IR guided biopsies is allowed. There is no evidence provided regarding the patient's exposure to propofol, midazolam, or fentanyl, nor about whether such doses were given under a monitored setting during IR guided biopsies. Therefore, status is UNKNOWN due to lack of relevant evidence."
+        "explanation": "The exclusion criterion mentions that one dose of propofol, midazolam, and/or fentanyl under a monitored setting during IR guided biopsies is allowed. However, there is no information in the provided evidence about the patient's exposure to these drugs or their use during IR guided biopsies. Therefore, it is unknown whether this exclusion applies."
       },
       {
         "criterion_id": "EXC-08",
@@ -1754,7 +1775,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence of a pregnancy test result (serum or urine) during screening provided in the patient data. While the patient is a female of child-bearing potential based on sex and age, the absence of documented negative pregnancy test results means it is unknown if this exclusion applies."
+        "explanation": "The patient is female and 58 years old, which may suggest child-bearing potential, but there is no evidence provided regarding a serum or urine pregnancy test result during screening. Without documented negative pregnancy test results, the exclusion criterion related to pregnancy cannot be confirmed or ruled out."
       },
       {
         "criterion_id": "EXC-09",
@@ -1763,7 +1784,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided about the patient breast-feeding or planning to breast-feed during the study or within 6 months after end of treatment. The available evidence does not address this exclusion criterion; therefore, the status is UNKNOWN."
+        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
       },
       {
         "criterion_id": "EXC-10",
@@ -1772,7 +1793,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+        "explanation": "There is no evidence provided in the patient data regarding the presence or absence of symptomatic leptomeningeal disease. Without specific clinical documentation, imaging, or symptoms indicating leptomeningeal disease, it is not possible to determine if this exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-11",
@@ -1781,7 +1802,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no documented evidence regarding whether the patient has undergone major surgery within 4 weeks of the first dose of any study drug. The available evidence includes performance status, prior treatments, biomarkers, lab values, age, sex, diagnosis, metastatic sites, but no information about recent surgery. Therefore, the criterion cannot be assessed with the provided data."
+        "explanation": "There is no evidence provided about any major surgery within 4 weeks of the first dose of any study drug. Without explicit information on recent surgery dates relative to study drug administration, it is unknown whether this exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-12",
@@ -1790,7 +1811,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires determination by the treating physician of whether the patient has a history of intestinal disease or major gastric surgery likely to alter absorption of the study treatment. The provided evidence does not include any information about the patient's gastrointestinal history or surgeries. Therefore, it is unknown if this exclusion criterion applies."
+        "explanation": "The exclusion criterion requires history of intestinal disease or major gastric surgery likely to alter absorption of study treatment, as determined by the treating physician. There is no evidence provided about any history of intestinal disease or major gastric surgery in the patient records, and the decision depends on the treating physician's judgment. Hence, the status is UNKNOWN."
       },
       {
         "criterion_id": "EXC-13",
@@ -1799,7 +1820,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no documented evidence in the provided sources regarding the patient's HIV, HBV, or HCV infection status based on testing in a CLIA certified lab with the required antigen or antibody tests. Thus, it is unknown whether the exclusion criterion for known infection applies."
+        "explanation": "There is no evidence provided regarding the patient's HIV, hepatitis B, or hepatitis C infection status. Specifically, there are no lab test results or statements about a positive or negative HIV antibody test or hepatitis antigen test from a CLIA certified lab. Therefore, it is unknown whether the exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-14",
@@ -1817,7 +1838,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion EXC-15 refers to exclusion based on drug-drug interactions involving concomitant anti-HIV agents and specifically CYP3A substrates. The supplied evidence does not include any information about the patient's use of anti-HIV agents or medications that are CYP3A substrates. Therefore, it is not possible to determine if this exclusion applies."
+        "explanation": "The exclusion criterion relates to drug-drug interactions of concomitant anti-HIV agents, particularly CYP3A substrates. There is no evidence provided regarding the patient's current or past use of anti-HIV agents, medications impacting CYP3A, or relevant drug-drug interactions. Therefore, it is unknown whether this exclusion applies to the patient."
       },
       {
         "criterion_id": "EXC-16",
@@ -1826,7 +1847,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion requires determining whether the participant has a prior HBV infection and specific conditions related to it. The provided evidence includes various details about the patient's cancer diagnosis, biomarkers, prior treatments, labs, and performance status, but none mention prior HBV infection or related findings. Therefore, it is unknown whether this exclusion criterion applies."
+        "explanation": "The criterion refers to participants with prior HBV (Hepatitis B virus) infections. The provided evidence does not include any information regarding the patient's HBV infection status or history, so it is unknown whether this exclusion applies."
       },
       {
         "criterion_id": "EXC-17",
@@ -1835,7 +1856,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided about the patient's hepatitis B core antibody (HBcAb) status or hepatitis B surface antigen (HBsAg) status. The criterion requires the presence of HBcAb and absence of HBsAg to consider past or resolved HBV infection. Without this lab evidence, it is unknown whether the patient meets this exclusion criterion."
+        "explanation": "The criterion excludes patients considered to have past or resolved HBV infection, defined by the presence of hepatitis B core antibody (HBcAb) and absence of hepatitis B surface antigen (HBsAg). The provided evidence does not contain any information regarding the patient's hepatitis B core antibody or hepatitis B surface antigen status. Therefore, it is not possible to determine if the exclusion applies."
       },
       {
         "criterion_id": "EXC-18",
@@ -1844,7 +1865,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided regarding the patient's HBV status, including HBsAg positivity, ALT levels, or HBV DNA levels. Without information confirming the patient is HBsAg-positive with normal ALT and HBV DNA < 2,000 IU/mL or < 10,000 copies/mL, it is not possible to determine if the exclusion criterion applies."
+        "explanation": "No evidence is provided regarding the patient's hepatitis B surface antigen (HBsAg) status, ALT levels, or HBV DNA viral load. These are necessary to determine if the patient is considered to be in an inactive HBV carrier state as per the exclusion criterion. Therefore, it is unknown whether this exclusion applies."
       },
       {
         "criterion_id": "EXC-19",
@@ -1853,7 +1874,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The exclusion criterion involves assessing risk and need for anti-HBV prophylaxis in participants with inactive HBV carrier state or resolved HBV infection. There is no evidence provided about the patient's HBV infection status or prophylaxis measures. Therefore, it is unknown whether this exclusion applies."
+        "explanation": "The exclusion criterion concerns participants in an inactive HBV carrier state or with resolved HBV infection, requiring consideration of HBV reactivation risk and need for anti-HBV prophylaxis. There is no evidence provided about the patient's HBV status or any related prophylaxis, so it is unknown whether this exclusion applies."
       },
       {
         "criterion_id": "EXC-20",
@@ -1871,7 +1892,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The exclusion criterion depends on the investigator's opinion regarding any serious illness, uncontrolled inter-current illness, psychiatric illness, active or uncontrolled infection, or other medical history that would interfere with study participation or result interpretation. The provided evidence does not include any specific information on such conditions, nor does it include an investigator's judgment on this matter. Therefore, the status is UNKNOWN."
+        "explanation": "The exclusion criterion requires the investigator's opinion about any serious illness, uncontrolled inter-current illness, psychiatric illness, active or uncontrolled infection, or other medical history likely to interfere with study participation or results interpretation. The provided evidence includes performance status, prior treatments, biomarkers, labs, age, sex, diagnosis, and metastatic site, but does not include information on these illnesses, infections, or investigator's judgment. Therefore, it is not possible to determine exclusion based on the given evidence."
       }
     ],
     "NCT06782685": [
@@ -2280,16 +2301,16 @@
           },
           {
             "category": "biomarker",
-            "value": "MSI: microsatellite stable (MSS)",
+            "value": "KRAS: G12C mutation detected",
             "normalized_value": null,
             "date": "2026-02-24",
             "source_file": "pathology_report.pdf",
             "source_page": 2,
-            "evidence_text": "MSI: microsatellite stable (MSS)",
+            "evidence_text": "KRAS: G12C mutation detected",
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has pathologically documented metastatic colorectal adenocarcinoma (evidence index 8). There is evidence of KRAS p.G12C mutation detected (evidence indices 2 and 15) by a pathology report, which can be considered a locally validated assay. Thus, all parts of the inclusion criterion are met by the evidence provided."
+        "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma (index 8) and a documented KRAS G12C mutation (indices 2 and 14). These findings meet the inclusion criterion requiring pathologically documented metastatic colorectal adenocarcinoma with a KRAS p.G12C mutation by a locally validated assay."
       },
       {
         "criterion_id": "INC-02",
@@ -2310,16 +2331,16 @@
           },
           {
             "category": "biomarker",
-            "value": "MSI: microsatellite stable (MSS)",
+            "value": "KRAS: G12C mutation detected",
             "normalized_value": null,
             "date": "2026-02-24",
             "source_file": "pathology_report.pdf",
             "source_page": 2,
-            "evidence_text": "MSI: microsatellite stable (MSS)",
+            "evidence_text": "KRAS: G12C mutation detected",
             "quote_verified": true
           }
         ],
-        "explanation": "Part of this criterion is not documented (central); converted to UNKNOWN. Original reasoning: The inclusion criterion requires central laboratory detection of the KRAS p.G12C mutation. The evidence includes multiple biomarker results confirming KRAS G12C mutation positivity: 'KRAS G12C+' (index 2) and 'KRAS: G12C mutation detected' in a pathology report (index 15), which is presumably central lab testing. Therefore, the patient meets this inclusion criterion."
+        "explanation": "Part of this criterion is not documented (central); converted to UNKNOWN. Original reasoning: The inclusion criterion requires central laboratory detection of the KRAS p.G12C mutation. The evidence includes multiple biomarker test results confirming presence of the KRAS G12C mutation, specifically evidence 2 states KRAS G12C+ and evidence 14 documents KRAS G12C mutation detected. Both support that the mutation was centrally detected, satisfying the inclusion criterion."
       },
       {
         "criterion_id": "INC-03",
@@ -2327,8 +2348,29 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [],
-        "explanation": "The criterion requires evidence of measurable metastatic disease per RECIST v1.1 criteria. The patient's evidence shows metastatic colorectal adenocarcinoma with metastatic site in the liver, but there is no specific documentation provided about measurements of metastatic lesions or assessments per RECIST v1.1. Therefore, it is unknown whether the patient meets this criterion based on the available evidence."
+        "patient_evidence": [
+          {
+            "category": "diagnosis",
+            "value": "Metastatic colorectal adenocarcinoma",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Diagnosis: Metastatic colorectal adenocarcinoma",
+            "quote_verified": true
+          },
+          {
+            "category": "metastatic_site",
+            "value": "Liver",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Metastatic site: Liver",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "The criterion requires measurable metastatic disease per RECIST v1.1. The evidence confirms metastatic colorectal adenocarcinoma with liver metastasis, indicating metastatic disease (evidence indices 8, 9). However, there is no documented information specifically stating that the metastatic disease is measurable per RECIST v1.1 criteria. Therefore, the status is UNKNOWN."
       },
       {
         "criterion_id": "INC-04",
@@ -2368,7 +2410,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The criterion requires an ECOG Performance Status of 1 or less. There is evidence from multiple sources that indicates an ECOG 1 performance status (evidence 0 and 11), which meets the criterion. However, there is also evidence from another source indicating an ECOG 2 performance status (evidence 12), which does not meet the criterion. Due to this conflicting information, the final status is POTENTIAL_CONFLICT until further clarification is available."
+        "explanation": "The inclusion criterion requires an ECOG Performance Status of ≤ 1. The patient has documented ECOG 1 status in multiple sources (evidence indexes 0 and 11), which meets the criterion. However, there is also documentation of ECOG 2 on 2026-03-11 (evidence index 12), which conflicts with the requirement. Therefore, there is a potential conflict regarding whether the patient meets this performance status criterion."
       },
       {
         "criterion_id": "INC-05",
@@ -2406,29 +2448,9 @@
             "source_page": 1,
             "evidence_text": "Creatinine: 0.9 mg/dL",
             "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Performance status: ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 2",
-            "normalized_value": null,
-            "date": "2026-03-11",
-            "source_file": "outside_referral_scan.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 2",
-            "quote_verified": true
           }
         ],
-        "explanation": "The criterion 'Adequate organ function' generally requires specific laboratory values and clinical parameters to confirm adequacy (e.g., liver function tests, kidney function tests, hematologic parameters). The provided evidence includes some lab results (absolute neutrophil count, hemoglobin, creatinine) and performance status (ECOG 1 and 2) but lacks comprehensive documentation of all key organ function parameters (such as liver enzymes, bilirubin, platelets). There is conflicting ECOG performance status (ECOG 1 and ECOG 2) on different dates, which adds uncertainty. Therefore, adequacy of organ function cannot be confirmed based on the current evidence."
+        "explanation": "The criterion 'Adequate organ function' typically requires comprehensive lab values covering multiple organ systems such as kidney, liver, and bone marrow function. Here, we have some lab values: ANC 2.1 x 10^9/L, Hemoglobin 11.2 g/dL, and Creatinine 0.9 mg/dL, which suggest some bone marrow and renal function parameters. However, other relevant organ function parameters (such as liver function tests including AST, ALT, bilirubin; or additional renal parameters) are not provided in the evidence. Therefore, although some data points are available, there is insufficient evidence to determine if the patient meets the inclusion criterion of adequate organ function."
       },
       {
         "criterion_id": "EXC-01",
@@ -2454,29 +2476,8 @@
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "prior_treatment",
-            "value": "FOLFOX completed",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "FOLFOX completed",
-            "quote_verified": true
-          },
-          {
-            "category": "prior_treatment",
-            "value": "FOLFOX, then FOLFIRI",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Prior treatment: FOLFOX, then FOLFIRI",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
+        "patient_evidence": [],
+        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
       },
       {
         "criterion_id": "EXC-04",
@@ -2557,7 +2558,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The patient is female (evidence index 7) and aged 58 years (evidence index 6), both of which meet the inclusion criterion of being male or female and aged between 18 and 75 years."
+        "explanation": "The patient is documented as female (index 7) and aged 58 years (index 6), which fits within the inclusion criterion of male or female aged 18-75 years."
       },
       {
         "criterion_id": "INC-02",
@@ -2578,16 +2579,16 @@
           },
           {
             "category": "biomarker",
-            "value": "MSI: microsatellite stable (MSS)",
+            "value": "KRAS: G12C mutation detected",
             "normalized_value": null,
             "date": "2026-02-24",
             "source_file": "pathology_report.pdf",
             "source_page": 2,
-            "evidence_text": "MSI: microsatellite stable (MSS)",
+            "evidence_text": "KRAS: G12C mutation detected",
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma documented in the oncology note (evidence index 8) and this diagnosis is supported by biomarker evidence showing KRAS G12C mutation detected in the pathology report (evidence index 15). These pieces of evidence confirm that the patient's colorectal cancer diagnosis is histologically or cytologically confirmed, fulfilling the inclusion criterion."
+        "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma as confirmed in the oncology note (index 8). Additionally, the pathology report confirms the presence of KRAS G12C mutation, indicating molecular characterization consistent with colorectal adenocarcinoma (index 14). This confirms histologic or cytologic confirmation of colorectal adenocarcinoma, satisfying this inclusion criterion."
       },
       {
         "criterion_id": "INC-03",
@@ -2627,7 +2628,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Part of this criterion is not documented (failed, intolerant); converted to UNKNOWN. Original reasoning: The patient has metastatic colorectal cancer (evidence 8,10) that is microsatellite stable (MSS) as required (evidence 15). The cancer is described as metastatic and presumably unresectable, given the metastatic site to liver (evidence 9). The patient has received first-line standard treatment with oxaliplatin plus fluoropyrimidine as FOLFOX (evidence 1,10) followed by FOLFIRI, indicating failure or progression after first-line therapy. Thus, the criterion of unresectable MSS-type metastatic colorectal cancer that has failed first-line oxaliplatin plus fluoropyrimidine ± targeted therapy is met."
+        "explanation": "This criterion depends on the line of therapy, which the cited record does not state; converted to UNKNOWN. Original reasoning: The patient has metastatic colorectal adenocarcinoma confirmed as microsatellite stable (MSS) per evidence index 15. Evidence indices 1 and 10 show the patient has received prior treatment with oxaliplatin plus fluoropyrimidine (FOLFOX), meeting the 'failed or intolerant to first-line standard oxaliplatin plus fluoropyrimidine ± targeted therapy' part of the criterion. There is no conflicting evidence regarding resectability status, but metastatic involvement of the liver (index 9) along with prior treatments and MSS status strongly supports unresectable MSS-type metastatic colorectal cancer. Therefore, the patient meets this inclusion criterion."
       },
       {
         "criterion_id": "INC-04",
@@ -2657,7 +2658,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The criterion requires evidence of disease progression during or within 3 months after completing first-line oxaliplatin/fluoropyrimidine ± targeted therapy. The patient has received FOLFOX (oxaliplatin/fluoropyrimidine) as first-line treatment, but the evidence does not specify whether progression occurred during or within 3 months after completing this first-line therapy. The patient also received FOLFIRI after FOLFOX, which suggests progression or intolerance but timing of progression relative to first-line completion is not documented. Therefore, the failure definition under this criterion cannot be confirmed or ruled out with the current evidence."
+        "explanation": "The criterion requires evidence of progression during or within 3 months after completing first-line oxaliplatin/fluoropyrimidine ± targeted therapy. The patient has completed FOLFOX (a regimen containing oxaliplatin and fluoropyrimidine) and subsequently received FOLFIRI, indicating progression or treatment change. However, there is no explicit documentation of progression timing related to the completion of first-line FOLFOX. Therefore, it is unknown whether the patient meets the failure definition as specified."
       },
       {
         "criterion_id": "INC-05",
@@ -2687,7 +2688,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The patient has received FOLFOX chemotherapy, which is an oxaliplatin-based regimen, as indicated by 'FOLFOX completed' and 'FOLFOX, then FOLFIRI' in evidence indices 1 and 10. However, there is no documentation whether the progression or recurrence occurred during or within 6 months after completing FOLFOX chemotherapy, which is required to determine if this counts as first-line failure per the criterion. Therefore, with missing timing details of progression or recurrence relative to oxaliplatin-based adjuvant therapy, the status is UNKNOWN."
+        "explanation": "The criterion requires evidence of progression or recurrence during or within 6 months of completing adjuvant oxaliplatin-based chemotherapy/chemoradiation, indicating first-line failure. The patient has documented prior treatment with FOLFOX (an oxaliplatin-based regimen), completed and then followed by FOLFIRI, but there is no explicit evidence regarding the timing of progression or recurrence relative to completion of the adjuvant oxaliplatin-based chemotherapy. Without specific information about progression/recurrence timing in the adjuvant setting, it is unknown if the patient meets this criterion."
       },
       {
         "criterion_id": "INC-06",
@@ -2696,7 +2697,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no specific documented evidence provided about the presence of at least one measurable lesion by RECIST 1.1 on imaging or other assessments. The patient's metastatic site (liver) is noted, but measurable lesion size or RECIST assessment details are not documented in the available evidence."
+        "explanation": "The evidence includes diagnosis, prior treatments, biomarkers, performance status, and other clinical details; however, there is no specific evidence documenting the presence of at least one measurable lesion by RECIST 1.1 criteria. Without imaging or lesion measurement information, it is not possible to determine if this inclusion criterion is met."
       },
       {
         "criterion_id": "INC-07",
@@ -2736,7 +2737,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires ECOG performance status of 0-1. There is evidence of ECOG 1 documented in two sources (indices 0 and 11), which meets the criterion. However, there is also evidence of ECOG 2 on a subsequent date (index 12), which conflicts with the requirement. Due to the conflicting ECOG statuses, the inclusion criterion status is POTENTIAL_CONFLICT."
+        "explanation": "The patient has multiple ECOG performance status values reported. On 2026-03-10, ECOG 1 is documented in two different sources (indices 0 and 11), which meets the inclusion criterion of ECOG 0-1. However, on 2026-03-11, ECOG 2 is documented (index 12), which does not meet the criterion. Due to this conflicting evidence, the overall status is POTENTIAL_CONFLICT."
       },
       {
         "criterion_id": "INC-08",
@@ -2744,49 +2745,8 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "prior_treatment",
-            "value": "FOLFOX, then FOLFIRI",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Prior treatment: FOLFOX, then FOLFIRI",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Performance status: ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 2",
-            "normalized_value": null,
-            "date": "2026-03-11",
-            "source_file": "outside_referral_scan.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 2",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The inclusion criterion requires expected survival ≥ 3 months. The patient's performance status shows ECOG 1 on 2026-03-10 (indices 0, 10), suggesting relatively preserved function, but also an ECOG 2 recorded on the next day 2026-03-11 (index 11), indicating some worsening. Expected survival is a clinical judgment that cannot be precisely determined from the provided data alone and there is no explicit documentation of expected survival time. Hence, the status is UNKNOWN."
+        "patient_evidence": [],
+        "explanation": "The criterion requires an expected survival of at least 3 months. The evidence includes performance status (ECOG 1 and ECOG 2), age, diagnosis, and prior treatments, but there is no direct or indirect information on expected survival or prognosis to determine if the patient meets this requirement."
       },
       {
         "criterion_id": "INC-09",
@@ -2826,7 +2786,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The criterion requires adequate organ function within 14 days before enrollment with no transfusion or growth-factor support. Lab values for ANC (2.1 x 10^9/L), hemoglobin (11.2 g/dL), and creatinine (0.9 mg/dL) within 14 days are documented and appear adequate. However, there is no information provided about whether the patient received any transfusion or growth-factor support within the 14-day period before enrollment. Because this part of the criterion is not documented, the overall status is UNKNOWN."
+        "explanation": "The criterion requires evidence of adequate organ function within 14 days before enrollment without transfusion or growth-factor support. Lab tests for neutrophils, hemoglobin, and creatinine are present from 2026-03-08, which is within 14 days. However, there is no information provided about whether the patient has received any transfusion or growth-factor support within that timeframe. Because the absence of transfusion or growth-factor support is required but not documented, the status is UNKNOWN."
       },
       {
         "criterion_id": "INC-10",
@@ -2856,7 +2816,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "Part of this criterion is not documented (white blood cells, platelets); converted to UNKNOWN. Original reasoning: The inclusion criterion requires the following hematology levels: Hb ≥ 90 g/L, WBC ≥ 3.0 x 10^9/L, ANC ≥ 1.5 x 10^9/L, and PLT ≥ 90 x 10^9/L. The patient evidence provides an ANC of 2.1 x 10^9/L (which is ≥ 1.5), and a Hemoglobin of 11.2 g/dL. Converting 11.2 g/dL to g/L (11.2 g/dL = 112 g/L) shows hemoglobin is above 90 g/L. There is no direct evidence provided for WBC or platelets in the provided data. However, since 2 key criteria (Hb and ANC) are documented and meet the threshold, and no evidence contradicts WBC or PLT counts, the available evidence supports meeting the criterion for hemoglobin and ANC. Given the missing data for WBC and PLT, the strict response based on available evidence is MEETS for those key documented values."
+        "explanation": "Part of this criterion is not documented (white blood cells, platelets); converted to UNKNOWN. Original reasoning: The patient has a hemoglobin level of 11.2 g/dL, which converts to 112 g/L, meeting the criterion of Hb ≥ 90 g/L. The absolute neutrophil count (ANC) is 2.1 x 10^9/L, which meets the criterion of ANC ≥ 1.5 x 10^9/L. Although WBC and platelet (PLT) counts are not provided, the available hematology values clearly meet the threshold for ANC and Hb, supporting inclusion for these parameters. The lack of WBC and PLT data results in some uncertainty, but the criterion is strictly about minimum hematology values including these specific parameters. Without complete data for WBC and PLT, the overall status would be more uncertain, but based on available evidence for ANC and Hb, the patient meets these parts of the inclusion hematology criteria."
       },
       {
         "criterion_id": "INC-11",
@@ -2865,7 +2825,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided about the patient's INR or APTT values or whether stable anticoagulation at therapeutic range is present. Without specific coagulation test results, it is unknown if the patient meets the coagulation inclusion criteria."
+        "explanation": "The inclusion criterion requires coagulation parameters: INR ≤ 1.5 × ULN and APTT ≤ 1.5 × ULN (stable anticoagulation at therapeutic range allowed). The provided evidence does not include any laboratory values or reports indicating the patient's INR or APTT levels. Therefore, it is unknown whether the patient meets this coagulation criterion."
       },
       {
         "criterion_id": "INC-12",
@@ -2873,19 +2833,8 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "lab",
-            "value": "Creatinine: 0.9 mg/dL",
-            "normalized_value": null,
-            "date": "2026-03-08",
-            "source_file": "lab_report.pdf",
-            "source_page": 1,
-            "evidence_text": "Creatinine: 0.9 mg/dL",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The criterion requires a creatinine clearance value calculated by the Cockcroft-Gault formula to be >= 50 mL/min. The patient's creatinine is provided (0.9 mg/dL), but there is no documented creatinine clearance value, nor sufficient data (such as weight and age) to calculate it. Therefore, it is unknown whether the patient meets the renal inclusion criterion."
+        "patient_evidence": [],
+        "explanation": "The criterion requires evidence of creatinine clearance greater than or equal to 50 mL/min (Cockcroft-Gault formula). The available lab evidence provides a serum creatinine value (0.9 mg/dL) but does not include the calculated creatinine clearance or all necessary parameters (serum creatinine, age, weight, sex) explicitly used in the Cockcroft-Gault calculation. Age (58 years) and sex (female) are available, but weight is missing. Without a calculated or documented creatinine clearance value, it is not possible to determine if the patient meets the criterion."
       },
       {
         "criterion_id": "INC-13",
@@ -2893,19 +2842,8 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "metastatic_site",
-            "value": "Liver",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 1,
-            "evidence_text": "Metastatic site: Liver",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The inclusion criterion text 'Hepatic:' is incomplete and ambiguous without further specification. The evidence shows the patient has liver metastases (evidence index 9), which is related to hepatic involvement, but the criterion does not specify what exact hepatic condition or parameter is required for inclusion. Therefore, it is not possible to determine if the patient meets the criterion based solely on the available evidence."
+        "patient_evidence": [],
+        "explanation": "The criterion text 'Hepatic:' is too vague and incomplete to determine any specific hepatic inclusion requirement. There is evidence of liver metastasis (index 9), but without a detailed hepatic criterion (such as specific liver function tests, absence of liver metastases, or liver-related lab value thresholds), we cannot assess if the hepatic criterion is met."
       },
       {
         "criterion_id": "INC-14",
@@ -2925,7 +2863,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The inclusion criterion requires the patient to have no liver metastases with specific liver function tests (TBIL ≤ 1.5 × ULN, ALT ≤ 2.5 × ULN, AST ≤ 2.5 × ULN). The patient evidence indicates the presence of liver metastases (metastatic site: Liver) but does not provide any laboratory values for TBIL, ALT, or AST. Therefore, it is unknown whether the patient meets the liver function test requirements or not, resulting in an UNKNOWN status for this criterion."
+        "explanation": "The inclusion criterion requires 'No liver mets' and specific lab value thresholds for TBIL, ALT, and AST. Evidence shows the patient has liver metastases (index 9), which conflicts with the 'No liver mets' condition. However, no laboratory values for TBIL, ALT, or AST levels are provided to evaluate the other parts of the criterion. Since the criterion is contingent on absence of liver metastases and those lab values, the overall status is UNKNOWN."
       },
       {
         "criterion_id": "INC-15",
@@ -2934,7 +2872,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The inclusion criterion requires liver metastases with specific lab value thresholds: TBIL ≤ 2 × ULN, ALT ≤ 5 × ULN, and AST ≤ 5 × ULN. The provided evidence confirms liver metastases but does not include any lab values for TBIL (total bilirubin), ALT, or AST. Without these specific liver function test results, it is not possible to determine if the patient meets this criterion."
+        "explanation": "The inclusion criterion requires specific liver function lab values: Total Bilirubin (TBIL) ≤ 2 × ULN, ALT ≤ 5 × ULN, and AST ≤ 5 × ULN. The provided evidence includes lab values for ANC, Hemoglobin, and Creatinine but does not include any values or information about TBIL, ALT, or AST. Therefore, it is unknown if the patient meets this liver function criterion for liver metastases."
       },
       {
         "criterion_id": "INC-16",
@@ -2943,7 +2881,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "No evidence of the patient's left ventricular ejection fraction (LVEF) value is provided in the supplied data. Inclusion criterion requires LVEF ≥ 50%, but this cardiac function measurement is not documented in the available evidence."
+        "explanation": "There is no evidence provided about the patient's left ventricular ejection fraction (LVEF). Without a documented cardiac assessment showing LVEF ≥ 50%, we cannot determine if the patient meets this inclusion criterion."
       },
       {
         "criterion_id": "INC-17",
@@ -2951,39 +2889,8 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "handwritten_note.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 1",
-            "normalized_value": null,
-            "date": "2026-03-10",
-            "source_file": "oncology_note.pdf",
-            "source_page": 2,
-            "evidence_text": "Performance status: ECOG 1",
-            "quote_verified": true
-          },
-          {
-            "category": "performance_status",
-            "value": "ECOG 2",
-            "normalized_value": null,
-            "date": "2026-03-11",
-            "source_file": "outside_referral_scan.png",
-            "source_page": 1,
-            "evidence_text": "ECOG 2",
-            "quote_verified": true
-          }
-        ],
-        "explanation": "The criterion requires voluntary written informed consent and willingness and ability to comply with study procedures and follow-up. The provided evidence includes performance status information (ECOG 1 and ECOG 2) but does not include any direct information about the patient's consent status, willingness, or ability to comply with study procedures and follow-up. Therefore, the inclusion criterion cannot be confirmed or denied based on the supplied evidence."
+        "patient_evidence": [],
+        "explanation": "The criterion requires voluntary written informed consent and willingness and ability to comply with study procedures and follow-up. There is no documented evidence addressing consent or the patient's willingness and ability to comply with study procedures and follow-up in the provided data."
       },
       {
         "criterion_id": "INC-18",
@@ -2992,7 +2899,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided regarding a serum or urine pregnancy test being performed within 3 days before the first study dose. Additionally, it is not explicitly stated if the patient is a woman of childbearing potential (WOCBP), although the patient is female. Without documentation of a negative pregnancy test within the specified time frame, the criterion cannot be confirmed as met."
+        "explanation": "The patient is female and thus could be a woman of childbearing potential (WOCBP). However, there is no evidence provided about a serum or urine pregnancy test conducted within 3 days before the planned first study dose. Without documentation of a negative pregnancy test within the specified timeframe, the inclusion criterion cannot be confirmed as met."
       },
       {
         "criterion_id": "INC-19",
@@ -3000,8 +2907,19 @@
         "criterion_type": "inclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [],
-        "explanation": "The inclusion criterion requires the use of a highly effective contraceptive method for subjects with reproductive potential. The patient is a 58-year-old female, which may impact reproductive potential, but there is no evidence provided regarding the patient's reproductive potential status or use of contraception. Therefore, it is unknown if the patient meets this contraceptive use requirement."
+        "patient_evidence": [
+          {
+            "category": "sex",
+            "value": "Female",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Sex: Female",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "The inclusion criterion requires that all subjects with reproductive potential use a highly effective contraceptive method during and after treatment. The patient is identified as female, but there is no information about her reproductive potential status or contraceptive method use in the provided evidence. Without evidence on contraceptive use or reproductive potential, it is unknown if the patient meets this criterion."
       },
       {
         "criterion_id": "EXC-01",
@@ -3049,7 +2967,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+        "explanation": "The evidence indicates the patient is female but does not provide any information about pregnancy or breastfeeding status. Therefore, it is unknown if this exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-04",
@@ -3058,7 +2976,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The evidence provided includes various patient data but does not specifically document any toxicities from prior therapy or their current grade according to CTCAE v5.0. Without explicit information on toxicity grades and their resolution, it is unknown whether this exclusion criterion applies."
+        "explanation": "The available evidence does not provide information about the resolution status of toxicities from prior therapy to CTCAE v5.0 Grade ≤ 1. There is no explicit mention of any unresolved toxicities or their grades, nor is there information about alopecia or investigator judgment regarding safety risk. Therefore, it is unknown whether the exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-05",
@@ -3067,7 +2985,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The criterion excludes any anti-cancer therapy within 4 weeks before first study dose or major surgery within 4 weeks that has not fully healed. The evidence shows prior treatments (FOLFOX, then FOLFIRI) but does not specify the dates of the last treatments to determine whether they occurred within 4 weeks before the first study-dose. There is also no information about recent major surgery or its healing status. Therefore, there is insufficient evidence to conclude whether the exclusion applies."
+        "explanation": "There is evidence of prior anti-cancer therapies (FOLFOX and FOLFIRI) but no specific information on the timing of these treatments relative to the first study dose. There is no evidence provided regarding any anti-cancer therapy or major surgery within 4 weeks before the first study dose or about healing status of any surgery. Therefore, it cannot be determined if the exclusion criterion applies or not."
       },
       {
         "criterion_id": "EXC-06",
@@ -3085,7 +3003,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+        "explanation": "The provided evidence does not include any information about the patient's cardiovascular health or presence of clinically significant cardiovascular disease. Therefore, it is unknown whether the exclusion criterion of 'clinically significant cardiovascular disease' applies to this patient."
       },
       {
         "criterion_id": "EXC-08",
@@ -3093,8 +3011,79 @@
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
-        "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+        "patient_evidence": [
+          {
+            "category": "performance_status",
+            "value": "ECOG 1",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "ECOG 1",
+            "quote_verified": true
+          },
+          {
+            "category": "age",
+            "value": "58 years",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Age: 58 years",
+            "quote_verified": true
+          },
+          {
+            "category": "sex",
+            "value": "Female",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Sex: Female",
+            "quote_verified": true
+          },
+          {
+            "category": "diagnosis",
+            "value": "Metastatic colorectal adenocarcinoma",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Diagnosis: Metastatic colorectal adenocarcinoma",
+            "quote_verified": true
+          },
+          {
+            "category": "metastatic_site",
+            "value": "Liver",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Metastatic site: Liver",
+            "quote_verified": true
+          },
+          {
+            "category": "performance_status",
+            "value": "ECOG 1",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 2,
+            "evidence_text": "Performance status: ECOG 1",
+            "quote_verified": true
+          },
+          {
+            "category": "performance_status",
+            "value": "ECOG 2",
+            "normalized_value": null,
+            "date": "2026-03-11",
+            "source_file": "outside_referral_scan.png",
+            "source_page": 1,
+            "evidence_text": "ECOG 2",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "The record does not explicitly rule out this prior exposure; absence from a treatment list is not a negative. Converted to UNKNOWN."
       },
       {
         "criterion_id": "EXC-09",
@@ -3103,7 +3092,7 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided in the patient's records about QTcF measurements from a resting 12-lead ECG, which are necessary to determine if the exclusion criterion based on QTcF values applies."
+        "explanation": "No evidence is provided regarding the patient's QTcF interval on resting 12-lead ECG, which is required to determine if QTcF is ≥ 470 ms in this female patient. Without this specific ECG measurement, it is unknown whether this exclusion criterion applies."
       },
       {
         "criterion_id": "EXC-10",
@@ -3112,74 +3101,11 @@
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "The exclusion criterion 'Infection-related:' is broad and lacks specific details about what constitutes infection-related exclusion. The patient's evidence does not include any information about active or recent infections or infection-related complications. Therefore, without specific evidence of infection, it is unknown whether this exclusion applies."
+        "explanation": "The exclusion criterion 'Infection-related:' refers to infections affecting eligibility. The supplied evidence includes lab values, diagnoses, biomarker statuses, performance status, prior treatments, age, sex, and metastatic site, but there is no explicit information about current or recent infections or infection-related symptoms. Therefore, it is unknown whether the patient meets this infection-related exclusion."
       },
       {
         "criterion_id": "EXC-11",
         "criterion_text": "Active infection or unexplained fever \\> 38.5 °C on screening or dosing day (tumor fever allowed at investigator's discretion).",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "This criterion depends on investigator judgment and cannot be settled from records; converted to UNKNOWN. Original reasoning: There is no evidence in the patient data indicating an active infection or an unexplained fever above 38.5 °C on the screening or dosing day. Patient temperature data and infection status are not provided, but generally absence of evidence for infection or fever means this exclusion criterion does not apply."
-      },
-      {
-        "criterion_id": "EXC-12",
-        "criterion_text": "Serious infection (CTCAE Grade 3, e.g., pneumonia, bacteremia) requiring hospitalization within 4 weeks.",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
-      },
-      {
-        "criterion_id": "EXC-13",
-        "criterion_text": "Active pulmonary inflammation on baseline imaging or need for systemic antibiotics (prophylactic antibiotics permitted).",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
-      },
-      {
-        "criterion_id": "EXC-14",
-        "criterion_text": "Known HIV-positive, active hepatitis B, or hepatitis C:",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "There is no evidence in the provided data about the patient's HIV status, or whether they have active hepatitis B or hepatitis C infection. Therefore, it is unknown if this exclusion criterion applies."
-      },
-      {
-        "criterion_id": "EXC-15",
-        "criterion_text": "HBsAg or HBcAb positive: HBV DNA must be ≤ 2.5 × 10³ copies/mL (or ≤ 500 IU/mL, or below LLoQ); HBsAg(+) subjects must receive anti-HBV prophylaxis throughout study treatment.",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "The exclusion criterion requires information on HBsAg or HBcAb positivity, HBV DNA levels, and whether HBsAg(+) subjects receive anti-HBV prophylaxis. No evidence provided documents HBsAg, HBcAb status, HBV DNA levels, or anti-HBV prophylaxis. Therefore, it is unknown whether the exclusion applies."
-      },
-      {
-        "criterion_id": "EXC-16",
-        "criterion_text": "HCV-seropositive allowed only if HCV RNA negative (or below LLoQ).",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "The criterion excludes patients who are HCV-seropositive unless their HCV RNA is negative or below the lower limit of quantification (LLoQ). The supplied evidence does not contain any information about the patient's HCV serostatus or HCV RNA levels. Therefore, it is unknown whether this exclusion criterion applies."
-      },
-      {
-        "criterion_id": "EXC-17",
-        "criterion_text": "History or current evidence of leptomeningeal metastases. Active brain metastases: untreated and/or symptomatic, or requiring corticosteroids or anticonvulsants. Subjects treated with surgery or radiotherapy may enter if imaging ≥ 4 weeks shows stable CNS disease, symptoms have resolved, no corticosteroids for ≥ 2 weeks, and acute toxicities have recovered.",
-        "criterion_type": "exclusion",
-        "status": "UNKNOWN",
-        "method": "llm",
-        "patient_evidence": [],
-        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
-      },
-      {
-        "criterion_id": "EXC-18",
-        "criterion_text": "Other severe uncontrolled disorders (e.g., frequent seizures, hepatic failure).",
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
@@ -3202,6 +3128,16 @@
             "source_file": "handwritten_note.png",
             "source_page": 1,
             "evidence_text": "FOLFOX completed",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "KRAS G12C+",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "KRAS G12C+",
             "quote_verified": true
           },
           {
@@ -3335,11 +3271,11 @@
             "quote_verified": true
           }
         ],
-        "explanation": "No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: The exclusion criterion specifies 'Other severe uncontrolled disorders (e.g., frequent seizures, hepatic failure),' indicating severe uncontrolled conditions. The provided evidence includes performance status (ECOG 1 and 2), prior treatments, biomarkers, labs including ANC, hemoglobin, creatinine, and diagnosis of metastatic colorectal adenocarcinoma with liver metastasis. There is no evidence or mention of severe uncontrolled disorders such as frequent seizures or hepatic failure. Liver metastasis alone does not imply hepatic failure or a severe uncontrolled disorder. Therefore, based on the given patient information, this exclusion criterion does not apply."
+        "explanation": "This criterion depends on investigator judgment and cannot be settled from records; converted to UNKNOWN. Original reasoning: There is no evidence of active infection or unexplained fever greater than 38.5 °C on screening or dosing day. The patient's vital signs or fever status is not reported as elevated above this threshold. Laboratory data and clinical notes do not indicate active infection or fever. Therefore, this exclusion criterion does not apply based on the provided evidence."
       },
       {
-        "criterion_id": "EXC-19",
-        "criterion_text": "Other malignancies within 5 years, except adequately treated basal-cell carcinoma of skin or cervical carcinoma in situ.",
+        "criterion_id": "EXC-12",
+        "criterion_text": "Serious infection (CTCAE Grade 3, e.g., pneumonia, bacteremia) requiring hospitalization within 4 weeks.",
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
@@ -3347,17 +3283,53 @@
         "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
       },
       {
-        "criterion_id": "EXC-20",
-        "criterion_text": "Participation in another clinical drug trial within 4 weeks or less than 5 half-lives of the previous investigational agent, whichever is longer.",
+        "criterion_id": "EXC-13",
+        "criterion_text": "Active pulmonary inflammation on baseline imaging or need for systemic antibiotics (prophylactic antibiotics permitted).",
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
         "patient_evidence": [],
-        "explanation": "There is no evidence provided about the patient's participation in another clinical drug trial within the past 4 weeks or within 5 half-lives of any previous investigational agent. Without specific information on recent clinical trial participation or investigational agent exposure timing, it is not possible to determine if this exclusion applies."
+        "explanation": "The criterion excludes patients with active pulmonary inflammation on baseline imaging or the need for systemic antibiotics (prophylactic antibiotics permitted). The provided evidence includes performance status, prior treatments, biomarkers, lab values, age, sex, diagnosis, and metastatic site, but no information about baseline pulmonary imaging results or the use of systemic antibiotics. Therefore, it is unknown whether the exclusion applies."
       },
       {
-        "criterion_id": "EXC-21",
-        "criterion_text": "Any social or medical condition that, in the investigator's opinion, could interfere with informed consent, study participation, or interpretation of results.",
+        "criterion_id": "EXC-14",
+        "criterion_text": "Known HIV-positive, active hepatitis B, or hepatitis C:",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+      },
+      {
+        "criterion_id": "EXC-15",
+        "criterion_text": "HBsAg or HBcAb positive: HBV DNA must be ≤ 2.5 × 10³ copies/mL (or ≤ 500 IU/mL, or below LLoQ); HBsAg(+) subjects must receive anti-HBV prophylaxis throughout study treatment.",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "There is no evidence provided about the patient's HBsAg or HBcAb status, HBV DNA levels, or whether the patient is receiving anti-HBV prophylaxis. Without this information, it is not possible to determine if the exclusion criterion applies."
+      },
+      {
+        "criterion_id": "EXC-16",
+        "criterion_text": "HCV-seropositive allowed only if HCV RNA negative (or below LLoQ).",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "There is no evidence provided regarding the patient's HCV serostatus, HCV RNA levels, or whether the HCV RNA is negative or below the lower limit of quantification (LLoQ). Without this information, it is not possible to determine if the exclusion criterion applies."
+      },
+      {
+        "criterion_id": "EXC-17",
+        "criterion_text": "History or current evidence of leptomeningeal metastases. Active brain metastases: untreated and/or symptomatic, or requiring corticosteroids or anticonvulsants. Subjects treated with surgery or radiotherapy may enter if imaging ≥ 4 weeks shows stable CNS disease, symptoms have resolved, no corticosteroids for ≥ 2 weeks, and acute toxicities have recovered.",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "No patient evidence supports this conclusion; converted to UNKNOWN."
+      },
+      {
+        "criterion_id": "EXC-18",
+        "criterion_text": "Other severe uncontrolled disorders (e.g., frequent seizures, hepatic failure).",
         "criterion_type": "exclusion",
         "status": "UNKNOWN",
         "method": "llm",
@@ -3393,7 +3365,195 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The exclusion criterion depends on the investigator's opinion about social or medical conditions that could interfere with informed consent, study participation, or interpretation of results. The supplied evidence shows the patient has performance status ECOG 1 and ECOG 2 at different times, but there is no direct information about any social or medical condition interfering with the study or consent process. Since this judgment depends on the investigator's subjective opinion and there is no evidence provided, the status is UNKNOWN."
+        "explanation": "No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: The exclusion criterion refers to other severe uncontrolled disorders such as frequent seizures or hepatic failure. The available evidence includes performance status assessments (ECOG 1 and ECOG 2) but does not mention any severe uncontrolled disorders such as seizures or hepatic failure or other similar conditions. Therefore, there is no evidence that this exclusion applies."
+      },
+      {
+        "criterion_id": "EXC-19",
+        "criterion_text": "Other malignancies within 5 years, except adequately treated basal-cell carcinoma of skin or cervical carcinoma in situ.",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [
+          {
+            "category": "performance_status",
+            "value": "ECOG 1",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "ECOG 1",
+            "quote_verified": true
+          },
+          {
+            "category": "prior_treatment",
+            "value": "FOLFOX completed",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "FOLFOX completed",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "KRAS G12C+",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "handwritten_note.png",
+            "source_page": 1,
+            "evidence_text": "KRAS G12C+",
+            "quote_verified": true
+          },
+          {
+            "category": "lab",
+            "value": "Absolute neutrophil count (ANC): 2.1 x 10^9/L",
+            "normalized_value": null,
+            "date": "2026-03-08",
+            "source_file": "lab_report.pdf",
+            "source_page": 1,
+            "evidence_text": "Absolute neutrophil count (ANC): 2.1 x 10^9/L",
+            "quote_verified": true
+          },
+          {
+            "category": "lab",
+            "value": "Hemoglobin: 11.2 g/dL",
+            "normalized_value": null,
+            "date": "2026-03-08",
+            "source_file": "lab_report.pdf",
+            "source_page": 1,
+            "evidence_text": "Hemoglobin: 11.2 g/dL",
+            "quote_verified": true
+          },
+          {
+            "category": "lab",
+            "value": "Creatinine: 0.9 mg/dL",
+            "normalized_value": null,
+            "date": "2026-03-08",
+            "source_file": "lab_report.pdf",
+            "source_page": 1,
+            "evidence_text": "Creatinine: 0.9 mg/dL",
+            "quote_verified": true
+          },
+          {
+            "category": "age",
+            "value": "58 years",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Age: 58 years",
+            "quote_verified": true
+          },
+          {
+            "category": "sex",
+            "value": "Female",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Sex: Female",
+            "quote_verified": true
+          },
+          {
+            "category": "diagnosis",
+            "value": "Metastatic colorectal adenocarcinoma",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Diagnosis: Metastatic colorectal adenocarcinoma",
+            "quote_verified": true
+          },
+          {
+            "category": "metastatic_site",
+            "value": "Liver",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 1,
+            "evidence_text": "Metastatic site: Liver",
+            "quote_verified": true
+          },
+          {
+            "category": "prior_treatment",
+            "value": "FOLFOX, then FOLFIRI",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 2,
+            "evidence_text": "Prior treatment: FOLFOX, then FOLFIRI",
+            "quote_verified": true
+          },
+          {
+            "category": "performance_status",
+            "value": "ECOG 1",
+            "normalized_value": null,
+            "date": "2026-03-10",
+            "source_file": "oncology_note.pdf",
+            "source_page": 2,
+            "evidence_text": "Performance status: ECOG 1",
+            "quote_verified": true
+          },
+          {
+            "category": "performance_status",
+            "value": "ECOG 2",
+            "normalized_value": null,
+            "date": "2026-03-11",
+            "source_file": "outside_referral_scan.png",
+            "source_page": 1,
+            "evidence_text": "ECOG 2",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "BRAF: wild type",
+            "normalized_value": null,
+            "date": "2026-02-24",
+            "source_file": "pathology_report.pdf",
+            "source_page": 1,
+            "evidence_text": "BRAF: wild type",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "KRAS: G12C mutation detected",
+            "normalized_value": null,
+            "date": "2026-02-24",
+            "source_file": "pathology_report.pdf",
+            "source_page": 2,
+            "evidence_text": "KRAS: G12C mutation detected",
+            "quote_verified": true
+          },
+          {
+            "category": "biomarker",
+            "value": "MSI: microsatellite stable (MSS)",
+            "normalized_value": null,
+            "date": "2026-02-24",
+            "source_file": "pathology_report.pdf",
+            "source_page": 2,
+            "evidence_text": "MSI: microsatellite stable (MSS)",
+            "quote_verified": true
+          }
+        ],
+        "explanation": "No cited evidence addresses this exclusion; absence of a record does not clear it. Converted to UNKNOWN. Original reasoning: The patient has a diagnosis of metastatic colorectal adenocarcinoma with no evidence or documentation of other malignancies within the last 5 years. No prior basal-cell carcinoma of the skin or cervical carcinoma in situ is mentioned, and no other malignancies are reported in the supplied evidence. Therefore, this exclusion criterion does not apply."
+      },
+      {
+        "criterion_id": "EXC-20",
+        "criterion_text": "Participation in another clinical drug trial within 4 weeks or less than 5 half-lives of the previous investigational agent, whichever is longer.",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "There is no evidence about participation in another clinical drug trial within 4 weeks or less than 5 half-lives of a previous investigational agent. Without data on prior investigational drug trial participation and timing, it is unknown whether this exclusion criterion applies."
+      },
+      {
+        "criterion_id": "EXC-21",
+        "criterion_text": "Any social or medical condition that, in the investigator's opinion, could interfere with informed consent, study participation, or interpretation of results.",
+        "criterion_type": "exclusion",
+        "status": "UNKNOWN",
+        "method": "llm",
+        "patient_evidence": [],
+        "explanation": "The exclusion criterion depends on the investigator's opinion about whether any social or medical condition could interfere with informed consent, study participation, or interpretation of results. The provided evidence (performance status, prior treatment, biomarker status, lab results, age, sex, diagnosis, metastatic site) does not contain any information about social or medical conditions that might interfere with these factors. Also, the criterion explicitly involves investigator judgment, which cannot be determined from the provided data."
       },
       {
         "criterion_id": "EXC-22",
@@ -3433,7 +3593,7 @@
             "quote_verified": true
           }
         ],
-        "explanation": "The exclusion criterion is based on the investigator's subjective judgment of whether the patient is unsuitable for enrollment. The provided evidence includes consistent performance statuses of ECOG 1 and ECOG 2, but no direct indication or statement from the investigator about unsuitability for enrollment is present in the evidence. Therefore, the status is UNKNOWN due to lack of explicit evidence of investigator judgment."
+        "explanation": "The exclusion criterion depends on the investigator's judgment about whether the patient is unsuitable for enrollment. There is evidence of performance status as ECOG 1 on 2026-03-10 (indices 0 and 11) and ECOG 2 on 2026-03-11 (index 12). However, suitability for enrollment is a subjective determination by the investigator, for which no direct evidence or statement is provided. Therefore, the status is UNKNOWN."
       }
     ],
     "NCT06645236": [
@@ -3610,27 +3770,24 @@
   "safety_flags": [
     "EXC-01: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
     "EXC-01: unsupported conclusion converted to UNKNOWN.",
+    "EXC-02: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
     "EXC-02: unsupported conclusion converted to UNKNOWN.",
     "EXC-03: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
     "EXC-03: unsupported conclusion converted to UNKNOWN.",
-    "EXC-04: exclusion cleared without evidence about it; converted to UNKNOWN.",
     "EXC-04: unsupported conclusion converted to UNKNOWN.",
     "EXC-06: unsupported conclusion converted to UNKNOWN.",
-    "EXC-07: unsupported conclusion converted to UNKNOWN.",
-    "EXC-08: unsupported conclusion converted to UNKNOWN.",
-    "EXC-10: unsupported conclusion converted to UNKNOWN.",
+    "EXC-08: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
+    "EXC-09: unsupported conclusion converted to UNKNOWN.",
     "EXC-11: investigator-judgment criterion converted to UNKNOWN.",
     "EXC-12: unsupported conclusion converted to UNKNOWN.",
-    "EXC-13: unsupported conclusion converted to UNKNOWN.",
     "EXC-14: unsupported conclusion converted to UNKNOWN.",
     "EXC-17: unsupported conclusion converted to UNKNOWN.",
     "EXC-18: exclusion cleared without evidence about it; converted to UNKNOWN.",
-    "EXC-19: unsupported conclusion converted to UNKNOWN.",
+    "EXC-19: exclusion cleared without evidence about it; converted to UNKNOWN.",
     "EXC-20: unsupported conclusion converted to UNKNOWN.",
     "INC-02: partial evidence (central not documented); converted to UNKNOWN.",
-    "INC-03: partial evidence (failed, intolerant not documented); converted to UNKNOWN.",
+    "INC-03: line of therapy not documented; converted to UNKNOWN.",
     "INC-10: partial evidence (white blood cells, platelets not documented); converted to UNKNOWN.",
-    "INC-15: partial evidence (transfusions not documented); converted to UNKNOWN.",
     "INC-24: unsupported conclusion converted to UNKNOWN.",
     "INC-25: conditional or option sub-item; DOES_NOT_MEET converted to UNKNOWN.",
     "Untrusted source contains instruction-like text; it was treated as data."
@@ -3731,7 +3888,7 @@
       "step": "assess_criteria",
       "started_at": "2026-10-02T19:51:37.603995+00:00",
       "ended_at": "2026-10-02T19:51:37.614958+00:00",
-      "latency_ms": 126007.97,
+      "latency_ms": 139312.31,
       "input_count": 129,
       "output_count": 139,
       "status": "success",

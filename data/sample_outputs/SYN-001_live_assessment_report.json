@@ -34,13 +34,13 @@
         "POTENTIAL_CONFLICT -> POTENTIAL_CONFLICT": 1
       },
       "safety_flags": [
-        "INC-15: partial evidence (transfusions not documented); converted to UNKNOWN.",
         "INC-24: unsupported conclusion converted to UNKNOWN.",
         "INC-25: conditional or option sub-item; DOES_NOT_MEET converted to UNKNOWN.",
         "EXC-01: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
-        "EXC-03: unsupported conclusion converted to UNKNOWN.",
-        "EXC-04: exclusion cleared without evidence about it; converted to UNKNOWN.",
-        "EXC-10: unsupported conclusion converted to UNKNOWN.",
+        "EXC-02: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
+        "EXC-03: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
+        "EXC-04: unsupported conclusion converted to UNKNOWN.",
+        "EXC-09: unsupported conclusion converted to UNKNOWN.",
         "EXC-14: unsupported conclusion converted to UNKNOWN.",
         "EXC-20: unsupported conclusion converted to UNKNOWN."
       ]
@@ -79,7 +79,7 @@
         "INC-02: partial evidence (central not documented); converted to UNKNOWN.",
         "EXC-01: unsupported conclusion converted to UNKNOWN.",
         "EXC-02: unsupported conclusion converted to UNKNOWN.",
-        "EXC-03: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
+        "EXC-03: unsupported conclusion converted to UNKNOWN.",
         "EXC-04: unsupported conclusion converted to UNKNOWN."
       ]
     },
@@ -115,20 +115,18 @@
         "POTENTIAL_CONFLICT -> POTENTIAL_CONFLICT": 1
       },
       "safety_flags": [
-        "INC-03: partial evidence (failed, intolerant not documented); converted to UNKNOWN.",
+        "INC-03: line of therapy not documented; converted to UNKNOWN.",
         "INC-10: partial evidence (white blood cells, platelets not documented); converted to UNKNOWN.",
         "EXC-01: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
         "EXC-02: unsupported conclusion converted to UNKNOWN.",
-        "EXC-03: unsupported conclusion converted to UNKNOWN.",
         "EXC-06: unsupported conclusion converted to UNKNOWN.",
-        "EXC-07: unsupported conclusion converted to UNKNOWN.",
-        "EXC-08: unsupported conclusion converted to UNKNOWN.",
+        "EXC-08: absence-based clearance of a prior-exposure exclusion converted to UNKNOWN.",
         "EXC-11: investigator-judgment criterion converted to UNKNOWN.",
         "EXC-12: unsupported conclusion converted to UNKNOWN.",
-        "EXC-13: unsupported conclusion converted to UNKNOWN.",
+        "EXC-14: unsupported conclusion converted to UNKNOWN.",
         "EXC-17: unsupported conclusion converted to UNKNOWN.",
         "EXC-18: exclusion cleared without evidence about it; converted to UNKNOWN.",
-        "EXC-19: unsupported conclusion converted to UNKNOWN."
+        "EXC-19: exclusion cleared without evidence about it; converted to UNKNOWN."
       ]
     }
   },
@@ -143,7 +141,7 @@
       "reasons": [
         "resolved from UNKNOWN to MEETS"
       ],
-      "explanation": "The patient has a diagnosis of metastatic colorectal adenocarcinoma with documented metastatic disease to the liver, which fulfills the inclusion criterion of unresectable or metastatic disease.",
+      "explanation": "The patient is documented to have metastatic colorectal adenocarcinoma with liver metastases (evidence indices 8 and 9), indicating metastatic disease, which meets the inclusion criterion of 'Unresectable or metastatic disease.'",
       "evidence": [
         "oncology_note.pdf p1: Diagnosis: Metastatic colorectal adenocarcinoma",
         "oncology_note.pdf p1: Metastatic site: Liver"
@@ -159,7 +157,7 @@
       "reasons": [
         "resolved from UNKNOWN to MEETS"
       ],
-      "explanation": "The inclusion criterion requires the patient to be aged 18 years or older. The provided evidence states the patient's age as 58 years, which meets the requirement of age ≥ 18 years.",
+      "explanation": "The inclusion criterion requires patient age to be 18 years or older. The provided evidence confirms the patient's age as 58 years, which meets the inclusion requirement.",
       "evidence": [
         "oncology_note.pdf p1: Age: 58 years"
       ]
@@ -174,7 +172,7 @@
       "reasons": [
         "resolved from UNKNOWN to MEETS"
       ],
-      "explanation": "The inclusion criterion requires an absolute neutrophil count (ANC) of at least 1,000/mm3 (≥1.0 x 10^9/L). Evidence item 3 shows the patient's ANC is 2.1 x 10^9/L, which meets the required threshold.",
+      "explanation": "The patient has an absolute neutrophil count (ANC) of 2.1 x 10^9/L as documented in evidence 3, which is above the required threshold of ≥ 1.0 x 10^9/L for inclusion.",
       "evidence": [
         "lab_report.pdf p1: Absolute neutrophil count (ANC): 2.1 x 10^9/L"
       ]
@@ -189,7 +187,7 @@
       "reasons": [
         "resolved from UNKNOWN to MEETS"
       ],
-      "explanation": "The patient is female (evidence index 7) and aged 58 years (evidence index 6), both of which meet the inclusion criterion of being male or female and aged between 18 and 75 years.",
+      "explanation": "The patient is documented as female (index 7) and aged 58 years (index 6), which fits within the inclusion criterion of male or female aged 18-75 years.",
       "evidence": [
         "oncology_note.pdf p1: Age: 58 years",
         "oncology_note.pdf p1: Sex: Female"
