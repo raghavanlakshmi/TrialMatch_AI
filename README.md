@@ -4,6 +4,8 @@
 ![python](https://img.shields.io/badge/python-3.11-blue)
 ![license](https://img.shields.io/badge/license-MIT-green)
 
+**[▶ Try the live demo](https://trialmatch-ai.streamlit.app/)** — replays a validated run on synthetic patient SYN-001; no sign-up or API key.
+
 **Evidence-grounded, AI-assisted clinical-trial prescreening.** TrialMatch AI turns a patient's scattered
 documents — PDFs, a scanned referral, a handwritten note — into source-verified facts, finds candidate
 trials in a frozen ClinicalTrials.gov snapshot, and checks every eligibility criterion against the
@@ -102,7 +104,7 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The validated SYN-001 run loads automatically — **no API key needed**. The four tabs follow the review
+Or run it locally. The validated SYN-001 run loads automatically — **no API key needed**. The four tabs follow the review
 flow: Patient Documents → Evidence → Trial Matches → Safety & Trace.
 
 To analyse new uploads or refresh the assessments live, copy `.env.example` to `.env` and add an
