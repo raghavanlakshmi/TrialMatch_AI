@@ -12,7 +12,7 @@ evidence for a human reviewer.
 > It never says "this patient is eligible." It shows what appears to match, what appears not to, what is
 > unknown, and what needs verification. All patient data is synthetic.
 
-![From messy documents to an auditable prescreen](docs/images/pipeline.png)
+![TrialMatch AI demo: source documents, verified evidence and the reviewer checklist](docs/images/demo.gif)
 
 ## The problem
 
@@ -53,6 +53,8 @@ These are regression checks on synthetic data, not clinical validation.
 
 ## How it works
 
+![From messy documents to an auditable prescreen](docs/images/pipeline.png)
+
 1. **Ingest** — PDFs via PyMuPDF; scans and handwriting transcribed by a vision model and flagged for review.
 2. **Extract evidence** — every fact keeps its source file, page, date and an exact supporting quote. Code
    checks the quote appears word for word in the source; anything that fails is marked unverified.
@@ -63,7 +65,13 @@ These are regression checks on synthetic data, not clinical validation.
 5. **Surface uncertainty** — conflicting values are kept side by side; missing facts stay `UNKNOWN`.
 6. **Human review** — a reviewer checklist records decisions and exports a summary.
 
-![Every fact carries its source](docs/images/evidence.png)
+**Every fact links back to its source** — the reviewer sees the quote highlighted in the original document:
+
+![Source review: the supporting quote highlighted in the original PDF](docs/images/app_source_review.png)
+
+**Trial matches are counts and review labels, never verdicts:**
+
+![Trial matches: ranked trials with criterion counts and review labels](docs/images/app_trial_matches.png)
 
 ![Uncertainty is shown to the reviewer, not hidden](docs/images/uncertainty.png)
 
