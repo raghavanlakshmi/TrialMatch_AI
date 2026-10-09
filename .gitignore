@@ -228,3 +228,7 @@ data/index/
 
 # Office lock files
 ~$*
+
+# Word exports and submission documents (kept locally, Markdown is the source)
+*.docx
+artifacts/
